@@ -1,8 +1,6 @@
 # .vim/
 > This is my [vimrc](https://github.com/davelens/dotvim/blob/master/vimrc). There are many like it, but this one is mine. My vimrc is my best friend. It is my life. I must master it as I must master my life. Without me, my vimrc is useless. Without my vimrc, I am useless.
 
-My configuration for the world's greatest text editor.
-
 ## neovim? What about regular vim?
 In september 2019 I made the switch to Neovim with its release of 0.4. Mostly
 because I was dealing with large files at the time. In Rails, files like i18n
