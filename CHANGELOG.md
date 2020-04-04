@@ -1,4 +1,4 @@
-# (n)vim changelog
+# .vim/ changelog
 > [This is my vimrc](https://github.com/davelens/dotfiles/blob/master/vimrc).
 > There are many like it, but this one is mine.  My vimrc is my best friend. It
 > is my life. I must master it as I must master my life.  Without me, my vimrc
