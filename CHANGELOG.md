@@ -24,6 +24,7 @@ of my beloved `.vimrc`. There are many like it, but this one's mine.
 I'll try out GitHub issues to maintain a TODO list [here](https://github.com/davelens/dotvim/issues?q=is%3Aopen+label%3Atodo).
 
 ## 2020-04-04
+* I finally moved my vim configurations to its separate repository.
 * Had to move the `mapleader` option back to `vimrc` from the new
 `vim/plugin/maps.vim`. I learned that NERDCommenter in particular sets it to '\' 
 unless it's already set when the plugin loads.
