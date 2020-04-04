@@ -32,7 +32,7 @@ short), a plugin that requires a pre-compiled component.  [See their
 installation instructions](https://github.com/Valloric/YouCompleteMe#installation) 
 to get this sorted.
 
-### YCM on macos < 10.10
+#### YCM on macos < 10.10
 If you're on a version of macos lower than 10.10, chances are that the YCM component failed to compile. I got this fixed with [a helpful SO answer](http://stackoverflow.com/questions/29529455/missing-c-header-debug-after-updating-osx-command-line-tools-6-3#answer-29576048).
 
 ### neovim
