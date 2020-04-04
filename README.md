@@ -42,8 +42,8 @@ fence to set one up for Ruby and JavaScript, though I haven't taken the
 time to do this properly yet.
 
 Neovim will use [coc.nvim](https://github.com/neoclide/coc.nvim) for now. I'm 
-not entirely convinced of its merit for me, I get the sense it's too bloated for
-my tastes, but sports easy configuration. The alternative would be to use 
+not entirely convinced of its merit yet (I get the sense it's too bloated for
+my tastes), but it sports easy configuration. The alternative would be to use 
 [ALE](https://github.com/dense-analysis/ale) along with 
 [Deoplete](https://github.com/Shougo/deoplete.nvim) + [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim). As for an LSP server for Ruby, I've gotten the best results so far 
 with [Solargraph](https://solargraph.org/).
