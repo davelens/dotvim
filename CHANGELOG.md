@@ -1,5 +1,5 @@
 # .vim/ changelog
-> [This is my vimrc](https://github.com/davelens/dotfiles/blob/master/vimrc).
+> [This is my vimrc](https://github.com/davelens/dotvim/blob/master/vimrc).
 > There are many like it, but this one is mine.  My vimrc is my best friend. It
 > is my life. I must master it as I must master my life.  Without me, my vimrc
 > is useless. Without my vimrc, I am useless.
@@ -21,7 +21,7 @@ Dave and hopefully make appropriate decisions when performing future revisions
 of my beloved `.vimrc`. There are many like it, but this one's mine.
 
 ## (n)vim TODOs 
-I'll try out GitHub issues to maintain a TODO list [here](https://github.com/davelens/dotfiles/issues?q=is%3Aopen+label%3Atodo+label%3Avim).
+I'll try out GitHub issues to maintain a TODO list [here](https://github.com/davelens/dotvim/issues?q=is%3Aopen+label%3Atodo).
 
 ## 2020-04-04
 * Had to move the `mapleader` option back to `vimrc` from the new
