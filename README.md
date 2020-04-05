@@ -1,6 +1,17 @@
 # .vim/
 > This is my [vimrc](https://github.com/davelens/dotvim/blob/master/vimrc). There are many like it, but this one is mine. My vimrc is my best friend. It is my life. I must master it as I must master my life. Without me, my vimrc is useless. Without my vimrc, I am useless.
 
+#### Install
+```sh
+git clone git@github.com:davelens/dotvim.git ~/.dotvim 
+cd ~/.dotvim && ./install.sh
+```
+
+#### Uninstall
+```sh
+cd ~/.dotvim && ./uninstall.sh
+```
+
 ## Changelog
 As of march 2020 I created [a separate changelog](https://github.com/davelens/dotvim/blob/master/CHANGELOG.md) 
 for my .vimrc which I'll attempt to maintain, in order to explain some of my
