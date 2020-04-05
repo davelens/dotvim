@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ ! -d "${HOME}/.config/nvim" ] && mkdir -p .config/nvim
+[ ! -d "${HOME}/.config/nvim" ] && mkdir -p ${HOME}/.config/nvim
 
 ln -s ${HOME}/.dotvim/config/nvim ${HOME}/.config/nvim
 ln -s ${HOME}/.dotvim/vim ${HOME}/.vim
