@@ -40,7 +40,7 @@ better overview of... Well, everything really.
 * In review of my changes of 31/3, I removed my homebrew testing functionality
 in favour of `vim-dispatch` and `vim-test`. They work together beautifully.  I
 realised I wrote the functionality for running a single test file mostly because
-I wanted to get learn how to send data to another buffer window. In the end, I
+I wanted to learn how to send data to another buffer window. In the end, I
 came up with a solution that was dependent on nvim_* methods. This is OK, as I'm
 using neovim at the moment because it's faster, but I'm unsure how my stance on
 neovim will change in the future. Vim has been around for 30 odd years, chances
