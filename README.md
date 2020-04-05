@@ -66,7 +66,7 @@ specific icons, you'll need to configure your terminal to use a Powerline font
 as the non-ASCII font.
 
 If you don't wish to make use of the fancy powerline icons, comment out the 
-following line in `configurations.vim`.
+following line in [configurations.vim](https://github.com/davelens/dotvim/blob/master/vim/plugin/configurations.vim).
 
 ```vimscript
 let g:airline_powerline_fonts = 1
