@@ -6,19 +6,19 @@ augroup END
 
 augroup vim_setup
   au!
-	" When editing a file, always jump to the last known cursor position.
-	" When editing a commit message (gitcommit for instance), just ignore
-	" the last cursor position, it'll probably be wrong anyway.
+  " When editing a file, always jump to the last known cursor position.
+  " When editing a commit message (gitcommit for instance), just ignore
+  " the last cursor position, it'll probably be wrong anyway.
   " Thanks to @dubgeiser for the commit message exception!
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~# 'commit' |
         \   exe "normal g`\"" |
         \ endif
 
+  " The following autocommands are used in tandem to avoid file conflicts in general.
   autocmd FocusGained,BufEnter * :checktime " Load in changes made from *within* vim.
   autocmd FocusLost,WinLeave * :silent! noautocmd w " Write files when leaving buffers.
-  " The above autocommands are used in tandem to avoid file conflicts in general.
-  " To understand why autoread does not track all changes regardless of source:
+  " To understand why autoread alone does not track all changes regardless of source:
   " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 
   " Close preview windows after autocomplete automatically
