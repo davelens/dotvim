@@ -20,9 +20,9 @@ reasoning to my future self.
 ## Neovim
 In september 2019 I made the switch to Neovim with its release of 0.4. Mostly
 because I was dealing with large files at the time. In Rails, files like i18n
-files or data logs are so much more responsive in neovim compared to stock vim. 
+files or data logs are so much more responsive in neovim compared to stock Vim. 
 
-Thankfully, both vim and neovim are mostly **backwards compatible**, and I try 
+Thankfully, both Vim and Neovim are mostly **backwards compatible**, and I try 
 to do the same with my vimrc.
 
 ## Plugins
