@@ -98,8 +98,9 @@
 " ALE {
   nnoremap <leader><CR> :ALEFix<CR>
   " ALE feedback navigation for errors/warnings
-  nnoremap <Leader>aj :ALENextWrap<CR>
-  nnoremap <Leader>ak :ALEPreviousWrap<CR>
+  " TODO: Find alternative bindings for this, and review.
+  "nnoremap <Leader>aj :ALENextWrap<CR>
+  "nnoremap <Leader>ak :ALEPreviousWrap<CR>
 "}
 
 " quickfix {
