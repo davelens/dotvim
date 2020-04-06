@@ -96,7 +96,7 @@
 "}
 
 " ALE {
-  nnoremap <leader>a<CR> :ALEFix<CR>
+  nnoremap <leader><CR> :ALEFix<CR>
   " ALE feedback navigation for errors/warnings
   nnoremap <Leader>aj :ALENextWrap<CR>
   nnoremap <Leader>ak :ALEPreviousWrap<CR>
