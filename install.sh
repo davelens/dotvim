@@ -1,6 +1,7 @@
 #!/bin/sh
 
-[ ! -d "${HOME}/.config/nvim" ] && mkdir -p ${HOME}/.config/nvim
+# Stops further execution after any error.
+set -e
 
 ln -s ${HOME}/.dotvim/config/nvim ${HOME}/.config/nvim
 ln -s ${HOME}/.dotvim/vim ${HOME}/.vim
