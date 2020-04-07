@@ -23,6 +23,10 @@
     \ 'ctrl-v': 'vsplit' }
 "}
 
+" vim-closetag {
+  let g:closetag_filetypes = 'html,eruby'
+"}
+
 " ALE {
   let g:ale_fixers = {
   \   'javascript': ['eslint'],
