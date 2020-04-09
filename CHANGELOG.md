@@ -23,6 +23,12 @@ of my beloved `.vimrc`. There are many like it, but this one's mine.
 ## (n)vim TODOs 
 I'll try out GitHub issues to maintain a TODO list [here](https://github.com/davelens/dotvim/issues?q=is%3Aopen+label%3Atodo).
 
+## 2020-04-10
+* I ran through all Vim settings in `~/.vimrc` and read up on every single one
+in order to better understand what's under the hood.
+* Added a Markdown ftplugin just to force word wrapping at 80 characters when
+editing changelogs and readmes.
+
 ## 2020-04-04
 * I finally moved my vim configurations to its separate repository.
 * Had to move the `mapleader` option back to `vimrc` from the new
