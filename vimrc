@@ -57,23 +57,25 @@ elseif has('unix')
 endif
 call plug#end()
 
-set hidden " Keeps buffers in the background when left behind.
+set hidden " Keeps buffers in the background when left behind
 set autowrite " Write file contents for writable buffers
-set autoread " Load in changes made from *outside* vim.
+set autoread " Load in changes made from *outside* vim
 set encoding=utf-8
-set fileformat=unix
-set linespace=0
-set visualbell
-set nocursorcolumn
-set cursorline
-set ignorecase
-set smartcase
-set incsearch
-set laststatus=2
-set foldclose=all
-set foldmethod=marker
-set backspace=indent,eol,start whichwrap+=<,>,[,]
+set fileformat=unix " Use <NL> as EOL
+set linespace=0 " Number of pixel lines between characters
+set visualbell " NO BEEPING
+set nocursorcolumn " Adds a coloured vertical (distracting) cursor column
+set cursorline " Adds a coloured horizontal (convenient) cursor row
+set ignorecase " Ignore casing in pattern matching
+set smartcase  " Ignores casing when all pattern characters are lowercase
+set incsearch " Highlight search matches as you type
+set laststatus=2 " Always show a statusline
+set foldclose=all " When inactive folds get closed when foldmethod is toggled
+set foldmethod=marker " Only fold by means of inline marker comments
 set directory=~/.vim/swp " The swapfile directory
+set whichwrap+=<,>,[,] " Allows word wrapping only when cursor keys are used
+" Allow backspacing over autoindent, line breaks and insert mode start.
+set backspace=indent,eol,start
 
 " Indentation and whitespace defaults
 set smartindent
