@@ -66,6 +66,7 @@ set linespace=0 " Number of pixel lines between characters
 set visualbell " NO BEEPING
 set nocursorcolumn " Adds a coloured vertical (distracting) cursor column
 set cursorline " Adds a coloured horizontal (convenient) cursor row
+set colorcolumn=80 " Mark a (convenient) vertical line at the 80 char mark
 set ignorecase " Ignore casing in pattern matching
 set smartcase  " Ignores casing when all pattern characters are lowercase
 set incsearch " Highlight search matches as you type
@@ -74,24 +75,31 @@ set foldclose=all " When inactive folds get closed when foldmethod is toggled
 set foldmethod=marker " Only fold by means of inline marker comments
 set directory=~/.vim/swp " The swapfile directory
 set whichwrap+=<,>,[,] " Allows word wrapping only when cursor keys are used
-" Allow backspacing over autoindent, line breaks and insert mode start.
+set completeopt=menu,longest " Autocompletion menu with the longest common match
+" Allow backspacing over autoindent, line breaks and insert mode start
 set backspace=indent,eol,start
 
-" Indentation and whitespace defaults
-set smartindent
-set cindent
-set autoindent
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
-set smarttab
+" Indentation and whitespace default
+" See this screencast to learn how these interoperate:
+" http://vimcasts.org/episodes/tabs-and-spaces/
+set smartindent " Smart(ish) autoindenting when starting a new line
+set autoindent " Copy indents from current line when mooving to a new line
+set tabstop=2 " The width of a tab character
+set expandtab " Forces spaces instead of tab characters
+set shiftwidth=2 " Use 2 spaces as default indent width when using << >>
+set softtabstop=2 " Determines how much whitespace is used while indenting
+" Inserts/Deletes whitespace in front of lines according to the above settings
+setlocal smarttab
 
-" Auto-completion
+" wildmode determines how command-line completion behaves. It's considered the
+" "enhanced" mode of completion because you can choose what it does for each
+" subsequent use of the wildchar (<TAB>). If a condition fails, it moves to the
+" next provided completion mode.
+" 1st: longest. Complete until the longest matching string.
+" 2nd: list. Lists all matches with n+1 match.
+" 3d.: full. Completes the next full match.
+set wildmenu " Enables
 set wildmode=longest,list,full
-set wildmenu
-set completeopt=menu,longest
-set colorcolumn=80
 
 if has('nvim')
   set icm=split " Enables real-time substitute previews. Nvim only.
