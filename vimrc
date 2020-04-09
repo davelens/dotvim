@@ -98,7 +98,7 @@ setlocal smarttab
 " 1st: longest. Complete until the longest matching string.
 " 2nd: list. Lists all matches with n+1 match.
 " 3d.: full. Completes the next full match.
-set wildmenu " Enables
+set wildmenu
 set wildmode=longest,list,full
 
 if has('nvim')
