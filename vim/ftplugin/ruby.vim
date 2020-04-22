@@ -20,3 +20,8 @@ vnoremap <leader>d "ky:execute rg#run('Rg -t ruby ', "def ". @k)<CR>
 
 " Convert "test = 3" to "let(:test) { 3 }"
 nnoremap <leader>p :call refactor#rspec_promote_to_let()<CR>
+
+" vim-localorie bindings
+nnoremap <silent> <leader>yt :call localorie#translate()<CR>
+nnoremap <silent> <leader>ye :call localorie#expand_key()<CR>
+vnoremap <leader>i "ky:echo system("~/.bin/rails/lookup-translations ". @k)<CR>
