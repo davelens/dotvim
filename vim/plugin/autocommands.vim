@@ -35,6 +35,11 @@ augroup tests
   au FileType vim silent! nunmap <buffer> <CR>
 augroup END
 
+augroup git
+  au!
+  au FileType * nnoremap <leader>g :G<CR>
+augroup END
+
 " Fix copy/paste from vim registers to system clipboard on WSL.
 if has('wsl')
   augroup WSL_setup
