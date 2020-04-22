@@ -42,6 +42,7 @@ Plug 'alvan/vim-closetag' " vim-endwise for HTML
 Plug 'junegunn/fzf.vim' " Command-line fuzzy finder
 Plug 'janko/vim-test' " Generic, configurable test-wrapper
 Plug 'airblade/vim-localorie' " Maps and functions for Rails I18n interaction
+Plug 'vimwiki/vimwiki' " A 'personal wiki' I'm experimenting with.
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense autocompletion
