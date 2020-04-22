@@ -29,7 +29,7 @@ augroup END
 augroup tests
   au!
   " Reserves <CR> for running a file spec in any buffer with a defined FileType.
-  au FileType * nnoremap <buffer> <CR> :TestFile<CR>
+  au FileType ruby,elixir,js nnoremap <buffer> <CR> :TestFile<CR>
   " Unmaps <CR> when entering Command-Line Mode. Includes terminals.
   " This way I can keep using <CR> in q:
   au FileType vim silent! nunmap <buffer> <CR>
