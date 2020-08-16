@@ -37,7 +37,6 @@ Plug 'tpope/vim-bundler' " Maps to help browse gem source code
 Plug 'tpope/vim-abolish' " Case coercions and language corrections
 Plug 'tpope/vim-unimpaired' " Complementary maps for quickfix, lists, options
 Plug 'elixir-editors/vim-elixir' " Pandora's box with Elixir workflow features
-Plug 'slashmili/alchemist.vim' " Intellisense autocompletion for Elixir
 Plug 'alvan/vim-closetag' " vim-endwise for HTML
 Plug 'junegunn/fzf.vim' " Command-line fuzzy finder
 Plug 'janko/vim-test' " Generic, configurable test-wrapper
