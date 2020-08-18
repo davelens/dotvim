@@ -20,7 +20,9 @@
 " fzf {
   let g:fzf_action = {
     \ 'ctrl-s': 'split',
-    \ 'ctrl-v': 'vsplit' }
+    \ 'ctrl-v': 'vsplit',
+    \ 'ctrl-q': function('quickfix#populate')
+    \}
 "}
 
 " vim-closetag {

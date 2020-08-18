@@ -1,3 +1,9 @@
+function quickfix#populate(lines) abort
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
 function quickfix#search_replace(string) abort
   let old_value = escape(a:string, '/')
   let new_value = escape(input('Replace '. shellescape(a:string) .' with: '), '/')
