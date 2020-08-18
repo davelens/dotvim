@@ -2,9 +2,7 @@
   " solarized comes with a toggle-background method.
   call togglebg#map("<F4>")
 
-  " Giving this a go; ESC remapping in insert mode.
-  " Less finger wrecking than C-[, and rare enough not to obstruct while typing.
-  inoremap jk <Esc>
+  " Quick save and exit maps
   nnoremap <leader>s <Esc>:w<CR>
   nnoremap <leader>x <Esc>:q!<CR>
 
