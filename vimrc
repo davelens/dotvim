@@ -21,6 +21,7 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'MarcWeber/vim-addon-mw-utils' " Snipmate dependency
 Plug 'tomtom/tlib_vim' " Snipmate dependency
 Plug 'garbas/vim-snipmate'
+let g:snipMate = { 'snippet_version' : 1 }
 
 Plug 'sjl/vitality.vim' " FocusLost and FocusGained support
 Plug 'altercation/vim-colors-solarized' " Pretty colors
