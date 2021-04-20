@@ -1,15 +1,21 @@
-" Indentation and whitespace defaults
-" See this screencast to learn how these interoperate:
-" http://vimcasts.org/episodes/tabs-and-spaces/
-setlocal smartindent " Smart(ish) autoindenting when starting a new line
-setlocal cindent " Automatic C-style indenting for non-C files
-setlocal autoindent " Copy indents from current line when moving to a new line
-setlocal tabstop=2 " The width of a tab character
-setlocal expandtab " Forces spaces instead of tab characters
-setlocal shiftwidth=2 " Use 2 spaces as default indent width when using << >>
-setlocal softtabstop=2 " Determines how much whitespace is used while indenting
-" Inserts/Deletes whitespace in front of lines according to the above settings
-setlocal smarttab
+set wildignore+=*.pyc
+
+" Use pydoc for keywordprg.
+" Unix users preferentially get pydoc3, then pydoc2.
+" Windows doesn't have a standalone pydoc executable in $PATH by default, nor
+" does it have separate python2/3 executables, so Windows users just get
+" whichever version corresponds to their installed Python version.
+if executable('python3')
+  setlocal keywordprg=python3\ -m\ pydoc
+elseif executable('python')
+  setlocal keywordprg=python\ -m\ pydoc
+endif
+
+" Not a fan of tabs for indentation, but adhering to the PEP8 community
+" standard.
+if !exists("g:python_recommended_style") || g:python_recommended_style != 0
+  setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+endif
 
 " Method definition lookup. Same as <leader>l, but prefixes search string with "def "
 nnoremap <expr> <leader>d ':execute rg#run("Rg -t python", "def '. expand('<cword>') .'")<CR>'
