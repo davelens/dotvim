@@ -23,5 +23,5 @@ nnoremap <leader>p :call refactor#rspec_promote_to_let()<CR>
 
 " vim-localorie bindings
 nnoremap <silent> <leader>yt :call localorie#translate()<CR>
-nnoremap <silent> <leader>ye :call localorie#expand_key()<CR>
+nnoremap <silent> <leader>ye :echo localorie#expand_key()<CR>
 vnoremap <leader>i "ky:echo system("~/.bin/rails/lookup-translations ". @k)<CR>
