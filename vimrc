@@ -38,7 +38,7 @@ Plug 'tpope/vim-unimpaired' " Complementary maps for quickfix, lists, options
 Plug 'elixir-editors/vim-elixir' " Pandora's box with Elixir workflow features
 Plug 'alvan/vim-closetag' " vim-endwise for HTML
 Plug 'junegunn/fzf.vim' " Command-line fuzzy finder
-Plug 'janko/vim-test' " Generic, configurable test-wrapper
+Plug 'vim-test/vim-test' " Generic, configurable test-wrapper
 Plug 'airblade/vim-localorie' " Maps and functions for Rails I18n interaction
 
 if has('nvim')
