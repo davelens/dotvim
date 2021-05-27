@@ -17,11 +17,9 @@ Plug 'adelarsq/vim-matchit' " extended matching for %
 Plug 'kana/vim-textobj-user' " allows for custom text object definitions
 Plug 'nelstrom/vim-textobj-rubyblock'
 
-" Snippets. # TODO: Replace all three with UltiSnips
-Plug 'MarcWeber/vim-addon-mw-utils' " Snipmate dependency
-Plug 'tomtom/tlib_vim' " Snipmate dependency
-Plug 'garbas/vim-snipmate'
-let g:snipMate = { 'snippet_version' : 1 }
+" Snippets.
+Plug 'SirVer/ultisnips' " Snippet management
+Plug 'honza/vim-snippets' " Snippet library for most filetypes
 
 Plug 'sjl/vitality.vim' " FocusLost and FocusGained support
 Plug 'altercation/vim-colors-solarized' " Pretty colors
@@ -42,7 +40,6 @@ Plug 'alvan/vim-closetag' " vim-endwise for HTML
 Plug 'junegunn/fzf.vim' " Command-line fuzzy finder
 Plug 'janko/vim-test' " Generic, configurable test-wrapper
 Plug 'airblade/vim-localorie' " Maps and functions for Rails I18n interaction
-Plug 'vimwiki/vimwiki' " A 'personal wiki' I'm experimenting with.
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense autocompletion
