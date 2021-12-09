@@ -41,6 +41,9 @@ Plug 'junegunn/fzf.vim' " Command-line fuzzy finder
 Plug 'vim-test/vim-test' " Generic, configurable test-wrapper
 Plug 'airblade/vim-localorie' " Maps and functions for Rails I18n interaction
 Plug 'shime/vim-livedown' " Live markdown previews
+" TODO: Find out which one of these have a conflicting <leader>t map.
+"Plug 'dhruvasagar/vim-table-mode' " Table mode for human readable tables.
+"Plug 'junegunn/vim-easy-align' " Table mode for human readable tables.
 Plug 'github/copilot.vim' " AI pair programmer 😂
 
 if has('nvim')
