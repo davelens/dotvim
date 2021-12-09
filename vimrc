@@ -40,6 +40,7 @@ Plug 'alvan/vim-closetag' " vim-endwise for HTML
 Plug 'junegunn/fzf.vim' " Command-line fuzzy finder
 Plug 'vim-test/vim-test' " Generic, configurable test-wrapper
 Plug 'airblade/vim-localorie' " Maps and functions for Rails I18n interaction
+Plug 'shime/vim-livedown' " Live markdown previews
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense autocompletion
