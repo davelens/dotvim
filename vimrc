@@ -116,9 +116,9 @@ set t_vb= " Disable the bloody visual bell
 set t_Co=256 " Set vim in 256 color-mode
 
 " solarized options
-let g:solarized_termtrans = 1
-colorscheme solarized
+let g:solarized_termcolors=256
 set background=dark
+colorscheme solarized
 
 " My thumbs never leave <Space> when typing, so it seems like the best choice.
 let mapleader = ' '
