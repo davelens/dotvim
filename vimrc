@@ -30,7 +30,7 @@ Plug 'tpope/vim-surround' " Maps to manipulate brackets, parens, quotes,..
 Plug 'tpope/vim-repeat' " Extended repeat functionality through `.`
 Plug 'tpope/vim-endwise' " Smart end structures for blocks
 Plug 'tpope/vim-rails' " Pandora's box with Rails workflow features
-Plug 'tpope/vim-fugitive' " Git wrapper for vim
+Plug 'tpope/vim-fugitive', { 'tag': 'v3.3' } " Git wrapper for vim
 Plug 'tpope/vim-dispatch' " Async testing toolkit
 Plug 'tpope/vim-bundler' " Maps to help browse gem source code
 Plug 'tpope/vim-abolish' " Case coercions and language corrections
@@ -40,6 +40,11 @@ Plug 'alvan/vim-closetag' " vim-endwise for HTML
 Plug 'junegunn/fzf.vim' " Command-line fuzzy finder
 Plug 'vim-test/vim-test' " Generic, configurable test-wrapper
 Plug 'airblade/vim-localorie' " Maps and functions for Rails I18n interaction
+Plug 'shime/vim-livedown' " Live markdown previews
+" TODO: Find out which one of these have a conflicting <leader>t map.
+"Plug 'dhruvasagar/vim-table-mode' " Table mode for human readable tables.
+"Plug 'junegunn/vim-easy-align' " Table mode for human readable tables.
+Plug 'github/copilot.vim' " AI pair programmer 😂
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense autocompletion
