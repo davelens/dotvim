@@ -26,7 +26,7 @@
 "}
 
 " vim-closetag {
-  let g:closetag_filetypes = 'html,eruby'
+  let g:closetag_filetypes = 'html,eruby,eelixir'
 "}
 
 " ALE {

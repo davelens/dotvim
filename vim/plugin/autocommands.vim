@@ -23,6 +23,9 @@ augroup vim_setup
 
   " Close preview windows after autocomplete automatically
   autocmd CompleteDone * pclose
+
+  " TODO: Move this to a another spot in this file?
+  autocmd BufRead,BufNewFile *.heex set filetype=eelixir
 augroup END
 
 " :TestFile mapping to Enter, with a fix for Enter in command-line mode.
