@@ -121,8 +121,15 @@ set statusline=%-25.25(%<%t\ %m%r\%)line\ %l\ of\ %L\ col\ %c%V\ %=%{&ff},%{strl
 set t_vb= " Disable the bloody visual bell
 set t_Co=256 " Set vim in 256 color-mode
 
+" On my macbook I don't need the high contrast the default dark background
+" offers. I prefer a Solarized-colored background.
+if has('mac')
+  let g:solarized_termtrans = 1
+else
+  let g:solarized_termcolors=256
+end
+
 " solarized options
-let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
