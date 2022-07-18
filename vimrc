@@ -52,9 +52,10 @@ else
   Plug 'Valloric/YouCompleteMe' " Buffer autocompletion
 endif
 
-" Adds the correct fzf binary to RTP
+" This caters to Apple silicon. You need to point to /usr/local/opt/fzf for
+" Intel macs.
 if has('mac')
-  Plug '/usr/local/opt/fzf'
+  Plug '/opt/homebrew/opt/fzf'
 elseif has('unix')
   Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
 endif
