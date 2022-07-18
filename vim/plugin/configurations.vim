@@ -56,6 +56,14 @@
   \}
 "}
 
+" If you're running Docker during development:
+"   :let test#strategy = { 'file': 'docker-rspec' }
+function! DockerRspecStrategy(cmd)
+  execute "Dispatch docker-compose run --rm -e RAILS_ENV=test rails " . a:cmd
+endfunction
+
+let g:test#custom_strategies = {'docker-rspec': function('DockerRspecStrategy')}
+
 " Rails projections to be used with vim-{rails,projectionist} {
   let g:rails_gem_projections = {
   \  "factory_bot": {
