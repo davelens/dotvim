@@ -135,3 +135,6 @@ colorscheme solarized
 
 " My thumbs never leave <Space> when typing, so it seems like the best choice.
 let mapleader = ' '
+
+" Don't let neovim whine about the Perl provider in :checkhealth.
+let g:loaded_perl_provider = 0
