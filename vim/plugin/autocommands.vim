@@ -50,3 +50,8 @@ if has('wsl')
     autocmd TextYankPost * :call system('clip.exe ',@")
   augroup END
 endif
+
+augroup rails
+  au!
+  autocmd CursorMoved *.yml echo localorie#expand_key()
+augroup END
