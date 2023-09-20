@@ -44,7 +44,7 @@ Plug 'shime/vim-livedown' " Live markdown previews
 " TODO: Find out which one of these have a conflicting <leader>t map.
 "Plug 'dhruvasagar/vim-table-mode' " Table mode for human readable tables.
 "Plug 'junegunn/vim-easy-align' " Table mode for human readable tables.
-"Plug 'github/copilot.vim' " AI pair programmer 😂
+Plug 'github/copilot.vim' " AI pair programmer 😂
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense autocompletion
