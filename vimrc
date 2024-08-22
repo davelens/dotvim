@@ -121,6 +121,9 @@ set statusline=%-25.25(%<%t\ %m%r\%)line\ %l\ of\ %L\ col\ %c%V\ %=%{&ff},%{strl
 set t_vb= " Disable the bloody visual bell
 set t_Co=256 " Set vim in 256 color-mode
 
+" Temporary (?) fix for broken solarized colors in neovim 0.10.0
+set notermguicolors
+
 " On my macbook I don't need the high contrast the default dark background
 " offers. I prefer a Solarized-colored background.
 if has('mac')
