@@ -32,3 +32,5 @@ require("lazy").setup({
 })
 
 require('neovim/options')
+require('neovim/functions')
+require('neovim/maps')
