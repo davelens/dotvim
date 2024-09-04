@@ -16,6 +16,8 @@ return {
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
     vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    vim.keymap.set('n', '<leader>l', '<cmd>lua require(\'telescope.builtin\').grep_string({search = vim.fn.expand("<cword>")})<cr>', {})
+    vim.keymap.set('v', '<leader>l', ':lua require(\'telescope.builtin\').grep_string({search = get_visual_selection()})<cr>', {})
 
     telescope.setup {
       defaults = {
@@ -26,11 +28,11 @@ return {
           -- Default is C-X, which I don't like.
           i = { ['<c-s>'] = actions.select_horizontal },
           n = { ['<c-s>'] = actions.select_horizontal },
-	  -- These are the defaults in junegunn's fzf.
-	  -- Commented because I want to use Telescope's defaults
-	  -- and not have them conflict with C-K / C-F.
-	  -- i = ["<C-k>"] = actions.move_selection_previous,
-	  -- i = ["<C-j>"] = actions.move_selection_next,
+          -- These are the defaults in junegunn's fzf.
+          -- Commented because I want to use Telescope's defaults
+          -- and not have them conflict with C-K / C-F.
+          -- i = ["<C-k>"] = actions.move_selection_previous,
+          -- i = ["<C-j>"] = actions.move_selection_next,
         },
       }
     }
