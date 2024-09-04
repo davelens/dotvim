@@ -17,6 +17,3 @@ function get_visual_selection()
   end
   return table.concat(lines, '\n')
 end
-
-
-
