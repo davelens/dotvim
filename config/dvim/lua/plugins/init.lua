@@ -6,4 +6,9 @@
 -- This init file could then be used to "quickload" plugins that require
 -- minimal or no configuration at all.
 return {
+  'tpope/vim-surround',
+  {
+    "tpope/vim-fugitive", 
+    keys = { { "<leader>g", "<cmd>G<cr>" } },
+  },
 }
