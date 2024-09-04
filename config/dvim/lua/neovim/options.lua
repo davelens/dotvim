@@ -21,7 +21,7 @@ vim.opt.cursorline = true -- Adds a coloured horizontal (convenient) cursor row
 -- TODO: See about using vim.opt.undofile + simnalamburt/vim-mundo instead.
 vim.opt.directory = "vim/swp" -- The swapfile directory
 vim.opt.encoding = 'utf-8'
-vim.opt.fileformat = unix -- Use <NL> as EOL
+--vim.opt.fileformat = unix -- Use <NL> as EOL
 vim.opt.foldclose = all -- When inactive folds get closed when foldmethod is toggled
 vim.opt.foldmethod = marker -- Only fold by means of inline marker comments
 vim.opt.hidden = true -- Keeps buffers in the background when left behind
