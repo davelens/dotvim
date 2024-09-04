@@ -6,6 +6,7 @@
 -- This init file could then be used to "quickload" plugins that require
 -- minimal or no configuration at all.
 return {
+  'preservim/nerdcommenter',
   'tpope/vim-surround',
   {
     "tpope/vim-fugitive", 
