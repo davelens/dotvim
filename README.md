@@ -1,6 +1,31 @@
 # .vim/
 > This is my [vimrc](https://github.com/davelens/dotvim/blob/master/vimrc). There are many like it, but this one is mine. My vimrc is my best friend. It is my life. I must master it as I must master my life. Without me, my vimrc is useless. Without my vimrc, I am useless.
 
+## 2024: Conversion to Lua
+The need to convert my config to Lua finally presented itself in requiring
+modern plugin support for development in Elixir. The idea is to keep my "old"
+vimrc as the default until I'm comfortable enough to switch.
+
+In order to keep both versions, I have opted to use a new config namespace for 
+the Lua version. This way I can keep the old vimrc as a default (for now!). 
+
+Create an executable in your path with the following:
+```
+#!/usr/bin/env bash
+
+export NVIM_APPNAME="${NVIM_APPNAME:-"dvim"}"
+exec -a "$NVIM_APPNAME" nvim -u "~/.config/dvim/init.lua" "$@"
+```
+Mine currently lives in `~/.local/bin/dvim`. Make sure to `chmod +x` it to make
+it executable.
+
+Now you can start Neovim with `dvim` and it will use the Lua configuration.
+
+When the time will come to switch defaults, I'll probably move the "old" version
+to something like `~/.local/bin/ovim` (for "old vim") and let the Lua version
+use the default `nvim` config namespace.
+
+
 #### Install
 ```sh
 git clone git@github.com:davelens/dotvim.git ~/.dotvim 
