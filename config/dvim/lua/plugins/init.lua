@@ -8,6 +8,7 @@
 return {
   'preservim/nerdcommenter',
   'tpope/vim-surround',
+  'tpope/vim-endwise',
   {
     "tpope/vim-fugitive", 
     keys = { { "<leader>g", "<cmd>G<cr>" } },
