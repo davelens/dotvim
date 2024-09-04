@@ -12,4 +12,11 @@ return {
     "tpope/vim-fugitive", 
     keys = { { "<leader>g", "<cmd>G<cr>" } },
   },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  }
 }
