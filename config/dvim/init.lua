@@ -22,6 +22,7 @@ require('neovim/functions')
 vim.g.mapleader = " " -- using space as leader key
 vim.g.maplocalleader = "," -- using comma as local leader
 
+-- Bootstrap lazy.nvim to load in lua/plugins/*.lua, and lua/plugins.lua.
 require("lazy").setup({
   spec = {
     { import = "plugins" },
@@ -32,6 +33,9 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+-- Some easier access to the Lazy dashboard.
+vim.keymap.set('n', '<leader>L', ':Lazy<cr>', {})
 
 require('neovim/options')
 require('neovim/maps')
