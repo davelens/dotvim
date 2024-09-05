@@ -6,7 +6,7 @@
 -- This init file could then be used to "quickload" plugins that require
 -- minimal or no configuration at all.
 return {
-  'preservim/nerdcommenter',
+  'preservim/nerdcommenter', -- Comment toggles with <leader>ci
   'tpope/vim-surround', -- Maps to manipulate brackets, parens, quotes,..
   'tpope/vim-endwise', -- Smart end structures for blocks
   {
