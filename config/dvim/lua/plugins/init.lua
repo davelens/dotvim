@@ -10,6 +10,7 @@ return {
   'tpope/vim-surround', -- Maps to manipulate brackets, parens, quotes,..
   'tpope/vim-endwise', -- Smart end structures for blocks
   'tpope/vim-repeat', -- Extended repeat functionality through `.`
+  'tpope/vim-rails', -- Pandora's box with Rails workflow features
   {
     "tpope/vim-fugitive", -- Git wrapper for vim
     keys = { { "<leader>g", "<cmd>G<cr>" } },
