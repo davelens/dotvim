@@ -1,3 +1,4 @@
+-- Pretty and/or healthy colours for long programming sessions.
 return {
   "craftzdog/solarized-osaka.nvim",
   lazy = false,

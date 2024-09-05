@@ -1,3 +1,4 @@
+-- Command-line fuzzy finder that is extendable.
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
@@ -23,6 +24,7 @@ return {
       defaults = {
         mappings = {
           -- Open selected files into a Trouble quicklist.
+          -- TODO: This worked, but not anymore. Conflict with a plugin probably.
           i = { ['<c-t>'] = trouble.open },
           n = { ['<c-t>'] = trouble.open },
           -- Default is C-X, which I don't like.

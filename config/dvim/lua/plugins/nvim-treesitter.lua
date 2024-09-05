@@ -1,3 +1,5 @@
+-- tree-sitter implementation for Neovim. Parsing system for advanced syntax 
+-- highlighting and more crazy shenanigans.
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",

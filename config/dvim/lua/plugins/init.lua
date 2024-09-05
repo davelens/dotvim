@@ -7,14 +7,14 @@
 -- minimal or no configuration at all.
 return {
   'preservim/nerdcommenter',
-  'tpope/vim-surround',
-  'tpope/vim-endwise',
+  'tpope/vim-surround', -- Maps to manipulate brackets, parens, quotes,..
+  'tpope/vim-endwise', -- Smart end structures for blocks
   {
-    "tpope/vim-fugitive", 
+    "tpope/vim-fugitive", -- Git wrapper for vim
     keys = { { "<leader>g", "<cmd>G<cr>" } },
   },
   {
-    'windwp/nvim-autopairs',
+    'windwp/nvim-autopairs', -- Smart brackets, parens, quotes,...
     event = "InsertEnter",
     config = true
     -- use opts = {} for passing setup options

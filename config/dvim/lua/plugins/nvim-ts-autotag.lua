@@ -1,3 +1,5 @@
+-- nvim-treesitter extension to autoclose/autorename tags.
+-- Mainly targetted for HTML, JS, Typescript, XML, Vue, etc....
 return {
   "windwp/nvim-ts-autotag",
   config = function()
