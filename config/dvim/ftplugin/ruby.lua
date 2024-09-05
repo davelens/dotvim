@@ -16,5 +16,5 @@ map('n', '<leader>a', '<cmd>A<cr>', { silent = true, buffer = true })
 map('n', '<leader>r', '<cmd>R<cr>', { silent = true, buffer = true })
 
 -- Method definition lookup. Same as <leader>l, but prefixes search string with "def "
-map('n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", { noremap = true, silent = true })
-map('v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", { noremap = true, silent = true })
+map('n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", { noremap = true, silent = true, buffer = true })
+map('v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", { noremap = true, silent = true, buffer = true })
