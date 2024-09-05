@@ -17,8 +17,8 @@ return {
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
     vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-    vim.keymap.set('n', '<leader>l', '<cmd>lua require(\'telescope.builtin\').grep_string({search = vim.fn.expand("<cword>")})<cr>', {})
-    vim.keymap.set('v', '<leader>l', ':lua require(\'telescope.builtin\').grep_string({search = get_visual_selection()})<cr>', {})
+    vim.keymap.set('n', '<leader>l', ':<C-U>lua require(\'telescope.builtin\').grep_string({search = vim.fn.expand("<cword>")})<cr>', { silent = true })
+    vim.keymap.set('v', '<leader>l', ':<C-U>lua require(\'telescope.builtin\').grep_string({search = get_visual_selection()})<cr>', { silent = true })
 
     telescope.setup {
       defaults = {
