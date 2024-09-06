@@ -11,6 +11,7 @@ return {
   'tpope/vim-endwise', -- Smart end structures for blocks
   'tpope/vim-repeat', -- Extended repeat functionality through `.`
   'tpope/vim-rails', -- Pandora's box with Rails workflow features
+  'github/copilot.vim', -- AI pair programmer 😂
   {
     "tpope/vim-fugitive", -- Git wrapper for vim
     keys = { { "<leader>g", "<cmd>G<cr>" } },
