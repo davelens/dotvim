@@ -20,6 +20,11 @@ return {
     vim.keymap.set('v', '<leader>l', ':<C-U>lua require(\'telescope.builtin\').grep_string({search = get_visual_selection()})<cr>', { silent = true })
 
     telescope.setup {
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+      },
       defaults = {
         mappings = {
           i = { 
