@@ -65,7 +65,6 @@ set hidden " Keeps buffers in the background when left behind
 set autowrite " Write file contents for writable buffers
 set autoread " Load in changes made from *outside* vim
 set encoding=utf-8
-set fileformat=unix " Use <NL> as EOL
 set linespace=0 " Number of pixel lines between characters
 set visualbell " NO BEEPING
 set nocursorcolumn " Adds a coloured vertical (distracting) cursor column
