@@ -15,12 +15,12 @@ vim.opt.autoread = true -- Load in changes made from *outside* vim
 vim.opt.autowrite = true -- Write file contents for writable buffers
 -- Allow backspacing over autoindent, line breaks and insert mode start
 vim.opt.backspace = indent,eol,start
-vim.opt.colorcolumn = '80' -- Mark a (convenient) vertical line at the 80 char mark
+vim.opt.colorcolumn = "80" -- Mark a (convenient) vertical line at the 80 char mark
 vim.opt.completeopt = menu,longest -- Autocompletion menu with the longest common match
 vim.opt.cursorline = true -- Adds a coloured horizontal (convenient) cursor row
 -- TODO: See about using vim.opt.undofile + simnalamburt/vim-mundo instead.
 vim.opt.directory = "vim/swp" -- The swapfile directory
-vim.opt.encoding = 'utf-8'
+vim.opt.encoding = "utf-8"
 --vim.opt.fileformat = unix -- Use <NL> as EOL
 vim.opt.foldclose = all -- When inactive folds get closed when foldmethod is toggled
 vim.opt.foldmethod = marker -- Only fold by means of inline marker comments
