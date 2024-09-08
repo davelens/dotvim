@@ -23,10 +23,8 @@ vim.g.mapleader = " " -- using space as leader key
 vim.g.maplocalleader = "," -- using comma as local leader
 
 -- Bootstrap lazy.nvim to load in lua/plugins/*.lua, and lua/plugins.lua.
-require("lazy").setup({
-  spec = {
-    { import = "plugins" },
-  },
+require("lazy").setup('plugins', {
+  change_detection = { notify = false },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   --install = { colorscheme = { "habamax" } },
