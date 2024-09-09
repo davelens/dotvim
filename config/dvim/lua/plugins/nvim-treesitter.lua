@@ -2,29 +2,31 @@
 -- highlighting and more crazy shenanigans.
 return {
   "nvim-treesitter/nvim-treesitter",
+
+  dependencies = {
+    -- Probably good to read up on text objects and how to add custom ones:
+    -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
+    "nvim-treesitter/nvim-treesitter-textobjects",
+
+    -- nvim-treesitter extension to autoclose/autorename tags.
+    -- Mainly targetted for HTML, JS, Typescript, XML, Vue, etc....
+    "windwp/nvim-ts-autotag",
+  },
   build = ":TSUpdate",
   config = function () 
     local configs = require("nvim-treesitter.configs")
 
     configs.setup({
       ensure_installed = { 
-        "ruby", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", 
-        "html", "puppet"
+        'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 
+        'typescript', 'vimdoc', 'vim', 'bash', 'elixir', 'eex', 'ruby', 
+        'puppet', 'html', 'css', 'json', 'yaml', 'dockerfile'
       },
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = true },  
     })
-  end,
 
-  -- Probably good to read up on text objects and how to add custom ones:
-  -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
-  "nvim-treesitter/nvim-treesitter-textobjects",
-
-  -- nvim-treesitter extension to autoclose/autorename tags.
-  -- Mainly targetted for HTML, JS, Typescript, XML, Vue, etc....
-  "windwp/nvim-ts-autotag",
-  config = function()
     require("nvim-ts-autotag").setup {
       opts = {
         -- These are default, but leave them here for good measure.
@@ -39,5 +41,5 @@ return {
         --["html"] = { enable_close = false }
       --}
     }
-  end
+  end,
 }
