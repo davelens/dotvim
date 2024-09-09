@@ -13,8 +13,6 @@ return {
   'tpope/vim-rails', -- Pandora's box with Rails workflow features
   'tpope/vim-unimpaired', -- Complementary maps for quickfix, lists, options
   'github/copilot.vim', -- AI pair programmer 😂
-  'williamboman/mason.nvim', -- LSP server installation manager
-  "williamboman/mason-lspconfig.nvim", -- LSP-related heavy lifting for Mason
   {
     "tpope/vim-fugitive", -- Git wrapper for vim
     keys = { { "<leader>g", "<cmd>G<cr>" } },
