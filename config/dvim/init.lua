@@ -30,6 +30,7 @@ require("lazy").setup('plugins', {
   --install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
+  ui = { border = "rounded" }
 })
 
 -- Some easier access to the Lazy dashboard.
