@@ -14,16 +14,16 @@ vim.opt_local.smarttab = true
 vim.opt.autoread = true -- Load in changes made from *outside* vim
 vim.opt.autowrite = true -- Write file contents for writable buffers
 -- Allow backspacing over autoindent, line breaks and insert mode start
-vim.opt.backspace = indent,eol,start
+vim.opt.backspace = "indent,eol,start"
 vim.opt.colorcolumn = "80" -- Mark a (convenient) vertical line at the 80 char mark
-vim.opt.completeopt = menu,longest -- Autocompletion menu with the longest common match
+vim.opt.completeopt = "menu,longest" -- Autocompletion menu with the longest common match
 vim.opt.cursorline = true -- Adds a coloured horizontal (convenient) cursor row
 -- TODO: See about using vim.opt.undofile + simnalamburt/vim-mundo instead.
 vim.opt.directory = "vim/swp" -- The swapfile directory
 vim.opt.encoding = "utf-8"
 --vim.opt.fileformat = unix -- Use <NL> as EOL
-vim.opt.foldclose = all -- When inactive folds get closed when foldmethod is toggled
-vim.opt.foldmethod = marker -- Only fold by means of inline marker comments
+vim.opt.foldclose = "all" -- When inactive folds get closed when foldmethod is toggled
+vim.opt.foldmethod = "marker" -- Only fold by means of inline marker comments
 vim.opt.hidden = true -- Keeps buffers in the background when left behind
 vim.opt.ignorecase = true -- Ignore casing in pattern matching
 vim.opt.incsearch = true -- Highlight search matches as you type
@@ -33,3 +33,4 @@ vim.opt.cursorcolumn = false -- Adds a coloured vertical (distracting) cursor co
 vim.opt.smartcase = true -- Ignores casing when all pattern characters are lowercase
 vim.opt.visualbell = true -- NO BEEPING
 vim.opt.whichwrap:append("<,>,[,]") -- Allows word wrapping only when cursor keys are used
+vim.opt.clipboard = "unnamedplus" -- Use the system clipboard
