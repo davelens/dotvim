@@ -11,10 +11,19 @@ vim.opt_local.smarttab = true
 vim.opt_local.softtabstop = 2 -- Determines how much whitespace is used while indenting
 vim.opt_local.tabstop = 2 -- The width of a tab character
 
-local map = vim.keymap.set
-map('n', '<leader>a', '<cmd>A<cr>', { silent = true, buffer = true })
-map('n', '<leader>r', '<cmd>R<cr>', { silent = true, buffer = true })
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*.rb, *.html.erb',
+  callback = function(args)
+    map = vim.keymap.set
+    default_opts = { noremap = true, silent = false, buffer = args.buf }
 
--- Method definition lookup. Same as <leader>l, but prefixes search string with "def "
-map('n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", { noremap = true, silent = true, buffer = true })
-map('v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", { noremap = true, silent = true, buffer = true })
+    -- rails.vim
+    map('n', '<leader>a', '<cmd>A<cr>', default_opts)
+    map('n', '<leader>r', '<cmd>R<cr>', default_opts)
+        
+    -- Telescope
+    -- Method definition lookup. Same as <leader>l, but prefixes search string with "def "
+    map('n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", default_opts)
+    map('v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", default_opts)
+  end
+})
