@@ -13,6 +13,10 @@ end
 map('n', '<leader>s', '<Esc>:w<CR>')
 map('n', '<leader>x', '<Esc>:q!<CR>')
 
+-- Do not exit visual mode when shifting
+map('v', '>', '>gv', { noremap = true })
+map('v', '<', '<gv', { noremap = true })
+
 -- Hop from method to method.
 map('n', '<C-n>', ']]')
 map('n', '<C-p>', '[[')
