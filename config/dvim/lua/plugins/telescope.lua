@@ -5,6 +5,7 @@ return {
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-tree/nvim-web-devicons' },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { 'nvim-telescope/telescope-live-grep-args.nvim' },
   },
   config = function()
     local telescope = require('telescope')
@@ -13,7 +14,7 @@ return {
     local actions = require("telescope.actions")
 
     vim.keymap.set('n', '<leader>t', builtin.git_files, {})
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+    vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, {})
     vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     vim.keymap.set('n', '<leader>l', ':<C-U>lua require(\'telescope.builtin\').grep_string({search = vim.fn.expand("<cword>")})<cr>', { silent = true })
@@ -45,5 +46,6 @@ return {
     }
 
     telescope.load_extension('fzf')
+    telescope.load_extension("live_grep_args")
   end,
 }
