@@ -1,11 +1,9 @@
---vim.keymap.set('n', '<leader>m', '<cmd>ToggleFloatingWindows<CR>')
-
-local function get_translation(text)
+function get_translation(text)
   -- Replace this with your actual function to get translations
   return "Translation for: " .. text
 end
 
-local function toggle_floating_windows()
+function toggle_floating_windows()
   local buf = vim.api.nvim_get_current_buf()
   local line_num = vim.api.nvim_win_get_cursor(0)[1] - 1
   local current_line = vim.api.nvim_buf_get_lines(buf, line_num, line_num + 1, false)[1]
@@ -94,6 +92,3 @@ local function toggle_floating_windows()
     end
   end
 end
-
--- Bind the function to a command or keybinding
-vim.api.nvim_create_user_command('ToggleFloatingWindows', toggle_floating_windows, {})
