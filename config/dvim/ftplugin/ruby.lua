@@ -27,6 +27,7 @@ map(0, 'v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({se
 -- See config/dvim/lua/neovim/autocommands.lua
 
 local rails = vim.api.nvim_create_augroup('rails', { clear = true })
+local rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
 
 vim.api.nvim_create_autocmd('CursorMoved', {
   pattern = '*.yml',
@@ -41,5 +42,16 @@ vim.api.nvim_create_autocmd('BufLeave', {
   group = rails,
   callback = function(_)
     vim.cmd('echo ""')
+  end
+})
+
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*_spec.rb',
+  group = rspec,
+  callback = function(_)
+    -- TODO: <leader>p is already bound. Find a better set of keybinds for these
+    -- sort of maps.
+    map(0, 'n', '<leader>p', ':lua refactor_rspec_promote_to_let()<CR>', default_opts)
   end
 })
