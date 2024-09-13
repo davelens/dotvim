@@ -40,4 +40,5 @@ require("lazy").setup('plugins', {
 vim.keymap.set('n', '<leader>L', ':Lazy<cr>', {})
 
 -- Executed here so our maps always override any plugin maps.
+require('neovim/autocommands')
 require('neovim/maps')
