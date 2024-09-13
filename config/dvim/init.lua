@@ -16,8 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Functions and options are set here. I want plugins to hijack these, as
 -- any installed overrides would be intentional.
-require('neovim/functions')
-require('neovim/options')
+require('homebrew/functions')
+require('homebrew/options')
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
@@ -40,5 +40,5 @@ require("lazy").setup('plugins', {
 vim.keymap.set('n', '<leader>L', ':Lazy<cr>', {})
 
 -- Executed here so our maps always override any plugin maps.
-require('neovim/autocommands')
-require('neovim/maps')
+require('homebrew/autocommands')
+require('homebrew/maps')

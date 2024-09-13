@@ -2,7 +2,7 @@ return {
   "rmehri01/onenord.nvim",
   lazy = false,
   config = function()
-    local colors = require('neovim.colors')
+    local colors = require('homebrew.colors')
 
     require('onenord').setup({
       borders = true,
