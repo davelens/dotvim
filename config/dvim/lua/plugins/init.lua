@@ -13,6 +13,12 @@ return {
   'tpope/vim-rails', -- Pandora's box with Rails workflow features
   'tpope/vim-unimpaired', -- Complementary maps for quickfix, lists, options
   'airblade/vim-localorie', -- Maps and functions for Rails I18n interaction
+  { 
+    'NvChad/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end
+  }, -- Colorize hex codes, color names, etc
   'github/copilot.vim', -- AI pair programmer 😂
   {
     "tpope/vim-fugitive", -- Git wrapper for vim
