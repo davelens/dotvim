@@ -34,3 +34,4 @@ vim.opt.smartcase = true -- Ignores casing when all pattern characters are lower
 vim.opt.visualbell = true -- NO BEEPING
 vim.opt.whichwrap:append("<,>,[,]") -- Allows word wrapping only when cursor keys are used
 vim.opt.clipboard = "unnamedplus" -- Use the system clipboard
+vim.colorscheme = 'onenord' -- Set the colorscheme

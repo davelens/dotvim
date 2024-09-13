@@ -36,6 +36,8 @@ local function toggle_floating_windows()
     end
   end
 
+  -- TODO: This check seems to fail on Windows WSL
+  -- https://www.tutorialspoint.com/how-to-get-the-number-of-entries-in-a-lua-table
   if #floating_windows > 0 then
     -- If floating windows are open, close them
     close_all_floating_windows()
@@ -95,4 +97,3 @@ end
 
 -- Bind the function to a command or keybinding
 vim.api.nvim_create_user_command('ToggleFloatingWindows', toggle_floating_windows, {})
-
