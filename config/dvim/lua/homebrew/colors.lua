@@ -3,6 +3,7 @@ return {
   bg_light = "#353b49",
   bg = "#2e3440",
   bg_dark = "#232831",
+  bg_inactive = "#2e3440",
   fg = "#ECEFF4",
   red = "#bf616a",
   orange = "#d08770",
