@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 -- any installed overrides would be intentional.
 require('homebrew/functions')
 require('homebrew/options')
+require('homebrew/clipboard')
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
