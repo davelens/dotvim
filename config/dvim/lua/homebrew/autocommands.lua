@@ -32,3 +32,23 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
+-- Define an augroup to manage the autocmds
+vim.api.nvim_create_augroup('tests', { clear = true })
+
+-- Reserve <CR> for running :TestFile in Ruby, Elixir, and JavaScript files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'ruby', 'elixir', 'javascript' },
+  group = 'tests',
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', ':TestFile<CR>', { noremap = true, silent = true })
+  end
+})
+
+-- Unmap <CR> in Command-line mode, including for vim and terminal buffers
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'vim' },
+  group = 'tests',
+  callback = function()
+    vim.api.nvim_buf_del_keymap(0, 'n', '<CR>')
+  end
+})

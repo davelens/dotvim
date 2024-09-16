@@ -23,15 +23,17 @@ map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
 map(0, 'n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", default_opts)
 map(0, 'v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", default_opts)
 
+map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
+
 -- vim-localorie
 -- See config/dvim/lua/neovim/autocommands.lua
 
-local rails = vim.api.nvim_create_augroup('rails', { clear = true })
-local rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
+rails = vim.api.nvim_create_augroup('rails', { clear = true })
+rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
 
 vim.api.nvim_create_autocmd('CursorMoved', {
   pattern = '*.yml',
-  group = rails,
+  group = 'rails',
   callback = function(_)
     print(vim.fn['localorie#expand_key']())
   end
@@ -39,16 +41,15 @@ vim.api.nvim_create_autocmd('CursorMoved', {
 
 vim.api.nvim_create_autocmd('BufLeave', {
   pattern = '*.yml',
-  group = rails,
+  group = 'rails',
   callback = function(_)
     vim.cmd('echo ""')
   end
 })
 
-
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*_spec.rb',
-  group = rspec,
+  group = 'rspec',
   callback = function(_)
     -- TODO: <leader>p is already bound. Find a better set of keybinds for these
     -- sort of maps.

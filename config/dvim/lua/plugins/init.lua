@@ -12,7 +12,16 @@ return {
   'tpope/vim-repeat', -- Extended repeat functionality through `.`
   'tpope/vim-rails', -- Pandora's box with Rails workflow features
   'tpope/vim-unimpaired', -- Complementary maps for quickfix, lists, options
-  'vim-test/vim-test', -- Wrapper for running tests on different granularities
+  'tpope/vim-dispatch', -- Asynchronous build and test dispatcher
+  { 
+    'vim-test/vim-test',
+    config = function()
+      vim.g['test#strategy'] = {
+        nearest = 'neovim',
+        file = 'dispatch'
+      }
+    end
+  }, -- Wrapper for running tests on different granularities
   'airblade/vim-localorie', -- Maps and functions for Rails I18n interaction
   { 
     'NvChad/nvim-colorizer.lua',
