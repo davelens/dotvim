@@ -37,3 +37,6 @@ map('n', '<F6>', ':set nopaste<CR>')
 map('n', '<leader>=', 'yypVr=')
 map('n', '<leader>-', 'yypVr-')
 map('n', '<leader>*', 'yypVr*')
+
+-- Quick in-buffer file rename 
+map('n', '<leader>,', ":lua require('homebrew.functions.buffers').rename_file()<CR>", { noremap = true, silent = true })
