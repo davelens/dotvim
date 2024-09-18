@@ -1,5 +1,7 @@
+local rspec = {}
+
 -- Converts "foo = create(:bar) to foo { create(:bar) }"
-function refactor_rspec_promote_to_let()
+function rspec.refactor_assignment_to_let()
   -- Delete the current line
   vim.cmd('normal! dd')
 
@@ -13,3 +15,5 @@ function refactor_rspec_promote_to_let()
   -- Indent the line properly
   vim.cmd('normal ==')
 end
+
+return rspec

@@ -53,6 +53,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
   callback = function(_)
     -- TODO: <leader>p is already bound. Find a better set of keybinds for these
     -- sort of maps.
-    map(0, 'n', '<leader>p', ':lua refactor_rspec_promote_to_let()<CR>', default_opts)
+    map(0, 'n', '<leader>p', ":lua require('homebrew.functions.rspec').refactor_assignment_to_let()<CR>", default_opts)
   end
 })
