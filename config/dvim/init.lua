@@ -16,9 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Functions and options are set here. I want plugins to hijack these, as
 -- any installed overrides would be intentional.
-require('homebrew/functions')
-require('homebrew/options')
-require('homebrew/clipboard')
+require('homebrew.functions')
+require('homebrew.options')
+require('homebrew.clipboard')
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
@@ -26,20 +26,35 @@ require('homebrew/clipboard')
 vim.g.mapleader = " " -- using space as leader key
 vim.g.maplocalleader = "," -- using comma as local leader
 
--- Bootstrap lazy.nvim to load in lua/plugins/*.lua, and lua/plugins.lua.
-require("lazy").setup('plugins', {
-  change_detection = { notify = false },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { vim.colorscheme } },
-  -- automatically check for plugin updates
-  checker = { enabled = true, notify = false },
-  ui = { border = "rounded" }
-})
+-- So lazy.nvim is configured to autoload these files:
+-- * lua/plugins/basic.lua
+-- * lua/plugins/autoload/*.lua
+--
+-- plugins/basic.lua loads all plugins that don't require additional 
+-- configuration.
+--
+-- plugins/autoload/*.lua are files intended to contain a single plugin
+-- per file, with additional configuration.
+--
+-- If the configuration is extensive, additional settings should be put in 
+-- plugins/config/*.lua and loaded from a plugins/autoload/*.lua file.
+require("lazy").setup({
+    { import = 'plugins.basic' }, 
+    { import = 'plugins.autoload' }, 
+  }, {
+    change_detection = { notify = false },
+    -- Configure any other settings here. See the documentation for more details.
+    -- colorscheme that will be used when installing plugins.
+    install = { colorscheme = { vim.colorscheme } },
+    -- automatically check for plugin updates
+    checker = { enabled = true, notify = false },
+    ui = { border = "rounded" }
+  }
+)
 
 -- Some easier access to the Lazy dashboard.
 vim.keymap.set('n', '<leader>L', ':Lazy<cr>', {})
 
 -- Executed here so our maps always override any plugin maps.
-require('homebrew/autocommands')
-require('homebrew/maps')
+require('homebrew.autocommands')
+require('homebrew.maps')

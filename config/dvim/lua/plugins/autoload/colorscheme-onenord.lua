@@ -106,8 +106,9 @@ return {
         TelescopeSelectionCaret = { fg = colors.magenta },
       }
     })
-
+    
     -- Set the inactive background color after everything else.
-    vim.api.nvim_set_hl(0, 'NormalNC', { bg = colors.bg_inactive })
+    --vim.api.nvim_set_hl(0, 'NormalNC', { bg = colors.bg_inactive })
+
   end
 }
