@@ -30,17 +30,12 @@ return {
         mappings = {
           i = { 
             ['<c-t>'] = trouble.open, -- Open selected files into a Trouble quicklist.
-            ['<c-s>'] = actions.select_horizontal -- Default is C-X, which I don't like.
+            ['<c-s>'] = actions.select_horizontal, -- Default is C-X, which I don't like.
           },
           n = { 
             ['<c-t>'] = trouble.open, -- Open selected files into a Trouble quicklist.
-            ['<c-s>'] = actions.select_horizontal -- Default is C-X, which I don't like.
+            ['<c-s>'] = actions.select_horizontal, -- Default is C-X, which I don't like.
           }
-          -- These are the defaults in junegunn's fzf.
-          -- Commented because I want to use Telescope's defaults
-          -- and not have them conflict with C-K / C-F.
-          -- i = ["<C-k>"] = actions.move_selection_previous,
-          -- i = ["<C-j>"] = actions.move_selection_next,
         },
       }
     }
