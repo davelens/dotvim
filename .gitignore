@@ -1,4 +1,5 @@
 vim/.netrwhist
 vim/bundle/*
 vim/autoload/plug.vim
-config/**/*/sw{,a}p/*
+vim/swp/*
+config/**/*/swp/*
