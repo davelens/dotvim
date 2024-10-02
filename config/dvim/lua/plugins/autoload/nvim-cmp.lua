@@ -1,5 +1,5 @@
-return   {
-  -- Autocompletion
+-- Autocompletion solution
+return {
   'hrsh7th/nvim-cmp',
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
@@ -42,33 +42,24 @@ return   {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-
       },
+
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
       },
     })
+
+    -- So Copilot does not interfere when a cmp context menu is open.
+    cmp.event:on("menu_opened", function()
+      vim.b.copilot_suggestion_hidden = true
+    end)
+
+    -- So Copilot works again when a cmp context menu is closed.
+    cmp.event:on("menu_closed", function()
+      vim.b.copilot_suggestion_hidden = false
+    end)
+
   end,
 }

@@ -7,5 +7,4 @@ return {
   'tpope/vim-unimpaired', -- Complementary maps for quickfix, lists, options
   'tpope/vim-dispatch', -- Asynchronous build and test dispatcher
   'airblade/vim-localorie', -- Maps and functions for Rails I18n interaction
-  'github/copilot.vim', -- AI pair programmer 😂
 }
