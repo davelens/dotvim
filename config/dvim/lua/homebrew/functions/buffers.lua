@@ -1,5 +1,19 @@
 local buffers = {}
 
+-- For programming languages using a semi colon at the end of statement.
+-- If there isn't one, append a semi colon to the end of the current line.
+-- Thanks to @dubgeiser for the original Vimscript!
+function buffers.append_semicolon()
+  local line = vim.api.nvim_get_current_line()
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+  if not line:match(";$") then
+    vim.api.nvim_set_current_line(line .. ';')
+  end
+
+  vim.api.nvim_win_set_cursor(0, cursor_pos)
+end
+
 -- Clean up and wipeout all hidden buffers.
 function buffers.delete_hidden()
   -- Get all buffers that are visible in all tab pages

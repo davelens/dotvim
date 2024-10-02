@@ -52,3 +52,11 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.api.nvim_buf_del_keymap(0, 'n', '<CR>')
   end
 })
+
+-- Map <leader>; to run buffers#append_semicolon() in JS files.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>;', ":lua require('homebrew.functions.buffers').append_semicolon()<CR>", { noremap = true, silent = true })
+  end,
+})
