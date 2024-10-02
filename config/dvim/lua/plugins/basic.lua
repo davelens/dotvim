@@ -1,6 +1,7 @@
 return {
   'airblade/vim-localorie', -- Maps and functions for Rails I18n interaction
   'preservim/nerdcommenter', -- Comment toggles with <leader>ci
+  'tpope/vim-bundler', -- Bundler integration to help browse gems source code
   'tpope/vim-dispatch', -- Asynchronous build and test dispatcher
   'tpope/vim-endwise', -- Smart end structures for blocks
   'tpope/vim-repeat', -- Extended repeat functionality through `.`
