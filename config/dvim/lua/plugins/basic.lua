@@ -1,6 +1,5 @@
 return {
   'airblade/vim-localorie', -- Maps and functions for Rails I18n interaction
-  'nelstrom/vim-textobj-rubyblock', -- Text objects for Ruby blocks
   'preservim/nerdcommenter', -- Comment toggles with <leader>ci
   'tpope/vim-abolish', -- Case coercions and language corrections
   'tpope/vim-bundler', -- Bundler integration to help browse gems source code
@@ -10,5 +9,4 @@ return {
   'tpope/vim-repeat', -- Extended repeat functionality through `.`
   'tpope/vim-surround', -- Maps to manipulate brackets, parens, quotes,..
   'tpope/vim-unimpaired', -- Complementary maps for quickfix, lists, options
-  -- TODO: Look into ultisnips, or a better alternative in lua.
 }
