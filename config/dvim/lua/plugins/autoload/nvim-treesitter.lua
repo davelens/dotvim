@@ -20,7 +20,8 @@ return {
       ensure_installed = { 
         'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 
         'typescript', 'vimdoc', 'vim', 'bash', 'elixir', 'eex', 'ruby', 
-        'puppet', 'html', 'css', 'json', 'yaml', 'dockerfile'
+        'puppet', 'html', 'css', 'json', 'yaml', 'dockerfile', 
+        'embedded_template'
       },
       sync_install = false,
       highlight = { enable = true },
