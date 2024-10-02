@@ -1,5 +1,6 @@
 return {
   'airblade/vim-localorie', -- Maps and functions for Rails I18n interaction
+  'nelstrom/vim-textobj-rubyblock', -- Text objects for Ruby blocks
   'preservim/nerdcommenter', -- Comment toggles with <leader>ci
   'tpope/vim-abolish', -- Case coercions and language corrections
   'tpope/vim-bundler', -- Bundler integration to help browse gems source code
