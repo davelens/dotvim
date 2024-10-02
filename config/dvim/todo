@@ -1,0 +1,9 @@
+- [ ] vim-endwise does not work; find a solution
+- [ ] No more selectable ruby block textobjects available for motions. 
+nelstrom/vim-textobj-rubyblock does not work in Lua, so find a modern solution.
+- [ ] nvim-ts-autotag does not properly format tags when they autoclose. I want:
+<ul> <!-- After pressing ">" I expect to get a newline + autoclose + formatting.
+  CURSOR
+</ul>
+- [ ] Elixir's Intellisense autocomplete seems worse than I remember it being with coc-elixir.
+See/ask around on Discord how I can improve this.
