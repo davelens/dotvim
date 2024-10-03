@@ -40,3 +40,9 @@ map('n', '<leader>*', 'yypVr*')
 
 -- Quick in-buffer file rename 
 map('n', '<leader>,', ":lua require('homebrew.functions.buffers').rename_file()<CR>", { noremap = true, silent = true })
+
+-- Diagnostic navigation
+map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
+map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix' })
+map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
