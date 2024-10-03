@@ -30,6 +30,8 @@ vim.opt.incsearch = true -- Highlight search matches as you type
 vim.opt.laststatus = 2 -- Always show a statusline
 vim.opt.linespace = 0 -- Number of pixel lines between characters
 vim.opt.cursorcolumn = false -- Adds a coloured vertical (distracting) cursor column
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.smartcase = true -- Ignores casing when all pattern characters are lowercase
 vim.opt.visualbell = true -- NO BEEPING
 vim.opt.whichwrap:append('<,>,[,]') -- Allows word wrapping only when cursor keys are used
