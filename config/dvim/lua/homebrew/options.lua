@@ -33,6 +33,7 @@ vim.opt.cursorcolumn = false -- Adds a coloured vertical (distracting) cursor co
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.scrolloff = 10 -- Keep 10 lines above and below the cursor when scrolling
+vim.opt.signcolumn = 'yes' -- Always show the sign column
 vim.opt.smartcase = true -- Ignores casing when all pattern characters are lowercase
 vim.opt.visualbell = true -- NO BEEPING
 vim.opt.whichwrap:append('<,>,[,]') -- Allows word wrapping only when cursor keys are used
