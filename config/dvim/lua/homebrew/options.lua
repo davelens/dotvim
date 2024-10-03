@@ -33,6 +33,7 @@ vim.opt.cursorcolumn = false -- Adds a coloured vertical (distracting) cursor co
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.scrolloff = 10 -- Keep 10 lines above and below the cursor when scrolling
+vim.opt.showmode = false -- Do not show the current mode (it's already in the statusline)
 vim.opt.signcolumn = 'yes' -- Always show the sign column
 vim.opt.smartcase = true -- Ignores casing when all pattern characters are lowercase
 vim.opt.updatetime = 250 -- Lower-than-default wait time (in ms) before writing swap file
