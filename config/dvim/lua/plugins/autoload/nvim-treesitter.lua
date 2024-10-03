@@ -11,6 +11,9 @@ return {
     -- nvim-treesitter extension to autoclose/autorename tags.
     -- Mainly targetted for HTML, JS, Typescript, XML, Vue, etc....
     "windwp/nvim-ts-autotag",
+
+    -- nvim-treesitter extension to autoclose Ruby/Elixir/Lua/... blocks
+    "RRethy/nvim-treesitter-endwise",
   },
   build = ":TSUpdate",
   config = function () 
@@ -25,7 +28,24 @@ return {
       },
       sync_install = false,
       highlight = { enable = true },
-      indent = { enable = true },  
+      indent = { enable = true },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["ab"] = "@block.outer",
+            ["ib"] = "@block.inner",
+          },
+        },
+      },
+      endwise = {
+        enable = true,
+      },
     })
 
     require("nvim-ts-autotag").setup {
