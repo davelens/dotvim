@@ -1,3 +1,5 @@
+- [x] Fix <Tab> behaviour by writing custom logic for nvim-cmp.
+- [ ] See if nvim-cmp and Copilot issues I had could be solved using zbirenbaum/copilot-cmp instead.
 - [ ] vim-endwise does not work; find a solution
 - [ ] No more selectable ruby block textobjects available for motions. 
 nelstrom/vim-textobj-rubyblock does not work in Lua, so find a modern solution.
