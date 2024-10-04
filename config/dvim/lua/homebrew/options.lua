@@ -38,6 +38,3 @@ vim.opt.undofile = true -- Enable persistent undo
 vim.opt.updatetime = 250 -- Lower-than-default wait time (in ms) before writing swap file
 vim.opt.visualbell = true -- NO BEEPING
 vim.opt.whichwrap:append('<,>,[,]') -- Allows word wrapping only when cursor keys are used
-
--- TODO: See about using vim.opt.undofile + simnalamburt/vim-mundo instead.
-vim.opt.directory = vim.fn.expand("~") .. "/.local/share/dvim/swap" --The swapfile directory
