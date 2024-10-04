@@ -33,7 +33,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.scrolloff = 10 -- Keep 10 lines above and below the cursor when scrolling
 vim.opt.showmode = false -- Do not show the current mode (it's already in the statusline)
 vim.opt.signcolumn = 'yes' -- Always show the sign column
-vim.opt.smartcase = true -- Ignores casing when all pattern characters are lowercase
+vim.opt.splitbelow = true -- Open new hsplits below
+vim.opt.splitright = true -- Open new vsplits to the right
 vim.opt.undofile = true -- Enable persistent undo
 vim.opt.updatetime = 250 -- Lower-than-default wait time (in ms) before writing swap file
 vim.opt.visualbell = true -- NO BEEPING
