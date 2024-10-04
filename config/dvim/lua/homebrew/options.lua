@@ -14,6 +14,7 @@ vim.colorscheme = 'onenord' -- Set the colorscheme
 vim.opt.autoread = true -- Load in changes made from *outside* vim
 vim.opt.autowrite = true -- Write file contents for writable buffers
 vim.opt.backspace = 'indent,eol,start' -- Allow backspacing over autoindent, line breaks and insert mode start
+vim.opt.breakindent = true -- Indent wrapped lines to match the start of the line above
 vim.opt.clipboard = 'unnamedplus' -- Use the system clipboard
 vim.opt.colorcolumn = '80' -- Mark a (convenient) vertical line at the 80 char mark
 vim.opt.completeopt = 'menu,longest' -- Autocompletion menu with the longest common match
