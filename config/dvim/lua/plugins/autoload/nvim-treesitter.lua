@@ -9,7 +9,6 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
 
     -- nvim-treesitter extension to autoclose/autorename tags.
-    -- Mainly targetted for HTML, JS, Typescript, XML, Vue, etc....
     "windwp/nvim-ts-autotag",
 
     -- nvim-treesitter extension to autoclose Ruby/Elixir/Lua/... blocks
@@ -29,6 +28,7 @@ return {
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = true },
+
       textobjects = {
         select = {
           enable = true,
@@ -43,6 +43,7 @@ return {
           },
         },
       },
+
       endwise = {
         enable = true,
       },
@@ -51,16 +52,10 @@ return {
     require("nvim-ts-autotag").setup {
       opts = {
         -- These are default, but leave them here for good measure.
-        enable_close = true, -- Auto close tags
+        enable_close = false, -- I'm using vim-closetag for auto closing tags
         enable_rename = true, -- Auto rename pairs of tags
         enable_close_on_slash = false -- Auto close on trailing </
       },
-      -- Also override individual filetype configs, these take priority.
-      -- Empty by default, useful if one of the "opts" global settings
-      -- doesn't work well in a specific filetype
-      --per_filetype = {
-        --["html"] = { enable_close = false }
-      --}
     }
   end,
 }
