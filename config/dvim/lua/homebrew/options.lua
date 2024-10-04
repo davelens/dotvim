@@ -34,11 +34,10 @@ vim.opt.scrolloff = 10 -- Keep 10 lines above and below the cursor when scrollin
 vim.opt.showmode = false -- Do not show the current mode (it's already in the statusline)
 vim.opt.signcolumn = 'yes' -- Always show the sign column
 vim.opt.smartcase = true -- Ignores casing when all pattern characters are lowercase
+vim.opt.undofile = true -- Enable persistent undo
 vim.opt.updatetime = 250 -- Lower-than-default wait time (in ms) before writing swap file
 vim.opt.visualbell = true -- NO BEEPING
 vim.opt.whichwrap:append('<,>,[,]') -- Allows word wrapping only when cursor keys are used
 
 -- TODO: See about using vim.opt.undofile + simnalamburt/vim-mundo instead.
 vim.opt.directory = vim.fn.expand("~") .. "/.local/share/dvim/swap" --The swapfile directory
-
-
