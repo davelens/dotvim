@@ -35,6 +35,7 @@ vim.opt.showmode = false -- Do not show the current mode (it's already in the st
 vim.opt.signcolumn = 'yes' -- Always show the sign column
 vim.opt.splitbelow = true -- Open new hsplits below
 vim.opt.splitright = true -- Open new vsplits to the right
+vim.opt.timeoutlen = 300 -- Time in ms to wait for a mapped sequence to complete
 vim.opt.undofile = true -- Enable persistent undo
 vim.opt.updatetime = 250 -- Lower-than-default wait time (in ms) before writing swap file
 vim.opt.visualbell = true -- NO BEEPING
