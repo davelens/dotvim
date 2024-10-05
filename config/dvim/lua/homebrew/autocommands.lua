@@ -20,6 +20,14 @@ vim.api.nvim_create_autocmd("UILeave", {
   end,
 })
 
+-- Momentarily highlight text upon yanking
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
 -- vim-localorie bindings need to be in multiple Ruby-related buffers.
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'ruby,eruby',
