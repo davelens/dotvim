@@ -29,6 +29,10 @@ map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 
 -- Toggles search highlighting
 map('n', '<F3>', ':set hlsearch!<CR>')
+
+-- Clear search highlighting when pressing <Esc>
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 -- Easy paste/nopaste
 map('n', '<F5>', ':set paste<CR>')
 map('n', '<F6>', ':set nopaste<CR>')
