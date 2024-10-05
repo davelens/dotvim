@@ -22,10 +22,10 @@ map('n', '<C-n>', ']]')
 map('n', '<C-p>', '[[')
 
 -- Less finger wrecking window navigation.
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-l>', '<C-w>l')
+map('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
+map('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
+map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
+map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 
 -- Toggles search highlighting
 map('n', '<F3>', ':set hlsearch!<CR>')
