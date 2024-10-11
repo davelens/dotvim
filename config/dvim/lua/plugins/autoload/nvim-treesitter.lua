@@ -25,8 +25,11 @@ return {
         'puppet', 'html', 'css', 'json', 'yaml', 'dockerfile', 
         'embedded_template'
       },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'embedded_template' },
+      },
       sync_install = false,
-      highlight = { enable = true },
       indent = { enable = true },
 
       textobjects = {
