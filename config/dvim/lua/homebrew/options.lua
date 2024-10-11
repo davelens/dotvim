@@ -24,6 +24,7 @@ vim.opt.encoding = 'utf-8'
 vim.opt.foldclose = 'all' -- When inactive folds get closed when foldmethod is toggled
 vim.opt.foldmethod = 'marker' -- Only fold by means of inline marker comments
 vim.opt.hidden = true -- Keeps buffers in the background when left behind
+vim.opt.inccommand = 'split' -- Show live preview of substitution commands
 vim.opt.ignorecase = true -- Ignore casing in pattern matching
 vim.opt.incsearch = true -- Highlight search matches as you type
 vim.opt.laststatus = 2 -- Always show a statusline
