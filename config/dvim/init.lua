@@ -25,6 +25,7 @@ require('homebrew.clipboard')
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " " -- using space as leader key
 vim.g.maplocalleader = "," -- using comma as local leader
+vim.g.loaded_perl_provider = 0 -- disable perl provider
 
 -- So lazy.nvim is configured to autoload these files:
 -- * lua/plugins/basic.lua
