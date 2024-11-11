@@ -7,7 +7,7 @@ return {
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'elixirls', 'tailwindcss' }
+      ensure_installed = { 'lua_ls', 'elixirls', 'tailwindcss', 'gopls' }
     })
 
     local lspconfig = require('lspconfig')
@@ -42,5 +42,6 @@ return {
 
     lspconfig.elixirls.setup({})
     lspconfig.tailwindcss.setup({})
+    lspconfig.gopls.setup({})
   end
 }
