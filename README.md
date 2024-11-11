@@ -1,6 +1,5 @@
 # .vim/
 > This is my [vimrc](https://github.com/davelens/dotvim/blob/master/vimrc). There are many like it, but this one is mine. My vimrc is my best friend. It is my life. I must master it as I must master my life. Without me, my vimrc is useless. Without my vimrc, I am useless.
-Feel free to browse my configuration, but keep in my mind that 
 
 ## 2024: Conversion to Lua
 The need to convert my config to Lua finally presented itself in requiring
