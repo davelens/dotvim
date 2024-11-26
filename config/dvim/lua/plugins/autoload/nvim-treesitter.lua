@@ -21,7 +21,7 @@ return {
     configs.setup({
       ensure_installed = { 
         'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 
-        'typescript', 'vimdoc', 'vim', 'bash', 'elixir', 'eex', 'ruby', 
+        'typescript', 'vimdoc', 'vim', 'bash', 'elixir', 'heex', 'ruby', 
         'puppet', 'html', 'css', 'json', 'yaml', 'dockerfile', 
         'embedded_template'
       },
