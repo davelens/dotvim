@@ -20,14 +20,16 @@ return {
     vim.keymap.set('v', '<leader>l', ':<C-U>lua require(\'telescope.builtin\').grep_string({search = get_visual_selection()})<cr>', { silent = true })
 
     telescope.setup {
-      fzf = {
-        fuzzy = true,
-        override_generic_sorter = true,
-        override_file_sorter = true,
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+        }
       },
       defaults = {
         file_ignore_patterns = { 
-          'vendor', 'node_modules', 'db/{seeds,data}', 'tmp', 'public/uploads', 
+          'vendor', 'node_modules', 'db/seeds', 'tmp', 'public/uploads', 
           'coverage', 'dist', 'build', 'deps', 'yarn.lock', 'package-lock.json',
           'Gemfile.lock',
           '%.jpg', '%.jpeg', '%.png', '%.gif', '%.webp', '%.ico', '%.svg', 
