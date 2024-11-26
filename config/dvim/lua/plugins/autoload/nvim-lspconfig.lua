@@ -18,7 +18,7 @@ return {
         Lua = {
           diagnostics = {
             globals = { 'vim' },
-            disable = {'lowercase-global', 'trailing-space', 'undefined-global'}
+            disable = { 'lowercase-global', 'trailing-space', 'undefined-global' },
           }
         }
       }
@@ -26,8 +26,19 @@ return {
 
     lspconfig.elixirls.setup({
       cmd = { "elixir-ls" },
-      -- set default capabilities for nvim-cmp's completion source
       capabilities = capabilities,
+      settings = {
+        elixirLS = {
+          dialyzerEnabled = false,
+          fetchDeps = false,
+          plugins = {
+            phoenix = {
+              enabled = true,
+              liveSocketEnabled = true
+            }
+          },
+        }
+      }
     })
 
     lspconfig.tailwindcss.setup({
@@ -40,8 +51,8 @@ return {
       },
     })
 
-    lspconfig.elixirls.setup({})
-    lspconfig.tailwindcss.setup({})
-    lspconfig.gopls.setup({})
+    lspconfig.gopls.setup({
+      capabilities = capabilities
+    })
   end
 }
