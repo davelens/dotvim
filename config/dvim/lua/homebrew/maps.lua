@@ -9,7 +9,7 @@ for _, mode in ipairs { 'n', 'v' } do
   map(mode, '<leader>P', '"+P', { desc = 'paste from system clipboard before cursor' })
 end
 
--- Quick save and exit maps
+-- Quick save and exit
 map('n', '<leader>s', '<Esc>:w<CR>')
 map('n', '<leader>x', '<Esc>:q!<CR>')
 
@@ -47,6 +47,6 @@ map('n', '<leader>,', ":lua require('homebrew.functions.buffers').rename_file()<
 
 -- Diagnostic navigation
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix' })
+map('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix' })
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
