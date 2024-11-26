@@ -26,6 +26,13 @@ return {
         override_file_sorter = true,
       },
       defaults = {
+        file_ignore_patterns = { 
+          'vendor', 'node_modules', 'db/{seeds,data}', 'tmp', 'public/uploads', 
+          'coverage', 'dist', 'build', 'deps', 'yarn.lock', 'package-lock.json',
+          'Gemfile.lock',
+          '%.jpg', '%.jpeg', '%.png', '%.gif', '%.webp', '%.ico', '%.svg', 
+          '%.eot', '%.ttf', '%.woff', '%.woff2', '%.otf',
+        },
         mappings = {
           -- TODO: Using fzf.vim I used to be able to select files, then press
           -- either <C-s> or <C-v> to open the file in a split or vertical 
