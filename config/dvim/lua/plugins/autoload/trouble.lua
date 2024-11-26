@@ -6,11 +6,10 @@ return {
     { "]t", "<cmd>Trouble next<cr><cmd>Trouble jump<cr>", { silent = true } },
     { "[t", "<cmd>Trouble prev<cr><cmd>Trouble jump<cr>", { silent = true } },
     { "]j", "<cmd>Trouble jump<cr>", { silent = true } },
-    --{ "n", "<leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>" },
-    --{ "n", "<leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<cr>" },
-    --{ "n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
-    --{ "n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
-    --{ "n", "gR", "<cmd>TroubleToggle lsp_references<cr>" },
+    --{ "n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>" },
+    --{ "n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>" },
+    --{ "n", "<leader>xl", "<cmd>Trouble loclist<cr>" },
+    --{ "n", "<leader>xq", "<cmd>Trouble quickfix<cr>" },
   },
   config = function()
     local map = vim.keymap.set
