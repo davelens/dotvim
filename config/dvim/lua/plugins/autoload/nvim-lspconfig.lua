@@ -7,8 +7,8 @@ return {
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'elixirls', 'tailwindcss', 'gopls' }
-    })
+      ensure_installed = { 'lua_ls', 'elixirls', 'gopls', 'cssls' }
+   })
 
     local lspconfig = require('lspconfig')
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -41,18 +41,20 @@ return {
       }
     })
 
-    lspconfig.tailwindcss.setup({
-      init_options = {
-        userLanguages = {
-          elixir = "html-eex",
-          eelixir = "html-eex",
-          heex = "html-eex",
-        },
-      },
-    })
+    --lspconfig.tailwindcss.setup({
+      --init_options = {
+        --includeLanguages = {
+          --elixir = "html-eex",
+          --eelixir = "html-eex",
+          --heex = "html-eex",
+        --},
+      --},
+    --})
 
     lspconfig.gopls.setup({
       capabilities = capabilities
     })
+
+    lspconfig.cssls.setup({})
   end
 }
