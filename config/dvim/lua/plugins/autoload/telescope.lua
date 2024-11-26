@@ -9,7 +9,6 @@ return {
   },
   config = function()
     local telescope = require('telescope')
-    local trouble = require('trouble.sources.telescope')
     local builtin = require('telescope.builtin')
     local actions = require("telescope.actions")
 
@@ -28,13 +27,22 @@ return {
       },
       defaults = {
         mappings = {
+          -- TODO: Using fzf.vim I used to be able to select files, then press
+          -- either <C-s> or <C-v> to open the file in a split or vertical 
+          -- split AND have the smart selection in a quickfix window.
+          -- That behaviour is not present in Telescope by default, but it
+          -- should be possible to get there with a custom mapping.
           i = { 
-            ['<c-t>'] = trouble.open, -- Open selected files into a Trouble quicklist.
-            ['<c-s>'] = actions.select_horizontal, -- Default is C-X, which I don't like.
+            ['<C-x>'] = nil, -- Bound the linked behaviour to C-s
+            ['<M-q>'] = nil, -- Bound the linked behaviour to C-q
+            ['<C-s>'] = actions.select_horizontal,
+            ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
           },
           n = { 
-            ['<c-t>'] = trouble.open, -- Open selected files into a Trouble quicklist.
-            ['<c-s>'] = actions.select_horizontal, -- Default is C-X, which I don't like.
+            ['<C-x>'] = nil, -- Bound the linked behaviour to C-s
+            ['<M-q>'] = nil, -- Bound the linked behaviour to C-q
+            ['<C-s>'] = actions.select_horizontal,
+            ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
           }
         },
       }
