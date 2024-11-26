@@ -22,7 +22,7 @@ return {
       ensure_installed = { 
         'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 
         'typescript', 'vimdoc', 'vim', 'bash', 'elixir', 'heex', 'ruby', 
-        'puppet', 'html', 'css', 'json', 'yaml', 'dockerfile', 
+        'puppet', 'html', 'css', 'scss', 'json', 'yaml', 'dockerfile', 
         'embedded_template'
       },
       highlight = {
