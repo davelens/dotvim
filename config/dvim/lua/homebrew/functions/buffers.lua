@@ -53,4 +53,3 @@ function buffers.rename_file()
 end
 
 return buffers
-
