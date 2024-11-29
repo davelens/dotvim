@@ -1,13 +1,13 @@
 local cursor = {}
 
 function cursor.remember_position()
-  vim.cmd([[let g:cursor_file = expand("%")]])
-  vim.cmd([[let g:cursor_pos = getpos(".")]])
+  vim.g.cursor_file = vim.fn.expand('%')
+  vim.g.cursor_pos = vim.fn.getpos('.')
 end
 
 function cursor.restore_position()
-  vim.cmd([[execute 'b ' . g:cursor_file]])
-  vim.cmd([[call setpos('.', g:cursor_pos)]])
+  vim.cmd('e ' .. vim.g.cursor_file)
+  vim.api.nvim_win_set_cursor(0, { vim.g.cursor_pos[2], vim.g.cursor_pos[3] })
 end
 
 return cursor
