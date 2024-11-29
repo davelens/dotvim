@@ -1,3 +1,9 @@
+-- Since vim.cdm("echo ''") does not always work the way you think it works,
+-- This is a bit of a functional hack to clear the commandline of all text.
+function nvim_cli_clear_last_message()
+  vim.cmd("call feedkeys(':', 'nx')")
+end
+
 -- Useful to paste selected strings into other functionality.
 -- Currently used in my Telescope configuration to grep_string the visual 
 -- selection.
