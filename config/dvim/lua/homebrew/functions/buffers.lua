@@ -33,6 +33,21 @@ function buffers.delete_hidden()
   end
 end
 
+-- Clean up and wipeout all quickfix buffers, unless the file is currently open.
+function buffers.delete_quickfix()
+  local current_bufnr = vim.api.nvim_get_current_buf()
+
+  for _, entry in ipairs(vim.fn.getqflist()) do
+    local bufnr = entry.bufnr
+
+    if bufnr ~= current_bufnr then
+      if vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_is_loaded(bufnr) then
+        vim.cmd("silent bdelete " .. bufnr)
+      end
+    end
+  end
+end
+
 -- Rename the current file in your buffer.
 function buffers.rename_file()
   local old_name = vim.fn.expand('%')

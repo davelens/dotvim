@@ -1,26 +1,32 @@
 local quickfix = {}
 
-function quickfix.search_replace(term)
-  local cursor = require('homebrew/functions/cursor')
-  local old_value = vim.fn.escape(term, '/')
-  local new_value = vim.fn.escape(
-    vim.fn.input('Replace' .. vim.fn.shellescape(term) .. ' with: '),
-    '/'
-  )
-
+-- I have to rethink this entire flow and ideally trigger this from within
+-- Telescope. There are some quirks.
+function quickfix.search_replace(query, replace)
+  buffers = require('homebrew.functions.buffers')
+  cursor = require('homebrew.functions.cursor')
   cursor.remember_position()
 
-  if vim.fn.empty(vim.fn.getqflist()) ~= 1 then
-    vim.cmd("cdo execute '%s/'".. old_value ..'/'.. new_value ..'/gc')
-    vim.cmd('cexpr []')
-  else
-    vim.cmd([[execute '%s/'. old_value .'/'. new_value .'/gc']])
+  if query == nil or query == '' then
+    query = vim.fn.input('Search for: ')
+
+    if query == nil or query == '' then
+      nvim_cli_clear_last_message()
+      vim.cmd('ccl')
+      return
+    end
   end
 
-  vim.cmd('wa')
-  vim.cmd('ccl')
+  if replace == nil or replace == '' then
+    replace = vim.fn.input('Replace with: ')
+  end
+
+  vim.cmd(string.format("cdo execute 's/%s/%s/gc'", query, replace))
+  vim.cmd('cfdo update')
 
   cursor.restore_position()
+  buffers.delete_quickfix()
+  vim.cmd('ccl')
 end
 
 return quickfix
