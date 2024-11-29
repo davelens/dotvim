@@ -58,3 +58,19 @@ function print_table(tbl, indent)
     end
   end
 end
+
+-- Runs a check to see if a keymap exists before deleting it.
+-- I "sometimes" run into autocmd errors and this should prevent those.
+function nvim_buf_safe_del_keymap(bufnr, mode, lhs)
+  local keymaps = vim.api.nvim_buf_get_keymap(bufnr, mode)
+
+  for _, keymap in ipairs(keymaps) do
+    if keymap.lhs == lhs then
+      vim.api.nvim_buf_del_keymap(bufnr, mode, lhs)
+      return true
+    end
+  end
+
+  -- No matching keymap = exit quietly
+  return false
+end

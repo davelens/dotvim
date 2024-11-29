@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'vim' },
   group = 'tests',
   callback = function()
-    vim.api.nvim_buf_del_keymap(0, 'n', '<CR>')
+    nvim_buf_safe_del_keymap(0, 'n', '<CR>')
   end
 })
 
