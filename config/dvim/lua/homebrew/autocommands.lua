@@ -45,7 +45,7 @@ vim.api.nvim_create_augroup('tests', { clear = true })
 
 -- Reserve <CR> for running :TestFile in Ruby, Elixir, and JavaScript files
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'ruby', 'elixir', 'javascript' },
+  pattern = { 'ruby', 'javascript' },
   group = 'tests',
   callback = function()
     vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', ':TestFile<CR>', { noremap = true, silent = true })
