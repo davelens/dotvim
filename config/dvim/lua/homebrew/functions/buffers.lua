@@ -27,8 +27,7 @@ function buffers.delete_hidden()
   -- Iterate through all buffers and delete the hidden ones
   for buf = 1, vim.fn.bufnr('$') do
     if vim.fn.bufexists(buf) == 1 and vim.fn.index(tpbl, buf) == -1 then
-      -- bwipeout is too much really. We should be able to keep marks.
-      vim.cmd('silent bdelete ' .. buf)
+      vim.cmd('silent bwipeout ' .. buf)
     end
   end
 end
