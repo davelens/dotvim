@@ -1,9 +1,6 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  dependencies = {
-    { 'echasnovski/mini.nvim', version = '*' },
-  },
   keys = {
     {
       "<leader>?",
@@ -13,7 +10,4 @@ return {
       desc = "Buffer Local Keymaps (which-key)",
     },
   },
-  config = function()
-    require('mini.icons').setup()
-  end
 }
