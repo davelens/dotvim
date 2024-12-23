@@ -29,7 +29,6 @@ echo "$(check) Nerd fonts installed"
 
 [ ! -d ${HOME}/.config ] && mkdir ${HOME}/.config
 
-[ ! -d ${HOME}/.config/nvim ] && ln -s ${HOME}/.dotvim/config/nvim ${HOME}/.config/nvim
 [ ! -d ${HOME}/.config/dvim ] && ln -s ${HOME}/.dotvim/config/dvim ${HOME}/.config/dvim
 [ ! -d ${HOME}/.vim ] && ln -s ${HOME}/.dotvim/vim ${HOME}/.vim
 [ ! -f ${HOME}/.vimrc ] && ln -s ${HOME}/.dotvim/vimrc ${HOME}/.vimrc
