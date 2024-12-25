@@ -28,10 +28,7 @@ echo "$(check) getnf is installed"
 echo "$(check) Nerd fonts installed"
 
 [ ! -d ${HOME}/.config ] && mkdir ${HOME}/.config
-
 [ ! -d ${HOME}/.config/dvim ] && ln -s ${HOME}/.dotvim/config/dvim ${HOME}/.config/dvim
-[ ! -d ${HOME}/.vim ] && ln -s ${HOME}/.dotvim/vim ${HOME}/.vim
-[ ! -f ${HOME}/.vimrc ] && ln -s ${HOME}/.dotvim/vimrc ${HOME}/.vimrc
 
 echo "$(check) Symlinks are present in ~/.config"
 
@@ -39,7 +36,7 @@ if [ ! -f ${HOME}/.local/bin/dvim ]; then
   cat >> ${HOME}/.local/bin/dvim<< EOF
 #!/usr/bin/env bash
 
-export NVIM_APPNAME="$\{NVIM_APPNAME:-"dvim"\}"
+export NVIM_APPNAME=\${NVIM_APPNAME:-"dvim"}
 exec -a "\$NVIM_APPNAME" nvim -u "~/.config/dvim/init.lua" "\$@"
 
 echo 'Done.'
