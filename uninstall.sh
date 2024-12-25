@@ -3,7 +3,7 @@
 # Stops further execution after any error.
 set -e
 
-source helpers.sh
+source ./helpers.sh
 
 getnf -u DroidSansMono,Hack && echo "$(check) Nerd fonts uninstalled"
 

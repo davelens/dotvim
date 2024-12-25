@@ -3,7 +3,7 @@
 # Stops further execution after any error.
 set -e
 
-source helpers.sh
+source ./helpers.sh
 
 [ ! -d ${HOME}/.local/bin ] && mkdir -p ${HOME}/.local/bin
 
