@@ -1,89 +1,28 @@
-# .vim/
-> This is my [vimrc](https://github.com/davelens/dotvim/blob/master/vimrc). There are many like it, but this one is mine. My vimrc is my best friend. It is my life. I must master it as I must master my life. Without me, my vimrc is useless. Without my vimrc, I am useless.
+# dotvim
 
-## 2024: Conversion to Lua
-The need to convert my config to Lua finally presented itself in requiring
-modern plugin support for development in Elixir. The idea is to keep my "old"
-vimrc as the default until I'm comfortable enough to switch.
+> This is my [vim](https://neovim.io). There are many like it, but this one is mine. My vim is my best friend. It is my life. I must master it as I must master my life. Without me, my vim is useless. Without my vim, I am useless.
 
-In order to keep both versions, I have opted to use a new config namespace for 
-the Lua version (`config/dvim`). This way I can keep the old vimrc (`config/nvim`) as a default (for now!). 
+## History
+* [Est. 2011](https://github.com/davelens/dotvim/commits/master/?since=2011-05-01&until=2011-05-31)
+* Switched from Vim to Neovim in september 2019, after experiencing how much quicker it was dealing with very large files
+* Switched to a full Lua config in september 2024, after experiencing LSP functionality for Elixir in particular
+* Archived my old vimrc [here](https://github.com/davelens/dotvim.old)
 
-[Installation](#install) will attempt to create an executable in `~/.local/bin/dvim`. Provided `~/.local/bin` 
-is in your path, you can now start Neovim with `dvim` and it will use the Lua configuration.
-
-When the time will come to switch defaults, I'll probably move the "old" version
-to something like `~/.local/bin/ovim` (for "old vim") and let the Lua version
-use the default `nvim` config namespace.
-
-
-#### Install
+## Install
 ```sh
 git clone git@github.com:davelens/dotvim.git ~/.dotvim 
-cd ~/.dotvim && ./install.sh
+cd ~/.dotvim && ./install.sh && cd -
 ```
+Once that's done, you can start Neovim using `dvim`.
 
-#### Uninstall
+### Why "dvim"?
+I like having my `nvim` command to remain stock Neovim, so the install script will create a `dvim` executable in `~/.local/bin/`. 
+The script will complain if `~/.local/bin` is not in your path yet.
+
+### Nerd fonts
+The script will install both the `DroidSansMono` and `Hack` [nerd fonts](https://www.nerdfonts.com/). These are necessary to have access to certain icons and glyphs, though you'll need to configure your terminal app of choice to actually start using them.
+
+## Uninstall
 ```sh
-cd ~/.dotvim && ./uninstall.sh
-```
-
-## Changelog
-As of march 2020 I created [a separate changelog](https://github.com/davelens/dotvim/blob/master/CHANGELOG.md) 
-for my .vimrc which I'll attempt to maintain, in order to explain some of my
-reasoning to my future self.
-
-## Neovim
-In september 2019 I made the switch to Neovim with its release of 0.4. Mostly
-because I was dealing with large files at the time. In Rails, files like i18n
-files or data logs are so much more responsive in neovim compared to stock Vim. 
-
-Thankfully, both Vim and Neovim are mostly **backwards compatible**, and I try 
-to do the same with my vimrc.
-
-## Plugins
-Much like yourself, I use a plethora of
-[tpope](https://github.com/tpope/)'s plugins, and a handful of others. If you
-look at [my plugin configuration file](https://github.com/davelens/dotvim/blob/master/vim/plugin/configurations.vim)
-you'll see I'm a big fan of plugins that do their job with little to no
-configuration, but enable plenty of experimentation.
-[fzf](https://github.com/junegunn/fzf) is a prime example of this.
-
-My plugin manager of choice is [vim-plug](https://github.com/junegunn/vim-plug). 
-Lightweight, with a good DSL. 
-
-## Autocompletion
-### Vim
-Vim will use [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe) (YCM for 
-short), a plugin that requires a pre-compiled component.  [See their 
-installation instructions](https://github.com/Valloric/YouCompleteMe#installation) 
-to get this sorted.
-
-#### YCM on macos < 10.10
-If you're on a version of macos lower than 10.10, chances are that the YCM component failed to compile. I got this fixed with [a helpful SO answer](http://stackoverflow.com/questions/29529455/missing-c-header-debug-after-updating-osx-command-line-tools-6-3#answer-29576048).
-
-### Neovim
-With the advent of [Microsoft's
-LSP](https://microsoft.github.io/language-server-protocol/) I've been on the
-fence to set one up for Ruby and JavaScript, though I haven't taken the 
-time to do this properly yet.
-
-Neovim will use [coc.nvim](https://github.com/neoclide/coc.nvim) for now. I'm 
-not entirely convinced of its merit yet (I get the sense it's too bloated for
-my tastes), but it sports easy configuration. The alternative would be to use 
-[ALE](https://github.com/dense-analysis/ale) along with 
-[Deoplete](https://github.com/Shougo/deoplete.nvim) + [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim). As for an LSP server for Ruby, I've gotten the best results so far 
-with [Solargraph](https://solargraph.org/).
-
-## Statusline
-If you're on macos, [my plugin configuration file](https://github.com/davelens/dotvim/blob/master/vim/plugin/configurations.vim) will attempt to automatically download a patched `Droid Sans Mono` font 
-that includes Powerline icons. If your statusline shows questionmarks instead of 
-specific icons, you'll need to configure your terminal to use a Powerline font 
-as the non-ASCII font.
-
-If you don't wish to make use of the fancy powerline icons, comment out the 
-following line in [configurations.vim](https://github.com/davelens/dotvim/blob/master/vim/plugin/configurations.vim).
-
-```vimscript
-let g:airline_powerline_fonts = 1
+cd ~/.dotvim && ./uninstall.sh && cd -
 ```
