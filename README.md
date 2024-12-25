@@ -19,6 +19,9 @@ Once that's done, you can start Neovim using `dvim`.
 I like having my `nvim` command to remain stock Neovim, so the install script will create a `dvim` executable in `~/.local/bin/`. 
 The script will complain if `~/.local/bin` is not in your path yet.
 
+As for the `d`:
+> **D**ave, **d**otvim, **d**evelopment,...
+
 ### Nerd fonts
 The script will install both the `DroidSansMono` and `Hack` [nerd fonts](https://www.nerdfonts.com/). These are necessary to have access to certain icons and glyphs, though you'll need to configure your terminal app of choice to actually start using them.
 
