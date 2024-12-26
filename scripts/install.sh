@@ -17,6 +17,12 @@ fi
 
 echo "$(check) ~/.local/bin is in \$PATH"
 
+if [ $(uname -s) == 'darwin' ]; then
+  FONTS_DIR=${HOME}/Library/Fonts
+else
+  FONTS_DIR=${HOME}/.local/share/fonts
+fi
+
 # Install getnf if not already installed.
 if [ ! -f ${HOME}/.local/bin/getnf ]; then
   curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
@@ -24,8 +30,8 @@ fi
 
 echo "$(check) getnf is installed"
 
-[ ! -d ${HOME}/Library/Fonts/DroidSansMono ] && getnf -i DroidSansMono 
-[ ! -d ${HOME}/Library/Fonts/Hack ] && getnf -i Hack 
+[ ! -d ${FONTS_DIR}/DroidSansMono ] && getnf -i DroidSansMono 
+[ ! -d ${FONTS_DIR}/Hack ] && getnf -i Hack 
 
 echo "$(check) Nerd fonts installed"
 
