@@ -3,7 +3,7 @@
 # Stops further execution after any error.
 set -e
 
-SETUP_DIR=$(dirname "$(realpath "$0")")
+readonly SETUP_DIR=$(dirname "$(realpath "$0")")
 
 source ${SETUP_DIR}/helpers.sh
 
@@ -18,9 +18,9 @@ fi
 echo "$(check) ~/.local/bin is in \$PATH"
 
 if [ $(uname -s) == 'darwin' ]; then
-  FONTS_DIR=${HOME}/Library/Fonts
+  readonly FONTS_DIR=${HOME}/Library/Fonts
 else
-  FONTS_DIR=${HOME}/.local/share/fonts
+  readonly FONTS_DIR=${HOME}/.local/share/fonts
 fi
 
 # Install getnf if not already installed.
