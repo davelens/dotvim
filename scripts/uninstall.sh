@@ -3,7 +3,9 @@
 # Stops further execution after any error.
 set -e
 
-source ./helpers.sh
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+
+source ${SCRIPT_DIR}/helpers.sh
 
 getnf -u DroidSansMono,Hack && echo "$(check) Nerd fonts uninstalled"
 
