@@ -8,10 +8,12 @@
 * Switched to a full Lua config in september 2024, after experiencing LSP functionality for Elixir in particular
 * Archived my old vimrc [here](https://github.com/davelens/dotvim.old)
 
-## Install
+## Installation
+All steps assume you'll clone the repo into `~/.dotvim`:
+
 ```sh
 git clone git@github.com:davelens/dotvim.git ~/.dotvim 
-cd ~/.dotvim && ./install.sh && cd -
+~/.dotvim/scripts/install.sh
 ```
 Once that's done, you can start Neovim using `dvim`.
 
@@ -25,7 +27,7 @@ As for the `d`:
 ### Nerd fonts
 The script will install both the `DroidSansMono` and `Hack` [nerd fonts](https://www.nerdfonts.com/). These are necessary to have access to certain icons and glyphs, though you'll need to configure your terminal app of choice to actually start using them.
 
-## Uninstall
+### Uninstall
 ```sh
-cd ~/.dotvim && ./uninstall.sh && cd -
+~/.dotvim/scripts/uninstall.sh
 ```
