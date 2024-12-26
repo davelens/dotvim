@@ -1,6 +1,7 @@
 -- Git wrapper for (n)vim.
 return {
   "tpope/vim-fugitive",
+  lazy = false, -- Needs to always be active.
   keys = { 
     { "<leader>g", "<cmd>G<cr>" },
   },

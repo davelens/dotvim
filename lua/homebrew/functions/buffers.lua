@@ -49,20 +49,15 @@ end
 
 -- Rename the current file in your buffer.
 function buffers.rename_file()
-  local old_name = vim.fn.expand('%')
+  local old_name = vim.fn.expand('%:t')
   local new_name = vim.fn.input('Rename to: ', old_name, 'file')
   
   if new_name == '' or new_name == old_name then
     return
   end
 
-  os.rename(old_name, new_name)
-
-  -- Delete the old buffer, reopen the new file, redraw the screen
-  vim.cmd('bdelete ' .. old_name)
-  vim.cmd('e ' .. new_name)
-  vim.cmd('redraw')
-
+  -- GRename is a vim-fugitive command.
+  vim.cmd('GRename ' .. new_name)
   print('Renamed ' .. old_name .. ' to ' .. new_name)
 end
 
