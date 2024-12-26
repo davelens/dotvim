@@ -1,5 +1,3 @@
-#!/bin/sh
-
 check() {
   echo "[$(tput setaf 2)✓$(tput sgr0)]"
 }
