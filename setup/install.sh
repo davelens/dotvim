@@ -3,9 +3,9 @@
 # Stops further execution after any error.
 set -e
 
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
+SETUP_DIR=$(dirname "$(realpath "$0")")
 
-source ${SCRIPT_DIR}/helpers.sh
+source ${SETUP_DIR}/helpers.sh
 
 [ ! -d ${HOME}/.local/bin ] && mkdir -p ${HOME}/.local/bin
 
@@ -36,7 +36,7 @@ echo "$(check) getnf is installed"
 echo "$(check) Nerd fonts installed"
 
 [ ! -d ${HOME}/.config ] && mkdir ${HOME}/.config
-[ ! -d ${HOME}/.config/dvim ] && ln -s $(dirname ${SCRIPT_DIR}) ${HOME}/.config/dvim
+[ ! -d ${HOME}/.config/dvim ] && ln -s $(dirname ${SETUP_DIR}) ${HOME}/.config/dvim
 
 echo "$(check) Symlinks are present in ~/.config"
 
