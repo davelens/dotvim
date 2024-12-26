@@ -13,7 +13,7 @@ All steps assume you'll clone the repo into `~/.dotvim`:
 
 ```sh
 git clone git@github.com:davelens/dotvim.git ~/.dotvim 
-~/.dotvim/setup/install.sh
+~/.dotvim/setup/install
 ```
 Once that's done, you can start Neovim using `dvim`.
 
@@ -29,5 +29,5 @@ The script will install both the `DroidSansMono` and `Hack` [nerd fonts](https:/
 
 ### Uninstall
 ```sh
-~/.dotvim/setup/uninstall.sh
+~/.dotvim/setup/uninstall
 ```
