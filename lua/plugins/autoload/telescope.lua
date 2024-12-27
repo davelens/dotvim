@@ -12,12 +12,12 @@ return {
     local builtin = require('telescope.builtin')
     local actions = require("telescope.actions")
 
-    vim.keymap.set('n', 'gd', builtin.lsp_definitions, { silent = true })
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-    vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, {})
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-    vim.keymap.set({'n','v'}, '<leader>l', builtin.grep_string, {})
+    vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Telescope Go to LSP definition', silent = true })
+    vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find [f]iles' })
+    vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, { desc = 'Telescope live [g]rep' })
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope find [b]uffers' })
+    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope find [h]elp tags' })
+    vim.keymap.set({'n','v'}, '<leader>l', builtin.grep_string, { desc = 'Telescope grep string' })
 
     telescope.setup {
       extensions = {
