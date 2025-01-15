@@ -4,6 +4,12 @@ function nvim_cli_clear_last_message()
   vim.cmd("call feedkeys(':', 'nx')")
 end
 
+-- Clears stale command-line content
+function print_redraw(string)
+  vim.cmd('redraw') 
+  print(string)
+end
+
 -- Useful to paste selected strings into other functionality.
 --
 -- It's a somewhat older function I specifically searched for, and found here:

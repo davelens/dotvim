@@ -50,15 +50,33 @@ end
 -- Rename the current file in your buffer.
 function buffers.rename_file()
   local old_name = vim.fn.expand('%:t')
-  local new_name = vim.fn.input('Rename to: ', old_name, 'file')
-  
-  if new_name == '' or new_name == old_name then
-    return
+  local input_ok, new_name = pcall(vim.fn.input, 'Rename to: ', old_name, 'file')
+
+  if not input_ok or new_name == nil or new_name == '' or new_name == old_name then
+    return print_redraw('Rename cancelled')
   end
 
   -- GRename is a vim-fugitive command.
-  vim.cmd('GRename ' .. new_name)
-  print('Renamed ' .. old_name .. ' to ' .. new_name)
+  if vim.fn.exists(':GRename') == 2 then
+    -- Check if the file is tracked by git
+    vim.fn.systemlist('git ls-files --error-unmatch ' .. vim.fn.expand('%:p'))
+
+    if vim.v.shell_error == 0 then -- 0 = File is tracked by git
+      vim.cmd('GRename ' .. new_name)
+      return print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
+    end
+  end
+
+  local old_path = vim.fn.expand('%:p')
+  local new_path = vim.fn.fnamemodify(old_path, ':h') .. '/' .. new_name
+
+  local rename_ok, err = os.rename(old_path, new_path)
+  if not rename_ok then
+    return print_redraw('Error renaming file: ' .. err)
+  end
+
+  vim.cmd('e ' .. new_path) -- Update buffer to the new file
+  print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
 end
 
 return buffers
