@@ -87,23 +87,26 @@ return {
 
         -- Telescope
         -- https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
-        TelescopeMatching = { fg = colors.magenta_light }, -- sections which match the search
-        TelescopePreviewBorder = { bg = colors.bg_dark, fg = colors.magenta },
-        TelescopePreviewNormal = { bg = colors.bg_dark, fg = colors.magenta },
-        TelescopePreviewTitle = { bg = colors.bg_dark, fg = colors.magenta },
+        --TelescopeMatching = { fg = colors.magenta_light }, -- sections which match the search
+        --TelescopePreviewBorder = { bg = colors.bg_dark, fg = colors.magenta },
+        --TelescopePreviewNormal = { bg = colors.bg_dark, fg = colors.magenta },
+        --TelescopePreviewTitle = { bg = colors.bg_dark, fg = colors.magenta },
 
-        TelescopePromptNormal = { bg = colors.bg_dark },
-        TelescopePromptBorder = { bg = colors.bg_dark, fg = colors.magenta },
-        TelescopePromptPrefix = { bg = colors.bg_dark },
-        TelescopePromptTitle = { fg = colors.magenta },
+        --TelescopePromptNormal = { bg = colors.bg_dark },
+        --TelescopePromptBorder = { bg = colors.bg_dark, fg = colors.magenta },
+        --TelescopePromptPrefix = { bg = colors.bg_dark },
+        --TelescopePromptTitle = { fg = colors.magenta },
 
-        TelescopeResultsBorder = { bg = colors.bg_dark, fg = colors.magenta },
-        TelescopeResultsNormal = { fg = colors.grey9, bg = colors.bg_dark }, -- results returned
-        -- TelescopeResultsTitle = { fg = results },
+        --TelescopeResultsBorder = { bg = colors.bg_dark, fg = colors.magenta },
+        --TelescopeResultsNormal = { fg = colors.grey9, bg = colors.bg_dark }, -- results returned
 
         -- -- The current item
-        TelescopeSelection = { fg = colors.magenta },
-        TelescopeSelectionCaret = { fg = colors.magenta },
+        --TelescopeSelection = { fg = colors.magenta },
+        --TelescopeSelectionCaret = { fg = colors.magenta },
+
+        -- Snacks picker
+        -- TODO: The path excluding the filename is currently too grey, so
+        -- see about adjusting that.
       }
     })
     

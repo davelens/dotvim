@@ -1,7 +1,7 @@
 local quickfix = {}
 
--- I have to rethink this entire flow and ideally trigger this from within
--- Telescope. There are some quirks.
+-- I have to rethink this entire flow and ideally trigger this from within the
+-- Snacks picker. There are some quirks.
 function quickfix.search_replace(query, replace)
   buffers = require('homebrew.functions.buffers')
   cursor = require('homebrew.functions.cursor')

@@ -18,10 +18,12 @@ default_opts = { noremap = true, silent = false }
 map(0, 'n', '<leader>a', '<cmd>A<CR>', default_opts)
 map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
 
--- Telescope
+-- Snacks.picker
 -- Method definition lookup. Same as <leader>l, but prefixes search string with "def "
-map(0, 'n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", default_opts)
-map(0, 'v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", default_opts)
+--
+-- TODO: Backport from Telescope to the Snacks picker.
+--map(0, 'n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", default_opts)
+--map(0, 'v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", default_opts)
 
 map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
 

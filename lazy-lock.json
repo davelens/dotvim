@@ -23,6 +23,7 @@
   "oil.nvim": { "branch": "master", "commit": "09fa1d22f5edf0730824d2b222d726c8c81bbdc9" },
   "onenord.nvim": { "branch": "main", "commit": "af734ccc21847ce56830eed1f593ef320ffa27ff" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
+  "snacks.nvim": { "branch": "main", "commit": "f509163e392c564c90338415ab78ea76ddcb835f" },
   "solarized-osaka.nvim": { "branch": "main", "commit": "7c63ea4dc3287913e154ce9432c722004bbe9b7e" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "dae2eac9d91464448b584c7949a31df8faefec56" },
   "telescope-live-grep-args.nvim": { "branch": "master", "commit": "649b662a8f476fd2c0289570764459e95ebaa3f3" },

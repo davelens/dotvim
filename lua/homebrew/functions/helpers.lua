@@ -5,8 +5,6 @@ function nvim_cli_clear_last_message()
 end
 
 -- Useful to paste selected strings into other functionality.
--- Currently used in my Telescope configuration to grep_string the visual 
--- selection.
 --
 -- It's a somewhat older function I specifically searched for, and found here:
 -- https://neovim.discourse.group/t/function-that-return-visually-selected-text/1601

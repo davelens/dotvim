@@ -1,0 +1,45 @@
+--- Smorgasbord of small plugins for neovim
+return {
+  "folke/snacks.nvim",
+  priority = 1000,
+  lazy = false,
+  opts = {
+    animate = { enabled = false },
+    bigfile = { enabled = false },
+    dashboard = { enabled = false },
+    dim = { enabled = false },
+    gitbrowse = { enabled = false },
+    indent = { enabled = false },
+    input = { enabled = false },
+    layout = { enabled = false },
+    lazygit = { enabled = false },
+    notifier = { enabled = false },
+    picker = { enabled = true },
+    profiler = { enabled = false },
+    quickfile = { enabled = false },
+    scope = { enabled = false },
+    scratch = { enabled = false },
+    scroll = { enabled = false },
+    statuscolumn = { enabled = false },
+    terminal = { enabled = false },
+    toggle = { enabled = false },
+    win = { enabled = false },
+    words = { enabled = false },
+    zen = { enabled = false },
+    styles = { enabled = false },
+  },
+  keys = {
+    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+    --{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+    --{ "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+    --{ "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+
+    { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find [b]uffers" },
+    { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find [C]onfig file" },
+    { "<leader>ff", function() Snacks.picker.files() end, desc = "Find [f]iles" },
+    { "<leader>fg", function() Snacks.picker.grep() end, desc = "[G]rep" },
+    { "<leader>fh", function() Snacks.picker.help() end, desc = "Find [h]elp" },
+
+    { "<leader>l", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+  }
+}
