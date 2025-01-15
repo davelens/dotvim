@@ -8,17 +8,21 @@ function quickfix.search_replace(query, replace)
   cursor.remember_position()
 
   if query == nil or query == '' then
-    query = vim.fn.input('Search for: ')
+    search_ok, query = pcall(vim.fn.input, 'Search for: ')
 
-    if query == nil or query == '' then
-      nvim_cli_clear_last_message()
+    if not search_ok or query == nil or query == '' then
       vim.cmd('ccl')
-      return
+      return print_redraw('Search cancelled')
     end
   end
 
   if replace == nil or replace == '' then
-    replace = vim.fn.input('Replace with: ')
+    replace_ok, replace = pcall(vim.fn.input, 'Replace with: ')
+
+    if not replace_ok or replace == nil or replace == '' then
+      vim.cmd('ccl')
+      return print_redraw('Replace cancelled')
+    end
   end
 
   vim.cmd(string.format("cdo execute 's/%s/%s/gc'", query, replace))
