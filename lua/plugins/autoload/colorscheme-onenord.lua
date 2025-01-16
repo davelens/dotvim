@@ -107,6 +107,7 @@ return {
         -- Snacks picker
         -- TODO: The path excluding the filename is currently too grey, so
         -- see about adjusting that.
+        SnacksPickerDir = { fg = colors.grey7 },
       }
     })
     
