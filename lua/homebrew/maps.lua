@@ -46,9 +46,11 @@ map('n', '<leader>*', 'yypVr*')
 map('n', '<leader>br', ":lua require('homebrew.functions.buffers').rename_file()<CR>", { desc = '[R]ename current buffer', noremap = true, silent = true })
 map('n', '<leader>bc', ":lua require('homebrew.functions.buffers').delete_hidden()<CR>", { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
 
--- Diagnostic navigation
-map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
-map('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix' })
+-- Diagnostic maps
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+map('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
+map('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix' })
+
+-- Quickfix/Trouble maps
 map('n', '<leader>qc', function() vim.cmd(require('trouble').is_open() and "Trouble close" or "ccl") end, { desc = 'Close Quickfix or Trouble windows' })
