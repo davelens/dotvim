@@ -42,8 +42,9 @@ map('n', '<leader>=', 'yypVr=')
 map('n', '<leader>-', 'yypVr-')
 map('n', '<leader>*', 'yypVr*')
 
--- Quick in-buffer file rename 
+-- Buffer maps
 map('n', '<leader>br', ":lua require('homebrew.functions.buffers').rename_file()<CR>", { desc = '[R]ename current buffer', noremap = true, silent = true })
+map('n', '<leader>bc', ":lua require('homebrew.functions.buffers').delete_hidden()<CR>", { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
 
 -- Diagnostic navigation
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
