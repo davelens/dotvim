@@ -39,7 +39,6 @@ return {
     { "<leader>ff", function() Snacks.picker.files() end, desc = "Find [f]iles" },
     { "<leader>fg", function() Snacks.picker.grep() end, desc = "[G]rep" },
     { "<leader>fh", function() Snacks.picker.help() end, desc = "Find [h]elp" },
-
-    { "<leader>l", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+    { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find [w]ord or selection", mode = { "n", "x" } },
   }
 }
