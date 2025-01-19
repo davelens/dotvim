@@ -79,4 +79,17 @@ function buffers.rename_file()
   print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
 end
 
+-- Check if any buffer for the given type is currently open.
+function buffers.is_open(buf_type)
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(bufnr) then
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
+      if bufname:match(buf_type) then
+        return true
+      end
+    end
+  end
+  return false
+end
+
 return buffers
