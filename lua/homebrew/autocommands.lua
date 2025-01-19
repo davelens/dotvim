@@ -56,3 +56,35 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_buf_set_keymap(0, 'n', '<leader>;', ":lua require('homebrew.functions.buffers').append_semicolon()<CR>", { noremap = true, silent = true })
   end,
 })
+
+-- Generic buffer close toggler for qf, vim-fugitive, help, etc,...
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('close-toggler', { clear = true }),
+  pattern = {
+    'checkhealth',
+    'fugitive',
+    'git',
+    'gitsigns-blame',
+    'help',
+    'lspinfo',
+    'neotest-output',
+    'neotest-output-panel',
+    'neotest-summary',
+    'notify',
+    'PlenaryTestPopup',
+    'qf',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.schedule(function()
+      vim.keymap.set('n', 'q', function()
+        vim.cmd('close')
+        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+      end, {
+        buffer = event.buf,
+        silent = true,
+        desc = '[Q]uit buffer',
+      })
+    end)
+  end,
+})
