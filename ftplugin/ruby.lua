@@ -27,19 +27,8 @@ map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
 
 map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
 
--- vim-localorie
--- See config/dvim/lua/neovim/autocommands.lua
-
 rails = vim.api.nvim_create_augroup('rails', { clear = true })
 rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
-
-vim.api.nvim_create_autocmd('CursorMoved', {
-  pattern = '*.yml',
-  group = 'rails',
-  callback = function(_)
-    print(vim.fn['localorie#expand_key']())
-  end
-})
 
 vim.api.nvim_create_autocmd('BufLeave', {
   pattern = '*.yml',
