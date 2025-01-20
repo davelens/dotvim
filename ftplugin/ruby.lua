@@ -14,6 +14,10 @@ vim.opt_local.tabstop = 2 -- The width of a tab character
 map = vim.api.nvim_buf_set_keymap
 default_opts = { noremap = true, silent = false }
 
+-- Define augroups
+rails = vim.api.nvim_create_augroup('rails', { clear = true })
+rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
+
 -- rails.vim
 map(0, 'n', '<leader>a', '<cmd>A<CR>', default_opts)
 map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
@@ -27,12 +31,9 @@ map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
 
 map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
 
-rails = vim.api.nvim_create_augroup('rails', { clear = true })
-rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
-
 vim.api.nvim_create_autocmd('BufLeave', {
   pattern = '*.yml',
-  group = 'rails',
+  group = rails,
   callback = function(_)
     vim.cmd('echo ""')
   end
@@ -40,7 +41,7 @@ vim.api.nvim_create_autocmd('BufLeave', {
 
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*_spec.rb',
-  group = 'rspec',
+  group = rspec,
   callback = function(_)
     -- TODO: <leader>p is already bound. Find a better set of keybinds for these
     -- sort of maps.
