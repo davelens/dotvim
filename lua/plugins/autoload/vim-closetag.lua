@@ -4,6 +4,6 @@
 return {
   'alvan/vim-closetag',
   init = function()
-    vim.g.closetag_filetypes = 'html,eruby,eelixir'
+    vim.g.closetag_filetypes = 'html,eruby,eelixir,heex'
   end
 }
