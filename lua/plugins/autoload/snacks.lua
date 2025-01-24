@@ -9,7 +9,7 @@ return {
     dashboard = { enabled = false },
     dim = { enabled = false },
     gitbrowse = { enabled = false },
-    indent = { enabled = false },
+    indent = { enabled = true },
     input = { enabled = false },
     layout = { enabled = false },
     lazygit = { enabled = false },
