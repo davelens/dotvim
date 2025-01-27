@@ -17,8 +17,8 @@ return {
       settings = {
         Lua = {
           diagnostics = {
-            globals = { 'vim' },
-            disable = { 'lowercase-global', 'trailing-space', 'undefined-global', 'empty-block' },
+            globals = { 'vim', 'Snacks' },
+            disable = { 'lowercase-global', 'trailing-space', 'empty-block' },
           }
         }
       }
