@@ -58,33 +58,68 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Generic buffer close toggler for qf, vim-fugitive, help, etc,...
+--vim.api.nvim_create_autocmd('FileType', {
+  --group = vim.api.nvim_create_augroup('close-toggler', { clear = true }),
+  --pattern = {
+    --'checkhealth',
+    --'fugitive',
+    --'git',
+    --'gitsigns-blame',
+    --'help',
+    --'lspinfo',
+    --'neotest-output',
+    --'neotest-output-panel',
+    --'neotest-summary',
+    --'notify',
+    --'PlenaryTestPopup',
+    --'qf',
+  --},
+  --callback = function(event)
+    --vim.bo[event.buf].buflisted = false
+    --vim.schedule(function()
+      --vim.keymap.set('n', 'q', function()
+        --vim.cmd('close')
+        --pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+      --end, {
+        --buffer = event.buf,
+        --silent = true,
+        --desc = '[Q]uit buffer',
+      --})
+    --end)
+  --end,
+--})
+
+local special_filetypes = {
+  'checkhealth',
+  'fugitive',
+  'git',
+  'gitsigns-blame',
+  'help',
+  'lspinfo',
+  'neotest-output',
+  'neotest-output-panel',
+  'neotest-summary',
+  'notify',
+  'PlenaryTestPopup',
+  'qf',
+}
+
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('close-toggler', { clear = true }),
-  pattern = {
-    'checkhealth',
-    'fugitive',
-    'git',
-    'gitsigns-blame',
-    'help',
-    'lspinfo',
-    'neotest-output',
-    'neotest-output-panel',
-    'neotest-summary',
-    'notify',
-    'PlenaryTestPopup',
-    'qf',
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set('n', 'q', function()
-        vim.cmd('close')
-        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      end, {
-        buffer = event.buf,
-        silent = true,
-        desc = '[Q]uit buffer',
-      })
-    end)
-  end,
+  pattern = special_filetypes,
+  callback = function()
+    vim.keymap.set("n", "q", function()
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+        if vim.tbl_contains(special_filetypes, ft) then
+          vim.api.nvim_win_close(win, true)
+          pcall(vim.api.nvim_buf_delete, buf, { force = true })
+        end
+      end
+
+      -- Restore the default behavior (ie. recording macros)
+      vim.keymap.del("n", "q")
+    end, { desc = "Close special windows" })
+  end
 })
