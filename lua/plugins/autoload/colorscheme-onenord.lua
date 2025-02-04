@@ -8,7 +8,6 @@ return {
       borders = true,
       fade_nc = false,
       styles = {
-        comments = "italic",
         strings = "NONE",
         keywords = "NONE",
         functions = "NONE",
