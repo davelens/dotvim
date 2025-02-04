@@ -47,6 +47,8 @@ map('n', '<leader>br', ":lua require('homebrew.functions.buffers').rename_file()
 map('n', '<leader>bc', ":lua require('homebrew.functions.buffers').delete_hidden()<CR>", { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
 
 -- Diagnostic maps
+map('n', '[q', ":silent! w<CR>:cprev<CR>", { desc = 'Go to previous [Q]uickfix message' })
+map('n', ']q', ":silent! w<CR>:cnext<CR>", { desc = 'Go to next [Q]uickfix message' })
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 map('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
