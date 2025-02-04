@@ -43,8 +43,9 @@ map('n', '<leader>-', 'yypVr-')
 map('n', '<leader>*', 'yypVr*')
 
 -- Buffer maps
-map('n', '<leader>br', ":lua require('homebrew.functions.buffers').rename_file()<CR>", { desc = '[R]ename current buffer', noremap = true, silent = true })
-map('n', '<leader>bc', ":lua require('homebrew.functions.buffers').delete_hidden()<CR>", { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
+local buffers = require('homebrew.functions.buffers')
+map('n', '<leader>br', buffers.rename_file, { desc = '[R]ename current buffer', noremap = true, silent = true })
+map('n', '<leader>bc', buffers.delete_hidden, { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
 
 -- Diagnostic maps
 map('n', '[q', ":silent! w<CR>:cprev<CR>", { desc = 'Go to previous [Q]uickfix message' })
