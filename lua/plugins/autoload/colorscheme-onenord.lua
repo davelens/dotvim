@@ -38,6 +38,8 @@ return {
         LspReferenceText = { bg = colors.grey11, style = "none" },
         LspReferenceRead = { link = "LspReferenceText", style = "none" },
         LspReferenceWrite = { link = "LspReferenceText", style = "none" },
+        SnacksIndentScope = { fg = colors.grey7, nocombine = true },
+        SnacksIndent = { fg = colors.grey11, nocombine = true },
 
         -- Better Quick List
         BqfPreviewFloat = { bg = colors.bg_dark },
