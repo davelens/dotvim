@@ -2,12 +2,12 @@ if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
-      ["+"] = "cb",
-      ["*"] = "cb",
+      ["+"] = "cb copy",
+      ["*"] = "cb copy",
     },
     paste = {
-      ["+"] = 'cb',
-      ["*"] = 'cb',
+      ["+"] = 'cb paste',
+      ["*"] = 'cb paste',
     },
     cache_enabled = 0,
   }
