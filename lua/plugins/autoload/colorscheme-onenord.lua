@@ -1,6 +1,6 @@
 return {
   "rmehri01/onenord.nvim",
-  lazy = false,
+  lazy = true,
   config = function()
     local colors = require('homebrew.colors')
 
