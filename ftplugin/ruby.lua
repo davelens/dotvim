@@ -21,16 +21,9 @@ rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
 -- rails.vim
 map(0, 'n', '<leader>a', '<cmd>A<CR>', default_opts)
 map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
+--map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
 
--- Snacks.picker
--- Method definition lookup. Same as <leader>l, but prefixes search string with "def "
---
--- TODO: Backport from Telescope to the Snacks picker.
---map(0, 'n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", default_opts)
---map(0, 'v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", default_opts)
-
-map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
-
+-- So output from vim-localorie does not linger
 vim.api.nvim_create_autocmd('BufLeave', {
   pattern = '*.yml',
   group = rails,
@@ -46,5 +39,21 @@ vim.api.nvim_create_autocmd('BufEnter', {
     -- TODO: <leader>p is already bound. Find a better set of keybinds for these
     -- sort of maps.
     map(0, 'n', '<leader>p', ":lua require('homebrew.functions.rspec').refactor_assignment_to_let()<CR>", default_opts)
+  end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'ruby,eruby,puppet',
+  group = rails,
+  callback = function()
+    vim.schedule(function()
+      -- Look up cword in the Rails translations
+      -- TODO: Needs a refactor to provide properly formatted lua, because this
+      -- is ridiculous. I need to read up on how vim.schedule works.
+      map(0, 'n', '<leader>fl', ":<C-U>lua Snacks.picker.grep_word({ cwd = 'config/locales', pattern = 'file:yml$', search = vim.fn.expand('<cword>'), live = true, title = 'Rails translations' })<CR>", default_opts)
+      -- TODO: Backport from Telescope to the Snacks picker.
+      --map(0, 'n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", default_opts)
+      --map(0, 'v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", default_opts)
+    end)
   end
 })
