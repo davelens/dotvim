@@ -7,6 +7,7 @@ return {
     require(vim.colorscheme).setup({
       custom_highlights = {
         -- Override colors here, see the onenord plugin file for examples.
+        -- Keeping this present until (if) I'm broken into catppuccin.
       },
     })
 
