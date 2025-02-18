@@ -29,8 +29,8 @@ vim.opt.ignorecase = true -- Ignore casing in pattern matching
 vim.opt.incsearch = true -- Highlight search matches as you type
 vim.opt.laststatus = 2 -- Always show a statusline
 vim.opt.linespace = 0 -- Number of pixel lines between characters
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.list = true -- Shows <Tab> and <EOL> characters
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Custom list characters in display mode
 vim.opt.swapfile = false -- Disable swap files
 vim.opt.scrolloff = 10 -- Keep 10 lines above and below the cursor when scrolling
 vim.opt.showmode = false -- Do not show the current mode (it's already in the statusline)
