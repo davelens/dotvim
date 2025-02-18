@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
     io.write(string.format("\027]11;#%06x\027\\", normal.bg))
   end,
 })
-
 vim.api.nvim_create_autocmd("UILeave", {
   callback = function()
     io.write("\027]111\027\\")
@@ -58,37 +57,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Generic buffer close toggler for qf, vim-fugitive, help, etc,...
---vim.api.nvim_create_autocmd('FileType', {
-  --group = vim.api.nvim_create_augroup('close-toggler', { clear = true }),
-  --pattern = {
-    --'checkhealth',
-    --'fugitive',
-    --'git',
-    --'gitsigns-blame',
-    --'help',
-    --'lspinfo',
-    --'neotest-output',
-    --'neotest-output-panel',
-    --'neotest-summary',
-    --'notify',
-    --'PlenaryTestPopup',
-    --'qf',
-  --},
-  --callback = function(event)
-    --vim.bo[event.buf].buflisted = false
-    --vim.schedule(function()
-      --vim.keymap.set('n', 'q', function()
-        --vim.cmd('close')
-        --pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      --end, {
-        --buffer = event.buf,
-        --silent = true,
-        --desc = '[Q]uit buffer',
-      --})
-    --end)
-  --end,
---})
-
+-- Hard bound on `q`.
+-- Idea taken from folke's nvim config, but altered so `q` works in any buffer.
 local special_filetypes = {
   'checkhealth',
   'fugitive',
