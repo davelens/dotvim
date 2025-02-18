@@ -10,8 +10,8 @@ return {
         auto_trigger = true,
         keymap = {
           accept = "<C-l>",
-          --next = "<C-u>",
-          --prev = "<C-i>",
+          next = "<C-u>",
+          prev = "<C-i>",
           --dismiss = "<C-]>",
         },
       },
