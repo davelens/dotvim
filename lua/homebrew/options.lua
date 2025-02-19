@@ -10,7 +10,6 @@ vim.opt.tabstop = 2 -- The width of a tab character
 vim.opt_local.smarttab = true -- Inserts/Deletes whitespace in front of lines according to the above settings
 
 -- Behavioural settings
-vim.colorscheme = 'catppuccin' -- Set the colorscheme
 vim.opt.autoread = true -- Load in changes made from *outside* vim
 vim.opt.autowrite = true -- Write file contents for writable buffers
 vim.opt.backspace = 'indent,eol,start' -- Allow backspacing over autoindent, line breaks and insert mode start

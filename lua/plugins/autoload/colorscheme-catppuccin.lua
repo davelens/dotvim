@@ -1,16 +1,15 @@
-return { 
+return {
   "catppuccin/nvim",
   name = "catppuccin",
   priority = 1000,
-  lazy = false,
-  config = function()
-    require(vim.colorscheme).setup({
-      custom_highlights = {
-        -- Override colors here, see the onenord plugin file for examples.
-        -- Keeping this present until (if) I'm broken into catppuccin.
-      },
-    })
-
-    vim.cmd("colorscheme " .. vim.colorscheme)
+  opts = {
+    custom_highlights = {
+      -- zbirenbaum/copilot.lua
+      CopilotSuggestion = { fg = '#83a598' },
+      CopilotAnnotation = { fg = '#83a598' }
+    },
+  },
+  init = function()
+    vim.cmd.colorscheme "catppuccin"
   end
 }

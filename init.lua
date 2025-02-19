@@ -63,7 +63,3 @@ vim.keymap.set('n', '<leader>L', ':Lazy<cr>', {})
 -- Executed here so our maps always override any plugin maps.
 require('homebrew.autocommands')
 require('homebrew.maps')
-
--- The value is set in lua/homebrew/options.lua.
--- Doing this here because the catppuccin plugin does not load automatically.
-vim.cmd("colorscheme " .. vim.colorscheme)
