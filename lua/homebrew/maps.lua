@@ -4,14 +4,14 @@ local map = vim.keymap.set
 -- Originally inspired by
 -- http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 for _, mode in ipairs { 'n', 'v' } do
-  map(mode, '<C-y>', '"+y', { desc = 'yank to system clipboard' })
-  map(mode, '<leader>p', '"+p', { desc = 'paste from system clipboard after cursor' })
-  map(mode, '<leader>P', '"+P', { desc = 'paste from system clipboard before cursor' })
+  map(mode, '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
+  map(mode, '<leader>p', '"+p', { desc = '[P]aste from system clipboard after cursor' })
+  map(mode, '<leader>P', '"+P', { desc = '[P]aste from system clipboard before cursor' })
 end
 
 -- Quick save and exit
-map('n', '<leader>s', '<Esc>:w<CR>')
-map('n', '<leader>x', '<Esc>:q!<CR>')
+map('n', '<leader>s', '<Esc>:w<CR>', { desc = '[S]ave file' })
+map('n', '<leader>x', '<Esc>:q!<CR>' ,{ desc = 'E[x]it without saving' })
 
 -- Do not exit visual mode when shifting
 map('v', '>', '>gv', { noremap = true })
