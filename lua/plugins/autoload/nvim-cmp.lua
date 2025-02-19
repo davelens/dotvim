@@ -15,7 +15,6 @@ return {
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
-    local copilot = require("copilot.suggestion")
 
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup()
@@ -54,6 +53,8 @@ return {
           --    autoinserted at the cursor, which is confusing.
           --
           function(fallback)
+            local copilot = require("copilot.suggestion")
+
             if copilot.is_visible() then
               copilot.accept()
             elseif cmp.visible() then
