@@ -1,4 +1,5 @@
 return {
+  'nvim-tree/nvim-web-devicons', -- Icons for lualine and Oil
   'preservim/nerdcommenter', -- Comment toggles with <leader>ci
   'tpope/vim-abolish', -- Case coercions and language corrections
   'tpope/vim-bundler', -- Bundler integration to help browse gems source code
