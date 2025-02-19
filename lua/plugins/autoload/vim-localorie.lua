@@ -1,11 +1,11 @@
 -- Maps and functions for Rails I18n interaction
 return {
   'airblade/vim-localorie',
-  lazy = true,
   ft = { 'ruby', 'eruby', 'eruby.yaml' },
   config = function()
     local group = vim.api.nvim_create_augroup('vim-localorie', { clear = true })
 
+    -- Too complex for keys = {}; this works fine.
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'ruby,eruby',
       group = group,

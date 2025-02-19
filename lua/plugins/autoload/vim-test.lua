@@ -1,6 +1,9 @@
 -- Wrapper for running tests on different granularities
 return { 
   'vim-test/vim-test',
+  ft = { 'ruby', 'elixir', 'javascript' },
+  -- init() is necessary here since we require vim.g overrides before
+  -- the module gets loaded.
   init = function()
     vim.g['test#strategy'] = {
       nearest = 'neovim',
