@@ -27,10 +27,9 @@ return {
       },
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { 'embedded_template' },
+        additional_vim_regex_highlighting = { 'ruby', 'embedded_template' },
       },
       sync_install = false,
-      indent = { enable = true },
 
       textobjects = {
         select = {
