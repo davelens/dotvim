@@ -80,6 +80,17 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = special_filetypes,
   callback = function()
     vim.keymap.set("n", "q", function()
+      local wins = vim.api.nvim_list_wins()
+      if #wins == 1 then
+        local buf = vim.api.nvim_win_get_buf(wins[1])
+        local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+        if vim.tbl_contains(special_filetypes, ft) then
+          local msg = "Closing this buffer now would exit vim, ft=%s is special"
+          vim.notify(string.format(msg, ft), vim.log.levels.WARN)
+          return
+        end
+      end
+
       for _, win in ipairs(vim.api.nvim_list_wins()) do
         local buf = vim.api.nvim_win_get_buf(win)
         local ft = vim.api.nvim_buf_get_option(buf, "filetype")
