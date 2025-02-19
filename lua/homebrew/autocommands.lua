@@ -70,6 +70,7 @@ local special_filetypes = {
   'neotest-output-panel',
   'neotest-summary',
   'notify',
+  'oil',
   'PlenaryTestPopup',
   'qf',
 }
