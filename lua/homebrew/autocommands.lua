@@ -75,33 +75,54 @@ local special_filetypes = {
   'qf',
 }
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('close-toggler', { clear = true }),
-  pattern = special_filetypes,
-  callback = function()
-    vim.keymap.set("n", "q", function()
-      local wins = vim.api.nvim_list_wins()
-      if #wins == 1 then
-        local buf = vim.api.nvim_win_get_buf(wins[1])
-        local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-        if vim.tbl_contains(special_filetypes, ft) then
-          local msg = "Closing this buffer now would exit vim, ft=%s is special"
-          vim.notify(string.format(msg, ft), vim.log.levels.WARN)
-          return
-        end
-      end
-
-      for _, win in ipairs(vim.api.nvim_list_wins()) do
-        local buf = vim.api.nvim_win_get_buf(win)
-        local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-        if vim.tbl_contains(special_filetypes, ft) then
-          vim.api.nvim_win_close(win, true)
-          pcall(vim.api.nvim_buf_delete, buf, { force = true })
-        end
-      end
-
-      -- Restore the default behavior (ie. recording macros)
-      vim.keymap.del("n", "q")
-    end, { desc = "Close special windows" })
+local function q_handler()
+  if vim.fn.reg_recording() ~= "" then
+    return "q"
   end
-})
+
+  local wins = vim.api.nvim_list_wins()
+  local special_count = 0
+  local gitcommit_found = false
+  local special_wins = {}
+
+  for _, win in ipairs(wins) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+    if ft == "gitcommit" then
+      gitcommit_found = true
+    end
+    if vim.tbl_contains(special_filetypes, ft) then
+      special_count = special_count + 1
+      table.insert(special_wins, win)
+    end
+  end
+
+  if gitcommit_found then
+    return "q"
+  end
+
+  if special_count > 0 then
+    if special_count == #wins then
+      local cur_buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
+      local cur_ft = vim.api.nvim_buf_get_option(cur_buf, "filetype")
+      local msg = "Closing this buffer with `q` now would exit vim (filetype `%s` is special)."
+      vim.schedule(function()
+        vim.notify(string.format(msg, cur_ft), vim.log.levels.ERROR)
+      end)
+      return ""
+    end
+
+    vim.schedule(function()
+      for _, win in ipairs(special_wins) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        vim.api.nvim_win_close(win, true)
+        pcall(vim.api.nvim_buf_delete, buf, { force = true })
+      end
+    end)
+    return ""
+  end
+
+  return "q"
+end
+
+vim.keymap.set("n", "q", q_handler, { expr = true, desc = "Close special windows if present, else pass through" })
