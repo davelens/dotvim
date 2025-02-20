@@ -1,20 +1,17 @@
 -- Maps and functions for Rails I18n interaction
 return {
   'airblade/vim-localorie',
-  ft = { 'ruby', 'eruby', 'eruby.yaml' },
-  config = function()
+  ft = { 'ruby', 'eruby', 'yaml', 'eruby.yaml' },
+  keys = {
+    {
+      "<leader>t",
+      function() vim.fn['localorie#translate']() end,
+      desc = "Find I18n [t]ranslation",
+      ft = { "ruby", "eruby" }
+    },
+  },
+  init = function()
     local group = vim.api.nvim_create_augroup('vim-localorie', { clear = true })
-
-    -- Too complex for keys = {}; this works fine.
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = 'ruby,eruby',
-      group = group,
-      callback = function(_)
-        vim.keymap.set({ 'n', 'v' }, '<leader>yt', function()
-          vim.fn['localorie#translate']()
-        end, { buffer = true })
-      end
-    })
 
     vim.api.nvim_create_autocmd('CursorMoved', {
       pattern = '*.yml',
