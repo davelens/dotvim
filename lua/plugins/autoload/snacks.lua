@@ -53,7 +53,7 @@ return {
         })
       end,
       desc = "Find Rails translations in [l]ocale files",
-      ft = { "ruby", "eruby", "puppet" },
+      ft = { "ruby", "eruby" },
       mode = { "n", "x" }
     },
   }
