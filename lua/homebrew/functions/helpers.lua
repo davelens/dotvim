@@ -4,22 +4,17 @@ function print_redraw(string)
   print(string)
 end
 
--- Useful to paste selected strings into other functionality.
+-- Returns the visual selection, like an expand('<cword>') for selections.
 --
--- It's a somewhat older function I specifically searched for, and found here:
--- https://neovim.discourse.group/t/function-that-return-visually-selected-text/1601
+-- This is a trick. Normally you'd want to grab the start and end position
+-- of your selection, than extract the string inbetween.
+-- It's infinitely easier to just yank the visual selection into a register,
+-- and then return it.
+--
 function get_visual_selection()
-  local s_start = vim.fn.getpos("'<")
-  local s_end = vim.fn.getpos("'>")
-  local n_lines = math.abs(s_end[2] - s_start[2]) + 1
-  local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
-  lines[1] = string.sub(lines[1], s_start[3], -1)
-  if n_lines == 1 then
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
-  else
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
-  end
-  return table.concat(lines, '\n')
+  -- Assuming visual mode here, so no explicit checks for it.
+  vim.cmd("normal! \"vy") -- Yank the selection into the unnamed register
+  return vim.fn.getreg("v") -- Grab and return yanked text
 end
 
 -- Useful to use this on keymaps to quickly run external scripts.
