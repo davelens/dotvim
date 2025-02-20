@@ -39,20 +39,3 @@ vim.api.nvim_create_autocmd('BufEnter', {
     map(0, 'n', '<leader>rl', ":lua require('homebrew.functions.rspec').refactor_assignment_to_let()<CR>", default_opts)
   end
 })
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'ruby,eruby,puppet',
-  group = rails,
-  callback = function()
-    vim.schedule(function()
-      -- Look up cword in the Rails translations
-      -- TODO: Needs a refactor to provide properly formatted lua, because this
-      -- is ridiculous.
-      map(0, 'n', '<leader>fl', ":<C-U>lua Snacks.picker.grep_word({ cwd = 'config/locales', pattern = 'file:yml$', search = vim.fn.expand('<cword>'), live = true, title = 'Rails translations' })<CR>", default_opts)
-
-      -- TODO: Backport from Telescope to the Snacks picker.
-      --map(0, 'n', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. vim.fn.expand('<cword>')})<CR>", default_opts)
-      --map(0, 'v', '<leader>d', ":<C-U>lua require('telescope.builtin').grep_string({search = 'def ' .. get_visual_selection()})<CR>", default_opts)
-    end)
-  end
-})

@@ -41,5 +41,20 @@ return {
     { "<leader>fh", function() Snacks.picker.help() end, desc = "Find [h]elp" },
     { "<leader>fu", function() Snacks.picker.undo() end, desc = "Find in [u]ndofile history", mode = { "n", "x" } },
     { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find [w]ord or selection", mode = { "n", "x" } },
+    {
+      "<leader>fl",
+      function()
+        Snacks.picker.grep_word({
+          cwd = 'config/locales',
+          pattern = 'file:yml$',
+          search = vim.fn.expand('<cword>'),
+          live = true,
+          title = 'Rails translations'
+        })
+      end,
+      desc = "Find Rails translations in [l]ocale files",
+      ft = { "ruby", "eruby", "puppet" },
+      mode = { "n", "x" }
+    },
   }
 }
