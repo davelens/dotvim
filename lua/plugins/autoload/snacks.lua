@@ -41,6 +41,20 @@ return {
     { "<leader>fh", function() Snacks.picker.help() end, desc = "Find [h]elp" },
     { "<leader>fu", function() Snacks.picker.undo() end, desc = "Find in [u]ndofile history", mode = { "n", "x" } },
     { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find [w]ord or selection", mode = { "n", "x" } },
+
+    {
+      "<leader>fd",
+      function()
+        Snacks.picker.grep_word({
+          search = "def " .. (vim.fn.mode() == "v" and get_visual_selection() or vim.fn.expand("<cword>")),
+          title = 'Find method definitions'
+        })
+      end,
+      desc = "Find method [d]efinitions",
+      ft = { "ruby", "eruby", "elixir", "eelixir", "heex" },
+      mode = { "n", "v" }
+    },
+
     {
       "<leader>fl",
       function()
