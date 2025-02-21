@@ -18,8 +18,6 @@ default_opts = { noremap = true, silent = false }
 rails = vim.api.nvim_create_augroup('rails', { clear = true })
 
 -- rails.vim
-map(0, 'n', '<leader>a', '<cmd>A<CR>', default_opts)
-map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
 --map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
 
 vim.api.nvim_create_autocmd('BufEnter', {
