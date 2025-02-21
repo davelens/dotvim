@@ -11,9 +11,6 @@ vim.opt_local.smarttab = true
 vim.opt_local.softtabstop = 2 -- Determines how much whitespace is used while indenting
 vim.opt_local.tabstop = 2 -- The width of a tab character
 
--- rails.vim
---map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
-
 -- RSpec keymap to convert variable assignments to RSpec `let` blocks.
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*_spec.rb',

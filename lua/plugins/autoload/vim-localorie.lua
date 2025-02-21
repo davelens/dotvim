@@ -4,9 +4,9 @@ return {
   ft = { 'ruby', 'eruby', 'yaml', 'eruby.yaml' },
   keys = {
     {
-      "<leader>t",
+      "<leader>fi",
       function() vim.fn['localorie#translate']() end,
-      desc = "Find I18n [t]ranslation",
+      desc = "Find [I]18n translation",
       ft = { "ruby", "eruby" }
     },
   },
