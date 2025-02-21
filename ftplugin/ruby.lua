@@ -16,7 +16,6 @@ default_opts = { noremap = true, silent = false }
 
 -- Define augroups
 rails = vim.api.nvim_create_augroup('rails', { clear = true })
-rspec = vim.api.nvim_create_augroup('rspec', { clear = true })
 
 -- rails.vim
 map(0, 'n', '<leader>a', '<cmd>A<CR>', default_opts)
@@ -25,7 +24,6 @@ map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
 
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*_spec.rb',
-  group = rspec,
   callback = function(_)
     map(0, 'n', '<leader>rl', ":lua require('homebrew.functions.rspec').refactor_assignment_to_let()<CR>", default_opts)
   end
