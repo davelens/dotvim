@@ -12,15 +12,16 @@ vim.opt_local.softtabstop = 2 -- Determines how much whitespace is used while in
 vim.opt_local.tabstop = 2 -- The width of a tab character
 
 -- RSpec keymap to convert variable assignments to RSpec `let` blocks.
+rspec = require('homebrew.functions.rspec')
+
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*_spec.rb',
   callback = function(_)
-    vim.api.nvim_buf_set_keymap(
-      0, 
+    vim.keymap.set(
       'n', 
       '<leader>rl', 
-      ":lua require('homebrew.functions.rspec').refactor_assignment_to_let()<CR>", 
-      { noremap = true, silent = false }
+      function() rspec.refactor_assignment_to_let() end,
+      { noremap = true, silent = false, buffer = true }
     )
   end
 })
