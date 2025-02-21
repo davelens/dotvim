@@ -13,6 +13,7 @@ return {
   init = function()
     local group = vim.api.nvim_create_augroup('vim-localorie', { clear = true })
 
+    -- Shows the fully concatenated I18n identifier.
     vim.api.nvim_create_autocmd('CursorMoved', {
       pattern = '*.yml',
       group = group,
@@ -20,5 +21,15 @@ return {
         print(vim.fn['localorie#expand_key']())
       end
     })
+
+    -- Clean up the input line.
+    vim.api.nvim_create_autocmd('BufLeave', {
+      pattern = '*.yml',
+      group = group,
+      callback = function(_)
+        vim.cmd('echo ""')
+      end
+    })
+
   end
 }

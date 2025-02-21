@@ -23,15 +23,6 @@ map(0, 'n', '<leader>a', '<cmd>A<CR>', default_opts)
 map(0, 'n', '<leader>r', '<cmd>R<CR>', default_opts)
 --map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
 
--- So output from vim-localorie does not linger
-vim.api.nvim_create_autocmd('BufLeave', {
-  pattern = '*.yml',
-  group = rails,
-  callback = function(_)
-    vim.cmd('echo ""')
-  end
-})
-
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*_spec.rb',
   group = rspec,
