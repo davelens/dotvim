@@ -2,6 +2,9 @@
 return { 
   'vim-test/vim-test',
   ft = { 'ruby', 'elixir', 'javascript' },
+  keys = { 
+    { '<leader>tn', '<cmd>TestNearest<cr>', ft = { 'ruby', 'elixir' } }
+  },
   -- init() is necessary here since we require vim.g overrides before
   -- the module gets loaded.
   init = function()

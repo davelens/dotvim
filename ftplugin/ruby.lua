@@ -11,18 +11,19 @@ vim.opt_local.smarttab = true
 vim.opt_local.softtabstop = 2 -- Determines how much whitespace is used while indenting
 vim.opt_local.tabstop = 2 -- The width of a tab character
 
-map = vim.api.nvim_buf_set_keymap
-default_opts = { noremap = true, silent = false }
-
--- Define augroups
-rails = vim.api.nvim_create_augroup('rails', { clear = true })
-
 -- rails.vim
 --map(0, 'n', '<leader>f', ':TestNearest<CR>', default_opts)
 
+-- RSpec keymap to convert variable assignments to RSpec `let` blocks.
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*_spec.rb',
   callback = function(_)
-    map(0, 'n', '<leader>rl', ":lua require('homebrew.functions.rspec').refactor_assignment_to_let()<CR>", default_opts)
+    vim.api.nvim_buf_set_keymap(
+      0, 
+      'n', 
+      '<leader>rl', 
+      ":lua require('homebrew.functions.rspec').refactor_assignment_to_let()<CR>", 
+      { noremap = true, silent = false }
+    )
   end
 })
