@@ -1,6 +1,6 @@
--- Clears stale command-line content
+-- Clears stale command-line characters.
 function print_redraw(string)
-  vim.cmd('redraw') 
+  vim.cmd('redraw')
   print(string)
 end
 
@@ -13,12 +13,12 @@ end
 --
 function get_visual_selection()
   -- Assuming visual mode here, so no explicit checks for it.
-  vim.cmd("normal! \"vy") -- Yank the selection into the unnamed register
+  vim.cmd("normal! \"vy")   -- Yank the selection into the unnamed register
   return vim.fn.getreg("v") -- Grab and return yanked text
 end
 
 -- Useful to use this on keymaps to quickly run external scripts.
--- Mostly done to have a single point where these kind of arguments get 
+-- Mostly done to have a single point where these kind of arguments get
 -- sanitized.
 function run_script_on_visual_selection(script_path)
   local visual_selection = get_visual_selection()
@@ -27,7 +27,7 @@ function run_script_on_visual_selection(script_path)
   -- Run the cmd, grab the output as a systemlist
   local output = vim.fn.systemlist(script_path .. " " .. visual_selection)
 
-    -- Check for any errors in command execution (non-zero exit status)
+  -- Check for any errors in command execution (non-zero exit status)
   if vim.v.shell_error ~= 0 then
     print("Error running " .. script_path)
     return
