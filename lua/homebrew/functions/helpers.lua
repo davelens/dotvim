@@ -4,6 +4,11 @@ function print_redraw(string)
   print(string)
 end
 
+-- A little alias to dump output of vars to the console. Works on Lua tables.
+function dump(var)
+  print(vim.inspect(var))
+end
+
 -- Returns the visual selection, like an expand('<cword>') for selections.
 --
 -- This is a trick. Normally you'd want to grab the start and end position
@@ -35,27 +40,6 @@ function run_script_on_visual_selection(script_path)
 
   vim.fn.setqflist({}, 'r', { title = script_path, lines = output })
   vim.cmd('copen')
-end
-
--- Display everything contained in a LUA table; useful for debugging.
-function print_table(tbl, indent)
-  indent = indent or 0
-  local formatting = string.rep("  ", indent)
-
-  if type(tbl) ~= "table" then
-    print(formatting .. tostring(tbl))
-    return
-  end
-
-  for k, v in pairs(tbl) do
-    local key = tostring(k)
-    if type(v) == "table" then
-      print(formatting .. key .. ":")
-      print_table(v, indent + 1)
-    else
-      print(formatting .. key .. ": " .. tostring(v))
-    end
-  end
 end
 
 -- Runs a check to see if a keymap exists before deleting it.
