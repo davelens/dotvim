@@ -1,16 +1,19 @@
+local M = {}
+
 -- Clears stale command-line characters.
-function print_redraw(string)
+function M.print_redraw(string)
   vim.cmd('redraw')
   print(string)
 end
 
 -- A little alias to dump output of vars to the console. Works on Lua tables.
-function dump(var)
+function M.dump(var)
   print(vim.inspect(var))
 end
 
 -- A little helper to assign and cache a module to a global variable.
-function assign(name, module)
+function M.assign(name, module)
+  _G.dvim = _G.dvim or { [name] = nil }
   _G.dvim[name] = _G.dvim[name] or require(module)
 end
 
@@ -21,7 +24,7 @@ end
 -- It's infinitely easier to just yank the visual selection into a register,
 -- and then return it.
 --
-function get_visual_selection()
+function M.get_visual_selection()
   -- Assuming visual mode here, so no explicit checks for it.
   vim.cmd("normal! \"vy")   -- Yank the selection into the unnamed register
   return vim.fn.getreg("v") -- Grab and return yanked text
@@ -30,8 +33,8 @@ end
 -- Useful to use this on keymaps to quickly run external scripts.
 -- Mostly done to have a single point where these kind of arguments get
 -- sanitized.
-function run_script_on_visual_selection(script_path)
-  local visual_selection = get_visual_selection()
+function M.run_script_on_visual_selection(script_path)
+  local visual_selection = M.get_visual_selection()
   visual_selection = visual_selection:gsub("'", "'\\''")
 
   -- Run the cmd, grab the output as a systemlist
@@ -49,7 +52,7 @@ end
 
 -- Runs a check to see if a keymap exists before deleting it.
 -- I "sometimes" run into autocmd errors and this should prevent those.
-function nvim_buf_safe_del_keymap(bufnr, mode, lhs)
+function M.nvim_buf_safe_del_keymap(bufnr, mode, lhs)
   local keymaps = vim.api.nvim_buf_get_keymap(bufnr, mode)
 
   for _, keymap in ipairs(keymaps) do
@@ -62,3 +65,5 @@ function nvim_buf_safe_del_keymap(bufnr, mode, lhs)
   -- No matching keymap = exit quietly
   return false
 end
+
+return M
