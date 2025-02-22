@@ -53,6 +53,3 @@ map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic m
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 map('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
 map('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix' })
-
--- Quickfix/Trouble maps
-map('n', '<leader>qc', function() vim.cmd(require('trouble').is_open() and "Trouble close" or "ccl") end, { desc = 'Close Quickfix or Trouble windows' })
