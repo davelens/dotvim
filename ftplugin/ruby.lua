@@ -17,7 +17,7 @@ autocmd('BufEnter', {
   pattern = '*_spec.rb',
   callback = function(_)
     -- Only when an RSpec file is loaded should we load the RSpec utils.
-    dvim.utils.assign('rspec', 'homebrew.functions.rspec')
+    dvim.utils.assign('rspec', 'config.functions.rspec')
     vim.keymap.set(
       'n',
       '<leader>rl',
