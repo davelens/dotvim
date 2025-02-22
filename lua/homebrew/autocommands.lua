@@ -75,7 +75,7 @@ autocmd("FileType", {
     vim.keymap.set(
       "n",
       "<leader>;",
-      ":lua require('homebrew.functions.buffers').append_semicolon()<CR>",
+      dvim.buffers.append_semicolon,
       { buffer = true, silent = true }
     )
   end,

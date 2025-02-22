@@ -1,4 +1,5 @@
-require('homebrew/functions/helpers')
-require('homebrew/functions/cursor')
-require('homebrew/functions/buffers')
-require('homebrew/functions/rspec')
+_G.dvim = {
+  buffers = require('homebrew/functions/buffers'),
+  cursor = require('homebrew/functions/cursor'),
+  utils = require('homebrew/functions/helpers'),
+}

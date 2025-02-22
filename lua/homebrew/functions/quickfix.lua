@@ -3,9 +3,7 @@ local quickfix = {}
 -- I have to rethink this entire flow and ideally trigger this from within the
 -- Snacks picker. There are some quirks.
 function quickfix.search_replace(query, replace)
-  buffers = require('homebrew.functions.buffers')
-  cursor = require('homebrew.functions.cursor')
-  cursor.remember_position()
+  dvim.cursor.remember_position()
 
   if query == nil or query == '' then
     search_ok, query = pcall(vim.fn.input, 'Search for: ')
@@ -28,8 +26,8 @@ function quickfix.search_replace(query, replace)
   vim.cmd(string.format("cdo execute 's/%s/%s/gc'", query, replace))
   vim.cmd('cfdo update')
 
-  cursor.restore_position()
-  buffers.delete_quickfix()
+  dvim.cursor.restore_position()
+  dvim.buffers.delete_quickfix()
   vim.cmd('ccl')
 end
 
