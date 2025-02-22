@@ -11,7 +11,7 @@ end
 
 -- Quick save and exit
 map('n', '<leader>s', '<Esc>:w<CR>', { desc = '[S]ave file' })
-map('n', '<leader>x', '<Esc>:q!<CR>' ,{ desc = 'E[x]it without saving' })
+map('n', '<leader>x', '<Esc>:q!<CR>', { desc = 'E[x]it without saving' })
 
 -- Do not exit visual mode when shifting
 map('v', '>', '>gv', { noremap = true })
@@ -43,9 +43,8 @@ map('n', '<leader>-', 'yypVr-')
 map('n', '<leader>*', 'yypVr*')
 
 -- Buffer maps
-local buffers = require('homebrew.functions.buffers')
-map('n', '<leader>br', buffers.rename_file, { desc = '[R]ename current buffer', noremap = true, silent = true })
-map('n', '<leader>bc', buffers.delete_hidden, { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
+map('n', '<leader>br', dvim.buffers.rename_file, { desc = '[R]ename current buffer', noremap = true, silent = true })
+map('n', '<leader>bc', dvim.buffers.delete_hidden, { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
 
 -- Diagnostic maps
 map('n', '[q', ":silent! w<CR>:cprev<CR>", { desc = 'Go to previous [Q]uickfix message' })

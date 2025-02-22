@@ -1,26 +1,40 @@
--- This solves an issue with the padding around the neovim instance when the
+autocmd = vim.api.nvim_create_autocmd
+function augroup(name)
+  return vim.api.nvim_create_augroup('augroup' .. name, { clear = true })
+end
+
+-- This removes the mysterious padding around the neovim instance when the
 -- terminal background is different from the one set in Neovim.
 --
 -- https://old.reddit.com/r/neovim/comments/1ehidxy/you_can_remove_padding_around_neovim_instance/
---
---This removes that padding:
-vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
+local fix_instance_padding = augroup('fix_instance_padding')
+autocmd({ 'UIEnter', 'ColorScheme' }, {
+  group = fix_instance_padding,
   callback = function()
-    local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+    local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
     if not normal.bg then
       return
     end
     io.write(string.format("\027]11;#%06x\027\\", normal.bg))
   end,
 })
-vim.api.nvim_create_autocmd("UILeave", {
+autocmd('UILeave', {
+  group = fix_instance_padding,
   callback = function()
     io.write("\027]111\027\\")
   end,
 })
 
+-- turn off paste mode when leaving insert
+autocmd('InsertLeave', {
+  group = augroup('truly_no_paste'),
+  pattern = '*',
+  command = 'set nopaste',
+})
+
 -- Momentarily highlight text upon yanking
-vim.api.nvim_create_autocmd('TextYankPost', {
+autocmd('TextYankPost', {
+  group = augroup("highlight_yank"),
   desc = 'Highlight when yanking (copying) text',
   callback = function()
     vim.highlight.on_yank()
@@ -28,31 +42,42 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Define an augroup to manage the autocmds
-vim.api.nvim_create_augroup('tests', { clear = true })
+local tests_with_cr = augroup('run_tests_on_enter')
 
 -- Reserve <CR> for running :TestFile in Ruby, Elixir, and JavaScript files
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
+  group = tests_with_cr,
   pattern = { 'ruby', 'javascript' },
-  group = 'tests',
   callback = function()
-    vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', ':TestFile<CR>', { noremap = true, silent = true })
+    vim.keymap.set(
+      'n',
+      '<CR>',
+      '<cmd>TestFile<cr>',
+      { noremap = true, silent = true }
+    )
   end
 })
 
 -- Unmap <CR> in Command-line mode, including for vim and terminal buffers
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
+  group = tests_with_cr,
   pattern = { 'vim' },
-  group = 'tests',
   callback = function()
     nvim_buf_safe_del_keymap(0, 'n', '<CR>')
   end
 })
 
 -- Map <leader>; to run buffers#append_semicolon() in JS files.
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
+  group = augroup("append_semicolon"),
   pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   callback = function()
-    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>;', ":lua require('homebrew.functions.buffers').append_semicolon()<CR>", { noremap = true, silent = true })
+    vim.keymap.set(
+      "n",
+      "<leader>;",
+      ":lua require('homebrew.functions.buffers').append_semicolon()<CR>",
+      { buffer = true, silent = true }
+    )
   end,
 })
 
@@ -125,4 +150,9 @@ local function q_handler()
   return "q"
 end
 
-vim.keymap.set("n", "q", q_handler, { expr = true, desc = "Close special windows if present, else pass through" })
+vim.keymap.set(
+  'n',
+  'q',
+  q_handler,
+  { expr = true, desc = 'Close special filetype buffer(s)' }
+)
