@@ -6,17 +6,6 @@ function M.print_redraw(string)
   print(string)
 end
 
--- A little alias to dump output of vars to the console. Works on Lua tables.
-function M.dump(var)
-  print(vim.inspect(var))
-end
-
--- A little helper to assign and cache a module to a global variable.
-function M.assign(name, module)
-  _G.dvim = _G.dvim or { [name] = nil }
-  _G.dvim[name] = _G.dvim[name] or require(module)
-end
-
 -- Returns the visual selection, like an expand('<cword>') for selections.
 --
 -- This is a trick. Normally you'd want to grab the start and end position
