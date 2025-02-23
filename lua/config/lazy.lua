@@ -46,7 +46,7 @@ function M.load(opts)
     change_detection = { notify = false },
     checker = { enabled = false },
     debug = false,
-    --defaults = { lazy = true },
+    --defaults = { lazy = true }, -- Not yet. When I understand it better.
     install = { colorscheme = { vim.colorscheme } },
 
     performance = {
