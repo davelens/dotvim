@@ -1,26 +1,26 @@
 -- Treesitter abstraction layer for Neovim.
 -- Provides advanced / context-aware syntax highlighting.
 --
--- NOTE: Because my "endwise"-solution is a treesitter plugin, I opted to
+-- NOTE: Because my 'endwise'-solution is a treesitter plugin, I opted to
 -- include every plugin related to auto-pairs and auto-tags in this file.
 -- The biggest chunk is nvim-treesitter itself, so it seems overkill to split
 -- them up in multiple files.
 return {
   -- Autoformats log files on common patterns for more default readability.
-  { "fei6409/log-highlight.nvim", event = "BufRead *.log", opts = {} },
+  { 'fei6409/log-highlight.nvim', event = 'BufRead *.log', opts = {} },
 
   {
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-treesitter/nvim-treesitter',
     dependencies = {
       -- Probably good to read up on text objects and how to add custom ones:
       -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      'nvim-treesitter/nvim-treesitter-textobjects',
 
       -- nvim-treesitter extension to autoclose Ruby/Elixir/Lua/... blocks
-      "RRethy/nvim-treesitter-endwise",
+      'RRethy/nvim-treesitter-endwise',
     },
 
-    build = ":TSUpdate",
+    build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
@@ -51,12 +51,12 @@ return {
           enable = true,
           lookahead = true,
           keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["ab"] = "@block.outer",
-            ["ib"] = "@block.inner",
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@class.outer',
+            ['ic'] = '@class.inner',
+            ['ab'] = '@block.outer',
+            ['ib'] = '@block.inner',
           },
         },
       },
@@ -82,7 +82,7 @@ return {
 
   {
     -- Auto rename of HTML/XML tags on change motions.
-    -- NOTE: The author has deprecated "setup({}) through opts = {}", because
+    -- NOTE: The author has deprecated 'setup({}) through opts = {}', because
     -- nvim-treesitter will supposedly do the same in their 1.0 release.
     -- That's why this uses a config function.
     -- https://github.com/windwp/nvim-ts-autotag?tab=readme-ov-file#setup

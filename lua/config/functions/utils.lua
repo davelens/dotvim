@@ -15,8 +15,8 @@ end
 --
 function M.get_visual_selection()
   -- Assuming visual mode here, so no explicit checks for it.
-  vim.cmd("normal! \"vy")   -- Yank the selection into the unnamed register
-  return vim.fn.getreg("v") -- Grab and return yanked text
+  vim.cmd('normal! "vy')    -- Yank the selection into the unnamed register
+  return vim.fn.getreg('v') -- Grab and return yanked text
 end
 
 -- Useful to use this on keymaps to quickly run external scripts.
@@ -27,11 +27,11 @@ function M.run_script_on_visual_selection(script_path)
   visual_selection = visual_selection:gsub("'", "'\\''")
 
   -- Run the cmd, grab the output as a systemlist
-  local output = vim.fn.systemlist(script_path .. " " .. visual_selection)
+  local output = vim.fn.systemlist(script_path .. ' ' .. visual_selection)
 
   -- Check for any errors in command execution (non-zero exit status)
   if vim.v.shell_error ~= 0 then
-    print("Error running " .. script_path)
+    print('Error running ' .. script_path)
     return
   end
 

@@ -1,8 +1,8 @@
 -- Wrapper for running tests on different granularities
-return { 
+return {
   'vim-test/vim-test',
   ft = { 'ruby', 'elixir', 'javascript' },
-  keys = { 
+  keys = {
     { '<leader>tn', '<cmd>TestNearest<cr>', ft = { 'ruby', 'elixir' } }
   },
   -- init() is necessary here since we require vim.g overrides before
@@ -13,6 +13,6 @@ return {
       file = 'dispatch'
     }
     --TODO: override only when Docker is running and active.
-    --vim.g["test#ruby#rspec#executable"] = "docker compose exec test bin/rspec"
+    --vim.g['test#ruby#rspec#executable'] = 'docker compose exec test bin/rspec'
   end
 }

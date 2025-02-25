@@ -23,7 +23,7 @@ function quickfix.search_replace(query, replace)
     end
   end
 
-  vim.cmd(string.format("cdo execute 's/%s/%s/gc'", query, replace))
+  vim.cmd(string.format('cdo execute "s/%s/%s/gc"', query, replace))
   vim.cmd('cfdo update')
 
   dvim.cursor.restore_position()

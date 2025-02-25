@@ -9,7 +9,7 @@ _G.dvim = {
       autocommands = nil,
     }, opts) or {}
 
-    opts.name = opts.name or opts.module:match("([^.]+)$")
+    opts.name = opts.name or opts.module:match('([^.]+)$')
     src = _G.dvim[opts.name] or require(opts.module)
 
     group = augroup(opts.name)

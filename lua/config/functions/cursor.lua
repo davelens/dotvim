@@ -14,7 +14,7 @@ function cursor.restore_position()
   if not vim.api.nvim_win_is_valid(vim.g.prev_cursor_win) or
       not vim.api.nvim_buf_is_valid(vim.g.prev_cursor_buf) then
     vim.notify(
-      "Cannot restore position: Window or buffer is no longer valid",
+      'Cannot restore position: Window or buffer is no longer valid',
       vim.log.levels.WARN
     )
 
@@ -37,7 +37,7 @@ function cursor.restore_position()
   )
 
   if not ok then
-    vim.notify("Error restoring cursor position: " .. err, vim.log.levels.ERROR)
+    vim.notify('Error restoring cursor position: ' .. err, vim.log.levels.ERROR)
   end
 end
 

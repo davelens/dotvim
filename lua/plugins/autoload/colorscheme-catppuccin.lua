@@ -1,7 +1,7 @@
 return {
-  "catppuccin/nvim",
-  flavour = "auto", -- latte, frappe, macchiato (default), mocha
-  name = "catppuccin",
+  'catppuccin/nvim',
+  flavour = 'auto', -- latte, frappe, macchiato (default), mocha
+  name = 'catppuccin',
   priority = 1000,
   opts = {
     custom_highlights = function(colors)
@@ -15,6 +15,6 @@ return {
     end,
   },
   init = function()
-    vim.cmd.colorscheme "catppuccin"
+    vim.cmd.colorscheme 'catppuccin'
   end
 }

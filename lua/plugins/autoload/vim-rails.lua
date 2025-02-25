@@ -1,7 +1,7 @@
 -- Pandora's box with Rails workflow features
 return {
   'tpope/vim-rails',
-  ft = { "ruby", "eruby" },
+  ft = { 'ruby', 'eruby' },
   keys = {
     { '<leader>a', '<cmd>A<cr>' },
     { '<leader>r', '<cmd>R<cr>' }

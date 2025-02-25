@@ -7,7 +7,7 @@ function buffers.append_semicolon()
   local line = vim.api.nvim_get_current_line()
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
 
-  if not line:match(";$") then
+  if not line:match(';$') then
     vim.api.nvim_set_current_line(line .. ';')
   end
 
@@ -41,7 +41,7 @@ function buffers.delete_quickfix()
 
     if bufnr ~= current_bufnr then
       if vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_is_loaded(bufnr) then
-        vim.cmd("silent bdelete " .. bufnr)
+        vim.cmd('silent bdelete ' .. bufnr)
       end
     end
   end

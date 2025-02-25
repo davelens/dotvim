@@ -34,7 +34,7 @@ autocmd('InsertLeave', {
 
 -- Momentarily highlight text upon yanking
 autocmd('TextYankPost', {
-  group = augroup("highlight_yank"),
+  group = augroup('highlight_yank'),
   desc = 'Highlight when yanking (copying) text',
   callback = function()
     vim.highlight.on_yank()
@@ -68,13 +68,13 @@ autocmd('FileType', {
 })
 
 -- Map <leader>; to run buffers#append_semicolon() in JS files.
-autocmd("FileType", {
-  group = augroup("append_semicolon"),
-  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+autocmd('FileType', {
+  group = augroup('append_semicolon'),
+  pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   callback = function()
     vim.keymap.set(
-      "n",
-      "<leader>;",
+      'n',
+      '<leader>;',
       dvim.buffers.append_semicolon,
       { buffer = true, silent = true }
     )
@@ -101,8 +101,8 @@ local special_filetypes = {
 }
 
 local function q_handler()
-  if vim.fn.reg_recording() ~= "" then
-    return "q"
+  if vim.fn.reg_recording() ~= '' then
+    return 'q'
   end
 
   local wins = vim.api.nvim_list_wins()
@@ -112,8 +112,8 @@ local function q_handler()
 
   for _, win in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(win)
-    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-    if ft == "gitcommit" then
+    local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+    if ft == 'gitcommit' then
       gitcommit_found = true
     end
     if vim.tbl_contains(special_filetypes, ft) then
@@ -123,18 +123,18 @@ local function q_handler()
   end
 
   if gitcommit_found then
-    return "q"
+    return 'q'
   end
 
   if special_count > 0 then
     if special_count == #wins then
       local cur_buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
-      local cur_ft = vim.api.nvim_buf_get_option(cur_buf, "filetype")
-      local msg = "Closing this buffer with `q` now would exit vim (filetype `%s` is special)."
+      local cur_ft = vim.api.nvim_buf_get_option(cur_buf, 'filetype')
+      local msg = 'Closing this buffer with `q` now would exit vim (filetype `%s` is special).'
       vim.schedule(function()
         vim.notify(string.format(msg, cur_ft), vim.log.levels.ERROR)
       end)
-      return ""
+      return ''
     end
 
     vim.schedule(function()
@@ -144,10 +144,10 @@ local function q_handler()
         pcall(vim.api.nvim_buf_delete, buf, { force = true })
       end
     end)
-    return ""
+    return ''
   end
 
-  return "q"
+  return 'q'
 end
 
 vim.keymap.set(

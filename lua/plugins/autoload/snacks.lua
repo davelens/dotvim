@@ -1,6 +1,6 @@
 --- Smorgasbord of small plugins for neovim
 return {
-  "folke/snacks.nvim",
+  'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
   opts = {
@@ -29,45 +29,45 @@ return {
     styles = { enabled = false },
   },
   keys = {
-    { "gd",         function() Snacks.picker.lsp_definitions() end,      desc = "Goto Definition" },
-    { "gr",         function() Snacks.picker.lsp_references() end,       desc = "References",                 nowait = true },
-    { "gI",         function() Snacks.picker.lsp_implementations() end,  desc = "Goto Implementation" },
-    { "gy",         function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+    { 'gd',         function() Snacks.picker.lsp_definitions() end,      desc = 'Goto Definition' },
+    { 'gr',         function() Snacks.picker.lsp_references() end,       desc = 'References',                 nowait = true },
+    { 'gI',         function() Snacks.picker.lsp_implementations() end,  desc = 'Goto Implementation' },
+    { 'gy',         function() Snacks.picker.lsp_type_definitions() end, desc = 'Goto T[y]pe Definition' },
 
-    { "<leader>fb", function() Snacks.picker.buffers() end,              desc = "Find [b]uffers" },
-    { "<leader>ff", function() Snacks.picker.files() end,                desc = "Find [f]iles" },
-    { "<leader>fg", function() Snacks.picker.grep() end,                 desc = "[G]rep" },
-    { "<leader>fh", function() Snacks.picker.help() end,                 desc = "Find [h]elp" },
-    { "<leader>fu", function() Snacks.picker.undo() end,                 desc = "Find in [u]ndofile history", mode = { "n", "x" } },
-    { "<leader>fw", function() Snacks.picker.grep_word() end,            desc = "Find [w]ord or selection",   mode = { "n", "x" } },
+    { '<leader>fb', function() Snacks.picker.buffers() end,              desc = 'Find [b]uffers' },
+    { '<leader>ff', function() Snacks.picker.files() end,                desc = 'Find [f]iles' },
+    { '<leader>fg', function() Snacks.picker.grep() end,                 desc = '[G]rep' },
+    { '<leader>fh', function() Snacks.picker.help() end,                 desc = 'Find [h]elp' },
+    { '<leader>fu', function() Snacks.picker.undo() end,                 desc = 'Find in [u]ndofile history', mode = { 'n', 'x' } },
+    { '<leader>fw', function() Snacks.picker.grep_word() end,            desc = 'Find [w]ord or selection',   mode = { 'n', 'x' } },
 
     {
-      "<leader>fd",
+      '<leader>fd',
       function()
         Snacks.picker.grep_word({
-          search = "def " .. (vim.fn.mode() == "v" and dvim.utils.get_visual_selection() or vim.fn.expand("<cword>")),
+          search = 'def ' .. (vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or vim.fn.expand('<cword>')),
           title = 'Find method definitions'
         })
       end,
-      desc = "Find method [d]efinitions",
-      ft = { "ruby", "eruby", "elixir", "eelixir", "heex" },
-      mode = { "n", "v" }
+      desc = 'Find method [d]efinitions',
+      ft = { 'ruby', 'eruby', 'elixir', 'eelixir', 'heex' },
+      mode = { 'n', 'v' }
     },
 
     {
-      "<leader>fl",
+      '<leader>fl',
       function()
         Snacks.picker.grep_word({
           cwd = 'config/locales',
           pattern = 'file:yml$',
-          search = vim.fn.expand('<cword>'),
+          search = vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or vim.fn.expand('<cword>'),
           live = true,
           title = 'Rails translations'
         })
       end,
-      desc = "Find Rails translations in [l]ocale files",
-      ft = { "ruby", "eruby" },
-      mode = { "n", "x" }
+      desc = 'Find Rails translations in [l]ocale files',
+      ft = { 'ruby', 'eruby', 'eruby.yaml' },
+      mode = { 'n', 'v' }
     },
   }
 }

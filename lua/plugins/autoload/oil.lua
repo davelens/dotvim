@@ -4,8 +4,8 @@ return {
   opts = {},
   keys = {
     {
-      "<leader>o",
-      "<cmd>Oil --float<CR>",
+      '<leader>o',
+      '<cmd>Oil --float<CR>',
       silent = true,
       desc = 'Open [O]il.nvim'
     },
