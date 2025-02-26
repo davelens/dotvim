@@ -12,28 +12,4 @@ function rspec.refactor_assignment_to_let()
   vim.cmd('normal ==')                                -- Fix indentation
 end
 
--- Load the autocommands for the RSpec filetype buffers.
--- NOTE: This is an experiment to see if I can keep my ftplugin files as
--- readable as possible.
-function rspec.load_autocommands(callback)
-  rspec = augroup('rspec')
-
-  autocmd('BufEnter', {
-    group = rspec,
-    pattern = '*_spec.rb',
-    callback = function(_)
-      dvim.load('rspec', 'config.functions.rspec')
-      callback(dvim.rspec)
-    end
-  })
-
-  autocmd({ 'BufLeave', 'BufDelete', 'FocusLost' }, {
-    group = rspec,
-    pattern = '*_spec.rb',
-    callback = function(_)
-      dvim.unload('rspec')
-    end
-  })
-end
-
 return rspec

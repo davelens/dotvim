@@ -1,7 +1,39 @@
 _G.dvim = {
   -- Load a submodule and stores it in the global dvim object
-  load = function(name, module)
-    _G.dvim[name] = _G.dvim[name] or require(module)
+  load = function(opts)
+    local src
+    opts = vim.tbl_extend('force', {
+      name = nil,
+      module = nil,
+      pattern = nil,
+      autocommands = nil,
+    }, opts) or {}
+
+    opts.name = opts.name or opts.module:match("([^.]+)$")
+    src = _G.dvim[opts.name] or require(opts.module)
+
+    group = augroup(opts.name)
+
+    if opts.autocommands then
+      autocmd('BufEnter', {
+        group = group,
+        pattern = opts.pattern,
+        callback = function(_)
+          opts.autocommands(src)
+        end
+      })
+
+      autocmd({ 'BufLeave', 'BufDelete', 'FocusLost' }, {
+        group = group,
+        pattern = opts.pattern,
+        callback = function(_)
+          dvim.unload('rspec')
+        end
+      })
+    end
+
+    _G.dvim[opts.name] = src
+    return src
   end,
 
   -- Unloads a submodule from the global dvim object
