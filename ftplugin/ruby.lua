@@ -11,18 +11,14 @@ vim.opt_local.smarttab = true
 vim.opt_local.softtabstop = 2 -- Determines how much whitespace is used while indenting
 vim.opt_local.tabstop = 2     -- The width of a tab character
 
--- RSpec keymap to convert variable assignments to RSpec `let` blocks.
-autocmd('BufEnter', {
-  group = augroup('rspec'),
-  pattern = '*_spec.rb',
-  callback = function(_)
-    -- Only when an RSpec file is loaded should we load the RSpec utils.
-    dvim.assign('rspec', 'config.functions.rspec')
-    vim.keymap.set(
-      'n',
-      '<leader>rl',
-      dvim.rspec.refactor_assignment_to_let,
-      { noremap = true, silent = false, buffer = true }
-    )
-  end
-})
+-- RSpec configuration
+dvim.load('rspec', 'config.functions.rspec')
+
+dvim.rspec.load_autocommands(function(rspec)
+  vim.keymap.set(
+    'n',
+    '<leader>rl',
+    rspec.refactor_assignment_to_let,
+    { noremap = true, silent = false, buffer = true }
+  )
+end)
