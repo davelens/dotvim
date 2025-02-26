@@ -10,7 +10,7 @@ function quickfix.search_replace(query, replace)
 
     if not search_ok or query == nil or query == '' then
       vim.cmd('ccl')
-      return print_redraw('Search cancelled')
+      return dvim.utils.print_redraw('Search cancelled')
     end
   end
 
@@ -19,7 +19,7 @@ function quickfix.search_replace(query, replace)
 
     if not replace_ok or replace == nil or replace == '' then
       vim.cmd('ccl')
-      return print_redraw('Replace cancelled')
+      return dvim.utils.print_redraw('Replace cancelled')
     end
   end
 

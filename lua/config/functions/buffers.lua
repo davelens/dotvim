@@ -53,7 +53,7 @@ function buffers.rename_file()
   local input_ok, new_name = pcall(vim.fn.input, 'Rename to: ', old_name, 'file')
 
   if not input_ok or new_name == nil or new_name == '' or new_name == old_name then
-    return print_redraw('Rename cancelled')
+    return dvim.utils.print_redraw('Rename cancelled')
   end
 
   -- GRename is a vim-fugitive command.
@@ -63,7 +63,7 @@ function buffers.rename_file()
 
     if vim.v.shell_error == 0 then -- 0 = File is tracked by git
       vim.cmd('GRename ' .. new_name)
-      return print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
+      return dvim.utils.print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
     end
   end
 
@@ -72,11 +72,11 @@ function buffers.rename_file()
 
   local rename_ok, err = os.rename(old_path, new_path)
   if not rename_ok then
-    return print_redraw('Error renaming file: ' .. err)
+    return dvim.utils.print_redraw('Error renaming file: ' .. err)
   end
 
   vim.cmd('e ' .. new_path) -- Update buffer to the new file
-  print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
+  dvim.utils.print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
 end
 
 -- Check if any buffer for the given type is currently open.
