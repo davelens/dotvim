@@ -1,7 +1,12 @@
 _G.dvim = {
-  assign = function(name, module)
-    _G.dvim = _G.dvim or { [name] = nil }
+  -- Load a submodule and stores it in the global dvim object
+  load = function(name, module)
     _G.dvim[name] = _G.dvim[name] or require(module)
+  end,
+
+  -- Unloads a submodule from the global dvim object
+  unload = function(name)
+    _G.dvim[name] = nil
   end,
 
   dump = function(var)
