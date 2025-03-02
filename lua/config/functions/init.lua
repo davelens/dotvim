@@ -27,7 +27,7 @@ _G.dvim = {
         group = group,
         pattern = opts.pattern,
         callback = function(_)
-          dvim.unload('rspec')
+          dvim.unload(opts.name)
         end
       })
     end
