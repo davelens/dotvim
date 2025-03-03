@@ -22,6 +22,7 @@ map('n', '<C-n>', ']]')
 map('n', '<C-p>', '[[')
 
 -- Less finger wrecking window navigation.
+map('n', '<TAB>', '<C-w>w', { desc = 'Cycle windows' })
 map('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
 map('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
