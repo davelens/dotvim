@@ -5,9 +5,9 @@ set -e
 
 readonly SETUP_DIR=$(dirname "$(realpath "$0")")
 
-source ${SETUP_DIR}/helpers.sh
+source "${SETUP_DIR}/helpers.sh"
 
-[ ! -d ${HOME}/.local/bin ] && mkdir -p ${HOME}/.local/bin
+[ ! -d "${HOME}/.local/bin" ] && mkdir -p "${HOME}/.local/bin"
 
 # Check if ~/.local/bin is in $PATH so we can install getnf if necessary.
 if [[ ! $(echo $PATH | tr ':' '\n' | grep -x "$HOME/.local/bin") ]]; then
@@ -18,27 +18,27 @@ fi
 echo "$(check) ~/.local/bin is in \$PATH"
 
 if [ $(uname -s) == 'darwin' ]; then
-  readonly FONTS_DIR=${HOME}/Library/Fonts
+  readonly FONTS_DIR="${HOME}/Library/Fonts"
 else
-  readonly FONTS_DIR=${HOME}/.local/share/fonts
+  readonly FONTS_DIR="${XDG_DATA_HOME}/fonts"
 fi
 
 # Install getnf if not already installed.
-if [ ! -f ${HOME}/.local/bin/getnf ]; then
+if [ ! -f "${HOME}/.local/bin/getnf" ]; then
   curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
 fi
 
 echo "$(check) getnf is installed"
 
-[ ! -d ${FONTS_DIR}/DroidSansMono ] && getnf -i DroidSansMono 
-[ ! -d ${FONTS_DIR}/Hack ] && getnf -i Hack 
+[ ! -d "${FONTS_DIR}/DroidSansMono" ] && getnf -i DroidSansMono 
+[ ! -d "${FONTS_DIR}/Hack" ] && getnf -i Hack 
 
 echo "$(check) Nerd fonts installed"
 
-[ ! -d ${HOME}/.config ] && mkdir ${HOME}/.config
-[ ! -d ${HOME}/.config/dvim ] && ln -s $(dirname ${SETUP_DIR}) ${HOME}/.config/dvim
+[ ! -d "${DOTFILES_CONFIG_PATH}" ] && mkdir "${DOTFILES_CONFIG_PATH}"
+[ ! -d "${DOTFILES_CONFIG_PATH}/dvim" ] && ln -s $(dirname ${SETUP_DIR}) "${DOTFILES_CONFIG_PATH}/dvim"
 
-echo "$(check) Symlinks are present in ~/.config"
+echo "$(check) Symlinks are present in ${DOTFILES_CONFIG_PATH}"
 
 if [ ! -f ${HOME}/.local/bin/dvim ]; then
   cat >> ${HOME}/.local/bin/dvim<< EOF
