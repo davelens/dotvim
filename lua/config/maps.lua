@@ -50,6 +50,11 @@ map('n', '<leader>*', 'yypVr*')
 map('n', '<leader>br', dvim.buffers.rename_file, { desc = '[R]ename current buffer', noremap = true, silent = true })
 map('n', '<leader>bc', dvim.buffers.delete_hidden, { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
 
+-- Quickfix maps
+map('n', '<leader>qc', function()
+  vim.fn.setqflist({})
+end, { desc = '[Q]quickfix [c]lear list', noremap = true, silent = true })
+
 -- Diagnostic maps
 map('n', '[q', ':silent! w<CR>:cprev<CR>', { desc = 'Go to previous [Q]uickfix message' })
 map('n', ']q', ':silent! w<CR>:cnext<CR>', { desc = 'Go to next [Q]uickfix message' })
