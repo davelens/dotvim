@@ -42,13 +42,12 @@ return {
     {
       '<leader>fw',
       function()
-        if vim.fn.mode() == 'v' then
-          dvim.utils.get_visual_selection()
-        else
-          dvim.utils.save_and_expand_cword()
-        end
-
-        Snacks.picker.grep_word()
+        Snacks.picker.grep_word({
+          search = vim.fn.mode() == 'v' and
+              dvim.utils.get_visual_selection() or
+              dvim.utils.save_and_expand_cword(),
+          title = 'Find word or selection'
+        })
       end,
       desc = 'Find [w]ord or selection',
       mode = { 'n', 'x' }
@@ -58,8 +57,11 @@ return {
       '<leader>fd',
       function()
         Snacks.picker.grep_word({
-          search = 'def ' ..
-              (vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or dvim.utils.save_and_expand_cword()),
+          search = 'def ' .. (
+            vim.fn.mode() == 'v' and
+            dvim.utils.get_visual_selection() or
+            dvim.utils.save_and_expand_cword()
+          ),
           title = 'Find method definitions'
         })
       end,
@@ -74,7 +76,9 @@ return {
         Snacks.picker.grep_word({
           cwd = 'config/locales',
           pattern = 'file:yml$',
-          search = vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or dvim.utils.save_and_expand_cword(),
+          search = vim.fn.mode() == 'v' and
+              dvim.utils.get_visual_selection() or
+              dvim.utils.save_and_expand_cword(),
           live = true,
           title = 'Rails translations'
         })
