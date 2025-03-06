@@ -6,6 +6,16 @@ function M.print_redraw(string)
   print(string)
 end
 
+-- Returns the word under the cursor, but saves its value for later reuse.
+function M.save_and_expand_cword()
+  -- In cases like our quickfix search/replace, we need to jump back to the
+  -- original position when we started looking for matches to replace.
+  dvim.cursor.remember_position()
+  local cword = vim.fn.expand('<cword>')
+  vim.g.last_word_selection = cword
+  return cword
+end
+
 -- Returns the visual selection, like an expand('<cword>') for selections.
 --
 -- This is a trick. Normally you'd want to grab the start and end position
@@ -15,8 +25,16 @@ end
 --
 function M.get_visual_selection()
   -- Assuming visual mode here, so no explicit checks for it.
-  vim.cmd('normal! "vy')    -- Yank the selection into the unnamed register
-  return vim.fn.getreg('v') -- Grab and return yanked text
+  vim.cmd('normal! "vy')               -- Yank the selection into the unnamed register
+  local selection = vim.fn.getreg('v') -- Grab and return yanked text
+  vim.g.last_word_selection = selection
+  return selection
+end
+
+-- Recall the last word selection stored with either M.get_visual_selection org
+-- M.save_and_expand_cword.
+function M.last_word_selection()
+  return vim.g.last_word_selection
 end
 
 -- Useful to use this on keymaps to quickly run external scripts.

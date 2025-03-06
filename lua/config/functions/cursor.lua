@@ -10,6 +10,10 @@ end
 -- Resets the cursor to its previous position.
 -- Intended to work in tandem with cursor.remember_position().
 function cursor.restore_position()
+  if not vim.g.prev_cursor_win then
+    return -- Exit quietly if no previous position is stored.
+  end
+
   -- Check if the window and buffer still exist
   if not vim.api.nvim_win_is_valid(vim.g.prev_cursor_win) or
       not vim.api.nvim_buf_is_valid(vim.g.prev_cursor_buf) then

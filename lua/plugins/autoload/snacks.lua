@@ -39,13 +39,27 @@ return {
     { '<leader>fg', function() Snacks.picker.grep() end,                 desc = '[G]rep' },
     { '<leader>fh', function() Snacks.picker.help() end,                 desc = 'Find [h]elp' },
     { '<leader>fu', function() Snacks.picker.undo() end,                 desc = 'Find in [u]ndofile history', mode = { 'n', 'x' } },
-    { '<leader>fw', function() Snacks.picker.grep_word() end,            desc = 'Find [w]ord or selection',   mode = { 'n', 'x' } },
+    {
+      '<leader>fw',
+      function()
+        if vim.fn.mode() == 'v' then
+          dvim.utils.get_visual_selection()
+        else
+          dvim.utils.save_and_expand_cword()
+        end
+
+        Snacks.picker.grep_word()
+      end,
+      desc = 'Find [w]ord or selection',
+      mode = { 'n', 'x' }
+    },
 
     {
       '<leader>fd',
       function()
         Snacks.picker.grep_word({
-          search = 'def ' .. (vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or vim.fn.expand('<cword>')),
+          search = 'def ' ..
+              (vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or dvim.utils.save_and_expand_cword()),
           title = 'Find method definitions'
         })
       end,
@@ -60,7 +74,7 @@ return {
         Snacks.picker.grep_word({
           cwd = 'config/locales',
           pattern = 'file:yml$',
-          search = vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or vim.fn.expand('<cword>'),
+          search = vim.fn.mode() == 'v' and dvim.utils.get_visual_selection() or dvim.utils.save_and_expand_cword(),
           live = true,
           title = 'Rails translations'
         })
