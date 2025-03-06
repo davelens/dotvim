@@ -6,7 +6,7 @@ return {
     {
       '<leader>fi',
       function() vim.fn['localorie#translate']() end,
-      desc = 'Find [I]18n translation',
+      desc = '[F]ind [I]18n translation',
       ft = { 'ruby', 'eruby' }
     },
   },

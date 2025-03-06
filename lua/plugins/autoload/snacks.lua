@@ -29,16 +29,16 @@ return {
     styles = { enabled = false },
   },
   keys = {
-    { 'gd',         function() Snacks.picker.lsp_definitions() end,      desc = 'Goto Definition' },
-    { 'gr',         function() Snacks.picker.lsp_references() end,       desc = 'References',                 nowait = true },
-    { 'gI',         function() Snacks.picker.lsp_implementations() end,  desc = 'Goto Implementation' },
-    { 'gy',         function() Snacks.picker.lsp_type_definitions() end, desc = 'Goto T[y]pe Definition' },
+    { 'gd',         function() Snacks.picker.lsp_definitions() end,      desc = '[G]oto [D]efinition' },
+    { 'gr',         function() Snacks.picker.lsp_references() end,       desc = '[G]oto [R]eferences',          nowait = true },
+    { 'gI',         function() Snacks.picker.lsp_implementations() end,  desc = '[G]oto [I]mplementation' },
+    { 'gy',         function() Snacks.picker.lsp_type_definitions() end, desc = '[G]oto T[y]pe Definition' },
 
-    { '<leader>fb', function() Snacks.picker.buffers() end,              desc = 'Find [b]uffers' },
-    { '<leader>ff', function() Snacks.picker.files() end,                desc = 'Find [f]iles' },
+    { '<leader>fb', function() Snacks.picker.buffers() end,              desc = '[F]ind [b]uffers' },
+    { '<leader>ff', function() Snacks.picker.files() end,                desc = '[F]ind [f]iles' },
     { '<leader>fg', function() Snacks.picker.grep() end,                 desc = '[G]rep' },
-    { '<leader>fh', function() Snacks.picker.help() end,                 desc = 'Find [h]elp' },
-    { '<leader>fu', function() Snacks.picker.undo() end,                 desc = 'Find in [u]ndofile history', mode = { 'n', 'x' } },
+    { '<leader>fh', function() Snacks.picker.help() end,                 desc = '[F]ind [h]elp' },
+    { '<leader>fu', function() Snacks.picker.undo() end,                 desc = '[F]ind in [u]ndofile history', mode = { 'n', 'x' } },
     {
       '<leader>fw',
       function()
