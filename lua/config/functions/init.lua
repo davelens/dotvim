@@ -10,7 +10,6 @@ local function setup_dvim_autocommands(opts, callback_opts)
     group = group,
     pattern = opts.pattern,
     callback = function(_)
-      dd('Running autocommands for' .. opts.name)
       opts.autocommands(callback_opts)
     end
   })
