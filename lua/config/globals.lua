@@ -13,15 +13,15 @@ vim.g.loaded_python_provider = 0 -- disable python provider
 -- might not be necessary. I'll find out later.
 if vim.fn.has('wsl') == 1 then
   vim.g.clipboard = {
-    cache_enabled = 0,
     name = 'WslClipboard',
     copy = {
       ['+'] = 'clip.exe',
       ['*'] = 'clip.exe',
     },
     paste = {
-      ['+'] = 'clip.exe',
-      ['*'] = 'clip.exe',
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
     },
+    cache_enabled = 0,
   }
 end
