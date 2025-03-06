@@ -33,9 +33,16 @@ function buffers.delete_hidden()
 end
 
 -- Rename the current file in your buffer.
-function buffers.rename_file()
-  local old_name = vim.fn.expand('%:t')
-  local input_ok, new_name = pcall(vim.fn.input, 'Rename to: ', old_name, 'file')
+function buffers.rename_file(old_name, new_name)
+  old_name = old_name or vim.fn.expand('%:t')
+  local input_ok = true
+
+  if new_name == nil or new_name == '' then
+    input_ok, new_name = pcall(
+      vim.fn.input,
+      string.format('Rename "%s" to: ', old_name)
+    )
+  end
 
   if not input_ok or new_name == nil or new_name == '' or new_name == old_name then
     return dvim.utils.print_redraw('Rename cancelled')

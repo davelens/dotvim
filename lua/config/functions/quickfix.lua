@@ -21,6 +21,47 @@ function quickfix.sanitize()
   vim.fn.setqflist(newlist)
 end
 
+-- TODO: These are just files, so attempt directories.
+function quickfix.rename_files(pattern)
+  local input_ok, replacement
+
+  input_ok, pattern = pcall(
+    vim.fn.input,
+    'Look for pattern: ',
+    pattern or ''
+  )
+
+  if not input_ok or pattern == nil or pattern == '' then
+    return dvim.utils.print_redraw('File rename cancelled')
+  end
+
+  input_ok, replacement = pcall(
+    vim.fn.input,
+    string.format('Replace "%s" in filename with: ', pattern)
+  )
+
+  if not input_ok or replacement == nil or replacement == '' then
+    return dvim.utils.print_redraw('File rename cancelled')
+  end
+
+  gsub_subcmd = string.format(
+    'string.gsub(%s, "%s", "%s")',
+    'vim.fn.expand("%:t")',
+    pattern,
+    replacement
+  )
+
+  vim.cmd(
+    string.format(
+      "cdo execute 'lua dvim.buffers.rename_file(nil, %s)'",
+      gsub_subcmd
+    )
+  )
+
+  dvim.cursor.restore_position()
+  vim.cmd('ccl')
+end
+
 -- This is bound to `sr` in the `ftplugin/qf.lua`.
 function quickfix.search_replace(query, replace)
   -- Fall back to the last cword/visual selection if no query is provided.

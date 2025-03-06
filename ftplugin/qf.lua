@@ -10,3 +10,14 @@ vim.keymap.set(
     desc = '[S]earch and [R]eplace in quickfix list',
   }
 )
+
+vim.keymap.set(
+  'n',
+  'rf',
+  dvim.quickfix.rename_files,
+  {
+    buffer = true,
+    noremap = true,
+    desc = '[R]ename [f]ile(s) from quickfix list',
+  }
+)
