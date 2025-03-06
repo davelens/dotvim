@@ -53,7 +53,7 @@ autocmd('FileType', {
       'n',
       '<CR>',
       '<cmd>TestFile<cr>',
-      { noremap = true, silent = true }
+      { buffer = true, noremap = true, silent = true }
     )
   end
 })
