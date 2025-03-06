@@ -49,7 +49,7 @@ return {
           title = 'Find word or selection'
         })
       end,
-      desc = 'Find [w]ord or selection',
+      desc = '[F]ind [w]ord or selection',
       mode = { 'n', 'x' }
     },
 
@@ -65,7 +65,7 @@ return {
           title = 'Find method definitions'
         })
       end,
-      desc = 'Find method [d]efinitions',
+      desc = '[F]ind method [d]efinitions',
       ft = { 'ruby', 'eruby', 'elixir', 'eelixir', 'heex' },
       mode = { 'n', 'v' }
     },
@@ -83,7 +83,7 @@ return {
           title = 'Rails translations'
         })
       end,
-      desc = 'Find Rails translations in [l]ocale files',
+      desc = '[F]ind Rails translations in [l]ocale files',
       ft = { 'ruby', 'eruby', 'eruby.yaml' },
       mode = { 'n', 'v' }
     },
