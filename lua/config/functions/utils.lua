@@ -13,7 +13,7 @@ end
 
 -- Returns the word under the cursor, but saves its value for later reuse.
 function M.save_and_expand_cword()
-  -- In cases like our quickfix search/replace, we need to jump back to the
+  -- In cases like our quickfix.find_replace(), we need to jump back to the
   -- original position when we started looking for matches to replace.
   dvim.cursor.remember_position()
   local cword = vim.fn.expand('<cword>')

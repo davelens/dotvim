@@ -1,6 +1,6 @@
 local quickfix = {}
 
--- Wipes the quickfix list clean.
+-- Wips the quickfix list clean.
 function quickfix.clear()
   vim.fn.setqflist({})
   vim.cmd('ccl')
@@ -63,7 +63,7 @@ function quickfix.rename_files(pattern)
 end
 
 -- This is bound to `sr` in the `ftplugin/qf.lua`.
-function quickfix.search_replace(query, replace)
+function quickfix.find_replace(query, replace)
   -- Fall back to the last cword/visual selection if no query is provided.
   query = query or dvim.utils.last_word_selection()
 

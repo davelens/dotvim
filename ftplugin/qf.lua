@@ -3,7 +3,7 @@ dvim.load('config.functions.quickfix')
 vim.keymap.set(
   'n',
   'sr',
-  dvim.quickfix.search_replace,
+  dvim.quickfix.find_replace,
   {
     buffer = true,
     noremap = true,
