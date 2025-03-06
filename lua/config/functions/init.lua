@@ -62,10 +62,12 @@ _G.dvim = {
   unload = function(name)
     _G.dvim[name] = nil
   end,
-  buffers = require('config.functions.buffers'),
-  cursor = require('config.functions.cursor'),
-  utils = require('config.functions.utils'),
 }
+
+-- These are used everywhere, so we preload these on init.
+_G.dvim.cursor = require('config.functions.cursor')
+_G.dvim.buffers = require('config.functions.buffers')
+_G.dvim.utils = require('config.functions.utils')
 
 -- Global alias for quick debugging
 dd = _G.dvim.utils.dump
