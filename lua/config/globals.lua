@@ -16,12 +16,12 @@ if vim.fn.has('wsl') == 1 then
     cache_enabled = 0,
     name = 'WslClipboard',
     copy = {
-      ['+'] = 'cb copy',
-      ['*'] = 'cb copy',
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
     },
     paste = {
-      ['+'] = 'cb paste',
-      ['*'] = 'cb paste',
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
     },
   }
 end
