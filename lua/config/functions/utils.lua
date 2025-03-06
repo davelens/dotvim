@@ -1,5 +1,10 @@
 local M = {}
 
+-- Dumps contents of var to the console using vim.inspect
+function M.dump(var)
+  print(vim.inspect(var))
+end
+
 -- Clears stale command-line characters.
 function M.print_redraw(string)
   vim.cmd('redraw')

@@ -40,15 +40,10 @@ _G.dvim = {
   unload = function(name)
     _G.dvim[name] = nil
   end,
-
-  dump = function(var)
-    print(vim.inspect(var))
-  end,
-
   buffers = require('config.functions.buffers'),
   cursor = require('config.functions.cursor'),
   utils = require('config.functions.utils'),
 }
 
--- Alias for quick debugging
-dd = _G.dvim.dump
+-- Global alias for quick debugging
+dd = _G.dvim.utils.dump
