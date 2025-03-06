@@ -32,21 +32,6 @@ function buffers.delete_hidden()
   end
 end
 
--- Clean up all quickfix items without a filename reference.
--- Quickfix items lose their filename reference when the buffer is deleted.
-function buffers.clean_quickfix()
-  local qflist = vim.fn.getqflist()
-  local newlist = {}
-
-  for _, entry in ipairs(qflist) do
-    if vim.fn.bufname(entry.bufnr) ~= "" then
-      table.insert(newlist, entry)
-    end
-  end
-
-  vim.fn.setqflist(newlist)
-end
-
 -- Rename the current file in your buffer.
 function buffers.rename_file()
   local old_name = vim.fn.expand('%:t')
