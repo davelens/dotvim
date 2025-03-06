@@ -69,10 +69,10 @@ function quickfix.find_replace(query, replace)
 
   -- Blank query at this point = ask for input, or gtfo.
   if query == nil or query == '' then
-    search_ok, query = pcall(vim.fn.input, 'Search for: ', query)
+    search_ok, query = pcall(vim.fn.input, 'Look for: ', query)
     if not search_ok or query == nil or query == '' then
       vim.cmd('ccl')
-      return dvim.utils.print_redraw('Search cancelled')
+      return dvim.utils.print_redraw('Find cancelled')
     end
   end
 
