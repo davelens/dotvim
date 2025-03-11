@@ -7,7 +7,7 @@ return {
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'elixirls', 'gopls', 'cssls', 'bashls' },
+      ensure_installed = { 'lua_ls', 'elixirls', 'cssls', 'bashls' },
     })
 
     local lspconfig = require('lspconfig')
@@ -39,10 +39,6 @@ return {
           },
         },
       },
-    })
-
-    lspconfig.gopls.setup({
-      capabilities = capabilities,
     })
 
     lspconfig.cssls.setup({})
