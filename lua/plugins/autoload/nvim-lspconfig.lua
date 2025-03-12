@@ -2,12 +2,12 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     { 'williamboman/mason.nvim', config = true }, -- LSP server installation manager
-    'williamboman/mason-lspconfig.nvim', -- LSP-related heavy lifting for Mason
+    'williamboman/mason-lspconfig.nvim',          -- LSP-related heavy lifting for Mason
   },
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'elixirls', 'gopls', 'cssls', 'bashls' },
+      ensure_installed = { 'lua_ls', 'elixirls', 'gopls', 'cssls', 'bashls', 'ruby_lsp' },
     })
 
     local lspconfig = require('lspconfig')
@@ -23,6 +23,8 @@ return {
         },
       },
     })
+
+    lspconfig.ruby_lsp.setup({})
 
     lspconfig.elixirls.setup({
       cmd = { 'elixir-ls' },
