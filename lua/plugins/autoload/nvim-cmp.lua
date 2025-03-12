@@ -1,23 +1,19 @@
--- Autocompletion solution
+-- Autocompletion
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
-    'saadparwaiz1/cmp_luasnip',
-
-    -- Adds LSP completion capabilities
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
-
-    -- Adds a number of user-friendly snippets
-    'rafamadriz/friendly-snippets',
+    'saadparwaiz1/cmp_luasnip', -- Snippet engine glue towards nvim-cmp.
+    'hrsh7th/cmp-nvim-lsp',     -- LSP source for nvim-cmp.
+    'hrsh7th/cmp-path',         -- Path source for nvim-cmp.
   },
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
 
+    -- We need the vscode loaders to load in rafamadriz/friendly-snippets.
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup()
+    luasnip.filetype_extend("ruby", { "rails" }) -- Not enabled by default.
 
     cmp.setup({
       snippet = {
