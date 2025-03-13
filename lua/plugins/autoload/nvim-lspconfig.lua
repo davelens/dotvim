@@ -1,23 +1,33 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true }, -- LSP server installation manager
-    'williamboman/mason-lspconfig.nvim', -- LSP-related heavy lifting for Mason
+    {
+      'williamboman/mason.nvim',
+      opts = {
+        ensure_installed = {
+          'bashls',
+          'cssls',
+          'elixirls',
+          'lua_ls',
+          'ruby_lsp',
+        },
+      },
+    },
+    { 'williamboman/mason-lspconfig.nvim' },
   },
   config = function()
-    require('mason').setup()
-    require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'elixirls', 'cssls', 'bashls' },
-    })
-
     local lspconfig = require('lspconfig')
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+    lspconfig.cssls.setup({ capabilities = capabilities })
+    lspconfig.bashls.setup({ capabilities = capabilities })
+    lspconfig.ruby_lsp.setup({ capabilities = capabilities })
 
     lspconfig.lua_ls.setup({
       settings = {
         Lua = {
           diagnostics = {
-            globals = { 'vim', 'Snacks' },
+            globals = { 'vim', 'Snacks', 'dvim' },
             disable = { 'lowercase-global', 'trailing-space', 'empty-block' },
           },
         },
@@ -40,8 +50,5 @@ return {
         },
       },
     })
-
-    lspconfig.cssls.setup({})
-    lspconfig.bashls.setup({})
   end,
 }
