@@ -2,11 +2,18 @@
 return {
   'zbirenbaum/copilot.lua',
   ft = {
-    'html', 'css', 'scss',
-    'ruby', 'eruby', 'eruby.yaml',
-    'elixir', 'eelixir', 'heex',
-    'javascript', 'typescript',
-    'lua'
+    'css',
+    'eelixir',
+    'elixir',
+    'eruby',
+    'eruby.yaml',
+    'heex',
+    'html',
+    'javascript',
+    'lua',
+    'ruby',
+    'scss',
+    'sh',
   },
   opts = {
     suggestion = {
