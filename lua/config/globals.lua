@@ -25,3 +25,9 @@ if vim.fn.has('wsl') == 1 then
     cache_enabled = 0,
   }
 end
+
+vim.diagnostic.config({
+  virtual_lines = true,
+  -- Only show virtual line diagnostics for the current cursor line
+  -- current_line = true,
+})
