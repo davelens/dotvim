@@ -17,8 +17,8 @@ vim.opt_local.tabstop = 2     -- The width of a tab character
 -- - All my RSpec related functionality is kept in a separate module file.
 -- - I only want to make use of those methods to bind them to keymaps when the
 -- file pattern is *_rspec.rb.
--- - There is no specific RSpec filetype in Vim, so to keep everything separated
--- - I want to unload RSpec functionality when I leave those buffers.
+-- - There is no specific RSpec filetype in Vim, so to keep everything 
+--   separated I want to unload RSpec functionality when I leave those buffers.
 --
 -- I opted to load them through `dvim.load()`. The callback gets executed
 -- for every BufEnter of the given pattern, and unloads the module from dvim as

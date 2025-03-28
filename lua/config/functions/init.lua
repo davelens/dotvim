@@ -26,7 +26,7 @@ local function setup_dvim_autocommands(opts, callback_opts)
 end
 
 _G.dvim = {
-  -- Load a submodule and stores it in the global dvim object
+  -- Load a submodule and store it in the global dvim object
   load = function(opts)
     local src
 
