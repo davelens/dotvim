@@ -1,11 +1,15 @@
 return {
   'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = { 
+    'rafamadriz/friendly-snippets',
+    { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+  },
   version = '1.*',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    -- These are the defaults for now, but I want to be explicit about them.
+    -- Includes the defaults, but I want to be explicit about them.
+    snippets = { preset = 'luasnip', },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
@@ -21,7 +25,8 @@ return {
       ['<C-[>'] = { 'hide', 'fallback' },
       ['<CR>'] = { 'select_and_accept', 'fallback_to_mappings' },
 
-      -- <Tab> behaviour in insert mode:
+      -- <Tab> behaviour in insert mode. I'm particular about this, and wanted
+      -- to port what I had in nvim-cmp to blink. The logic is as follows:
       --
       -- 1. Without autocompletion floats active or Copilot suggestions,
       --    I want a literal tab to be inserted.
@@ -45,6 +50,7 @@ return {
       ['<Tab>'] = {
         function(cmp)
           local copilot = require('copilot.suggestion')
+          local luasnip = require('luasnip')
 
           if copilot.is_visible() then
             copilot.accept()
@@ -54,9 +60,10 @@ return {
             else
               return
             end
-          -- TODO:
-          -- elseif luasnip.expandable() then
-          --   luasnip.expand()
+          elseif luasnip.jumpable(1) then
+            cmp.cancel()
+            vim.schedule(function() luasnip.jump(1) end)
+            return true
           else
             -- There is no cmp.fallback() in blink like nvim-cmp has, nor do 
             -- the textual fallbacks work at this point. So I need to insert
