@@ -58,12 +58,17 @@ return {
           -- elseif luasnip.expandable() then
           --   luasnip.expand()
           else
-            -- TODO: There is no cmp.fallback() in blink, nor do the textual
-            -- fallbacks work at this point.
-            -- cmp.fallback()
+            -- There is no cmp.fallback() in blink like nvim-cmp has, nor do 
+            -- the textual fallbacks work at this point. So I need to insert
+            -- a literal tab termcode myself to make tab work. Not ideal, but
+            -- it works.
+            vim.api.nvim_feedkeys(
+              vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 
+              'n', 
+              false
+            )
           end
-        end,
-        'fallback'
+        end
       },
 
       -- TODO: Find a way to re-enable the suggestion after initial hide.
