@@ -58,8 +58,8 @@ return {
             end
           elseif luasnip.jumpable(1) then
             cmp.cancel()
+            -- schedule() is needed to delay the jump until after blink closes.
             vim.schedule(function() luasnip.jump(1) end)
-            return true
           else
             -- There is no cmp.fallback() in blink like nvim-cmp has, nor do 
             -- the textual fallbacks work at this point. So I need to insert
