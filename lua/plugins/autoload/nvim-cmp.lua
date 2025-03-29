@@ -1,3 +1,6 @@
+if true then
+  return
+end
 -- Autocompletion
 return {
   'hrsh7th/nvim-cmp',
