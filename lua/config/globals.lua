@@ -31,3 +31,5 @@ vim.diagnostic.config({
   -- Only show virtual line diagnostics for the current cursor line
   -- current_line = true,
 })
+
+vim.lsp.enable({ 'ruby', 'ruby_lsp' })
