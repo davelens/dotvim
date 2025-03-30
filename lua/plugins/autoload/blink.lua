@@ -1,110 +1,99 @@
 return {
   'saghen/blink.cmp',
   version = '1.*',
+  dependencies = {
+    {
+      "giuxtaposition/blink-cmp-copilot",
+    },
+  },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     -- Includes the defaults, but I want to be explicit about them.
     snippets = { preset = 'luasnip', },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'snippets', 'copilot', 'buffer' },
+      providers = {
+        copilot = {
+          name = 'copilot',
+          module = 'blink-cmp-copilot',
+          score_offset = 100,
+          async = true
+        }
+      },
     },
+
+    -- TODO: See about disabling completion menus in comments.
 
     -- Stick with the default Rust implementation for now.
     fuzzy = { implementation = "prefer_rust_with_warning" },
 
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
-      preset = 'none',
-      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      -- My main Esc mapping is C-[ - using that here preserves insert mode.
-      ['<C-[>'] = { 'hide', 'fallback' },
-      ['<CR>'] = { 'select_and_accept', 'fallback_to_mappings' },
+      -- I define my own super-tab behaviour that works more consistently with 
+      -- the <Tab> keypress between open menus and snippet jumps.
+      -- The default `super-tab` preset in blink.cmp straight up breaks regular 
+      -- default tab insertions, and doesn't behave as you'd expect within
+      -- snippet jump contexts.
+      --
+      -- 1. Autocompletion menu visible, no selection.
+      --    => nothing should happen.
+      --
+      -- 2. Autocompletion menu visible, selection made.
+      --    => select + accept selection
+      --
+      -- 3. Snippet active, no autocompletion menu visible.
+      --    => jump forward in snippet
+      --
+      -- 4. Snippet active, autocompletion menu visible, no selection.
+      --    => jump forward in snippet
+      --
+      -- 5. Snippet active, autocompletion menu visible, selection made.
+      --    => select + accept selection
+      -- 
+      -- 6. No autocompletion menu visible.
+      --    => Feed default nvim <Tab> behaviour
+      --
+      -- The `enter` preset also enables <CR> to make selections.
+      -- The rest of the defaults are sensible enough to live with.
+      preset = 'enter',
 
-      -- <Tab> behaviour in insert mode. I'm particular about this, and wanted
-      -- to port what I had in nvim-cmp to blink. The logic is as follows:
-      --
-      -- 1. Without autocompletion floats active or Copilot suggestions,
-      --    I want a literal tab to be inserted.
-      --
-      -- 2. With an autocompletion float active and no Copilot suggestions,
-      --    and no autocomplete selections made, nothing should happen.
-      --
-      -- 3. With an autocompletion float active and no Copilot suggestions,
-      --    but an autocomplete selection was made, it should confirm the
-      --    autocomplete selection.
-      --
-      -- 4. With an autocompletion float active and a Copilot suggestion,
-      --    it should accept the Copilot suggestion.
-      --
-      -- 5. With an autocompletion float active and a Copilot suggestion,
-      --    the moment I navigate within the autocompletion float, it
-      --    should hide Copilot suggestions. Otherwise it would start
-      --    making suggestions on the autocompletion selections that get
-      --    autoinserted at the cursor, which is confusing.
-      --
+      ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
       ['<Tab>'] = {
         function(cmp)
-          local copilot = require('copilot.suggestion')
           local luasnip = require('luasnip')
 
-          if copilot.is_visible() then
-            copilot.accept()
-          elseif cmp.is_menu_visible() then
+          -- TODO: Refactor the luasnip jumpable check in particular, just to
+          -- keep it DRY.
+          if cmp.is_menu_visible() then
             if cmp.get_selected_item() then
               cmp.select_and_accept()
-            else
-              return
+            elseif luasnip.jumpable(1) then
+              vim.schedule(function() luasnip.jump(1) end)
             end
           elseif luasnip.jumpable(1) then
             cmp.cancel()
             -- schedule() is needed to delay the jump until after blink closes.
             vim.schedule(function() luasnip.jump(1) end)
           else
-            -- There is no cmp.fallback() in blink like nvim-cmp has, nor do 
-            -- the textual fallbacks work at this point. So I need to insert
-            -- a literal tab termcode myself to make tab work. Not ideal, but
-            -- it works.
+            -- There is no cmp.fallback() in blink like nvim-cmp has, nor do
+            -- the textual fallbacks seem to work. So I resorted to inserting
+            -- a literal tab termcode myself to make the tab fallback work. -.-
             vim.api.nvim_feedkeys(
               vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 
               'n', 
               false
             )
           end
-        end
-      },
-
-      -- TODO: Find a way to re-enable the suggestion after initial hide.
-      ['<C-p>'] = {
-        function(cmp)
-          if cmp.is_menu_visible() then
-            vim.b.copilot_suggestion_hidden = true
-            cmp.select_prev()
-          end
         end,
-        'fallback_to_mappings' 
       },
-
-      -- TODO: Find a way to re-enable the suggestion after initial hide.
-      ['<C-n>'] = {
-        function(cmp)
-          if cmp.is_menu_visible() then
-            vim.b.copilot_suggestion_hidden = true
-            cmp.select_next()
-          end
-        end,
-        'fallback_to_mappings'
-      },
-
-      -- Less finger-wrecking than C-b/f
-      ['<S-k>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<S-j>'] = { 'scroll_documentation_down', 'fallback' },
-
-      ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
     },
 
     -- I prefer to see docs where available.
-    completion = { documentation = { auto_show = true } },
+    completion = { 
+      documentation = { auto_show = true },
+      list = { selection = { preselect = false, auto_insert = false } },
+    },
   },
   opts_extend = { "sources.default" }
 }

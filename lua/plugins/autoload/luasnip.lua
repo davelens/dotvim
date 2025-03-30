@@ -16,6 +16,8 @@ return {
   },
   opts = {
     history = true,
+    -- Prevents lingering snippet sessions.
     delete_check_events = "TextChanged",
+    region_check_events = "CursorMoved",
   },
 }
