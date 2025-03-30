@@ -4,6 +4,8 @@ return {
   cmd = { vim.fn.expand("$XDG_DATA_HOME/asdf/shims/ruby-lsp") },
   filetypes = { 'ruby', 'eruby' },
   root_markers = { 'Gemfile' },
-  init_options = { formatter = 'auto' },
-  single_file_support = true,
+  -- init_options = {
+  --   formatter = 'standard',
+  --   linters = { 'standard' },
+  -- },
 }
