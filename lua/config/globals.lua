@@ -32,4 +32,4 @@ vim.diagnostic.config({
   -- current_line = true,
 })
 
-vim.lsp.enable({ 'ruby_lsp' })
+vim.lsp.enable({ 'ruby_lsp', 'lua_ls' })
