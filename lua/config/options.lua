@@ -31,6 +31,7 @@ vim.opt.laststatus = 2 -- Always show a statusline
 vim.opt.linespace = 0 -- Number of pixel lines between characters
 vim.opt.list = true -- Shows <Tab> and <EOL> characters
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Custom list characters in display mode
+vim.opt.relativenumber = true -- Show relative line numbers
 vim.opt.swapfile = false -- Disable swap files
 vim.opt.scrolloff = 10 -- Keep 10 lines above and below the cursor when scrolling
 vim.opt.showmode = false -- Do not show the current mode (it's already in the statusline)
