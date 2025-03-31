@@ -32,4 +32,5 @@ vim.diagnostic.config({
   -- current_line = true,
 })
 
+vim.lsp.set_log_level("debug")
 vim.lsp.enable({ 'ruby_lsp', 'lua_ls' })
