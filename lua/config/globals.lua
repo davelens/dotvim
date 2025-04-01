@@ -32,5 +32,16 @@ vim.diagnostic.config({
   -- current_line = true,
 })
 
+-- Inject Blink's capabilities into the LSP config for all filetypes.
+-- The schedule just makes sure it's delayed until our plugins are loaded.
+vim.schedule(function()
+  if vim.fn.has('nvim-0.11') == 1 and vim.lsp.config then
+    vim.lsp.config(
+      '*',
+      { capabilities = require('blink.cmp').get_lsp_capabilities() }
+    )
+  end
+end)
+
 vim.lsp.set_log_level('debug')
 vim.lsp.enable({ 'ruby_lsp', 'lua_ls' })
