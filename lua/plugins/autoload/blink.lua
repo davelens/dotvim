@@ -63,8 +63,8 @@ return {
         function(cmp)
           local luasnip = require('luasnip')
 
-          -- TODO: Refactor the luasnip jumpable check in particular, just to
-          -- keep it DRY.
+          -- TODO: Extract the luasnip jumpable check and the <Tab> key feed
+          -- to prevent repeating those bits.
           if cmp.is_menu_visible() then
             if cmp.get_selected_item() then
               cmp.select_and_accept()
@@ -72,6 +72,12 @@ return {
               vim.schedule(function()
                 luasnip.jump(1)
               end)
+            else
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes('<Tab>', true, false, true),
+                'n',
+                false
+              )
             end
           elseif luasnip.jumpable(1) then
             cmp.cancel()
