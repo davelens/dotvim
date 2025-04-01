@@ -8,5 +8,5 @@ require('config.lazy').load({
   spec = {
     { import = 'plugins.basic' },
     { import = 'plugins.autoload' },
-  }
+  },
 })

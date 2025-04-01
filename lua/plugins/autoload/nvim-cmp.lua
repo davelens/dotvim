@@ -6,8 +6,8 @@ return {
   'hrsh7th/nvim-cmp',
   dependencies = {
     'saadparwaiz1/cmp_luasnip', -- Snippet engine glue towards nvim-cmp.
-    'hrsh7th/cmp-nvim-lsp',     -- LSP source for nvim-cmp.
-    'hrsh7th/cmp-path',         -- Path source for nvim-cmp.
+    'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp.
+    'hrsh7th/cmp-path', -- Path source for nvim-cmp.
   },
   config = function()
     local cmp = require('cmp')
@@ -16,7 +16,7 @@ return {
     -- We need the vscode loaders to load in rafamadriz/friendly-snippets.
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup()
-    luasnip.filetype_extend("ruby", { "rails" }) -- Not enabled by default.
+    luasnip.filetype_extend('ruby', { 'rails' }) -- Not enabled by default.
 
     cmp.setup({
       snippet = {
@@ -27,7 +27,10 @@ return {
 
       mapping = {
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i', 'c' }),
+        ['<CR>'] = cmp.mapping(
+          cmp.mapping.confirm({ select = true }),
+          { 'i', 'c' }
+        ),
 
         -- I expect <Tab> to behave as following in insert mode:
         --
@@ -50,30 +53,27 @@ return {
         --    making suggestions on the autocompletion selections that get
         --    autoinserted at the cursor, which is confusing.
         --
-        ['<Tab>'] = cmp.mapping(
-          function(fallback)
-            local copilot = require('copilot.suggestion')
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          local copilot = require('copilot.suggestion')
 
-            if copilot.is_visible() then
-              copilot.accept()
-            elseif cmp.visible() then
-              -- I chose to not use <Tab> for navigation here considering I
-              -- already use <C-p> / <C-n>, but I'll leave the snippet in case
-              -- I ever change my mind.
-              --cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-              if cmp.get_selected_entry() then
-                cmp.mapping.confirm({ select = true })({ 'i', 'c' })
-              else
-                return
-              end
-            elseif luasnip.expandable() then
-              luasnip.expand()
+          if copilot.is_visible() then
+            copilot.accept()
+          elseif cmp.visible() then
+            -- I chose to not use <Tab> for navigation here considering I
+            -- already use <C-p> / <C-n>, but I'll leave the snippet in case
+            -- I ever change my mind.
+            --cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+            if cmp.get_selected_entry() then
+              cmp.mapping.confirm({ select = true })({ 'i', 'c' })
             else
-              fallback()
+              return
             end
-          end,
-          { 'i', 's', }
-        ),
+          elseif luasnip.expandable() then
+            luasnip.expand()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
 
         -- This makes it so the autocompletion floats are scrollable.
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -83,27 +83,23 @@ return {
         -- able to navigate through the suggestions using <C-p> and <C-n> BUT
         -- any Github Copilot suggestions should then be hidden.
 
-        ['<C-p>'] = cmp.mapping(
-          function(fallback)
-            if cmp.visible() then
-              vim.b.copilot_suggestion_hidden = true
-              cmp.mapping.select_prev_item()({ 'i', 'c' })
-            else
-              fallback()
-            end
+        ['<C-p>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            vim.b.copilot_suggestion_hidden = true
+            cmp.mapping.select_prev_item()({ 'i', 'c' })
+          else
+            fallback()
           end
-        ),
+        end),
 
-        ['<C-n>'] = cmp.mapping(
-          function(fallback)
-            if cmp.visible() then
-              vim.b.copilot_suggestion_hidden = true
-              cmp.mapping.select_next_item()({ 'i', 'c' })
-            else
-              fallback()
-            end
+        ['<C-n>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            vim.b.copilot_suggestion_hidden = true
+            cmp.mapping.select_next_item()({ 'i', 'c' })
+          else
+            fallback()
           end
-        ),
+        end),
       },
 
       sources = {

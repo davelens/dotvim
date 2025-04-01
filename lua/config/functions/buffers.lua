@@ -38,13 +38,16 @@ function buffers.rename_file(old_name, new_name)
   local input_ok = true
 
   if new_name == nil or new_name == '' then
-    input_ok, new_name = pcall(
-      vim.fn.input,
-      string.format('Rename "%s" to: ', old_name)
-    )
+    input_ok, new_name =
+      pcall(vim.fn.input, string.format('Rename "%s" to: ', old_name))
   end
 
-  if not input_ok or new_name == nil or new_name == '' or new_name == old_name then
+  if
+    not input_ok
+    or new_name == nil
+    or new_name == ''
+    or new_name == old_name
+  then
     return dvim.utils.print_redraw('Rename cancelled')
   end
 
@@ -55,7 +58,9 @@ function buffers.rename_file(old_name, new_name)
 
     if vim.v.shell_error == 0 then -- 0 = File is tracked by git
       vim.cmd('GRename ' .. new_name)
-      return dvim.utils.print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
+      return dvim.utils.print_redraw(
+        'Renamed ' .. old_name .. ' to ' .. new_name
+      )
     end
   end
 

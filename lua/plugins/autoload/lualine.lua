@@ -2,6 +2,6 @@
 return {
   'nvim-lualine/lualine.nvim',
   opts = {
-    theme = vim.colorscheme
+    theme = vim.colorscheme,
   },
 }

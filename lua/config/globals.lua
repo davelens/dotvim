@@ -1,12 +1,12 @@
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = ' '            -- using space as leader key
-vim.g.maplocalleader = ','       -- using comma as local leader
+vim.g.mapleader = ' ' -- using space as leader key
+vim.g.maplocalleader = ',' -- using comma as local leader
 -- :checkhealth won't whine about these when disabled.
-vim.g.loaded_perl_provider = 0   -- disable perl provider
-vim.g.loaded_node_provider = 0   -- disable node provider
-vim.g.loaded_ruby_provider = 0   -- disable ruby provider
+vim.g.loaded_perl_provider = 0 -- disable perl provider
+vim.g.loaded_node_provider = 0 -- disable node provider
+vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 vim.g.loaded_python_provider = 0 -- disable python provider
 
 -- Clipboard settings for WSL. I use `cb` on macos as well, so the conditional
@@ -32,5 +32,5 @@ vim.diagnostic.config({
   -- current_line = true,
 })
 
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level('debug')
 vim.lsp.enable({ 'ruby_lsp', 'lua_ls' })

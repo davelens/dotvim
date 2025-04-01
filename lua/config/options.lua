@@ -1,12 +1,12 @@
 -- Indentation and whitespace default
 -- See this screencast to learn how these interoperate:
 -- http://vimcasts.org/episodes/tabs-and-spaces/
-vim.opt.autoindent = true     -- Copy indents from current line when mooving to a new line
-vim.opt.expandtab = true      -- Forces spaces instead of tab characters
-vim.opt.shiftwidth = 2        -- Use 2 spaces as default indent width when using << >>
-vim.opt.smartindent = true    -- Smart(ish) autoindenting when starting a new line
-vim.opt.softtabstop = 2       -- Determines how much whitespace is used while indenting
-vim.opt.tabstop = 2           -- The width of a tab character
+vim.opt.autoindent = true -- Copy indents from current line when mooving to a new line
+vim.opt.expandtab = true -- Forces spaces instead of tab characters
+vim.opt.shiftwidth = 2 -- Use 2 spaces as default indent width when using << >>
+vim.opt.smartindent = true -- Smart(ish) autoindenting when starting a new line
+vim.opt.softtabstop = 2 -- Determines how much whitespace is used while indenting
+vim.opt.tabstop = 2 -- The width of a tab character
 vim.opt_local.smarttab = true -- Inserts/Deletes whitespace in front of lines according to the above settings
 
 -- Behavioural settings

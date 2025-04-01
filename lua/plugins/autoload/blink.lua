@@ -3,14 +3,14 @@ return {
   version = '1.*',
   dependencies = {
     {
-      "giuxtaposition/blink-cmp-copilot",
+      'giuxtaposition/blink-cmp-copilot',
     },
   },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     -- Includes the defaults, but I want to be explicit about them.
-    snippets = { preset = 'luasnip', },
+    snippets = { preset = 'luasnip' },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'copilot', 'buffer' },
       providers = {
@@ -18,21 +18,21 @@ return {
           name = 'copilot',
           module = 'blink-cmp-copilot',
           score_offset = 100,
-          async = true
-        }
+          async = true,
+        },
       },
     },
 
     -- TODO: See about disabling completion menus in comments.
 
     -- Stick with the default Rust implementation for now.
-    fuzzy = { implementation = "prefer_rust_with_warning" },
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
 
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
-      -- I define my own super-tab behaviour that works more consistently with 
+      -- I define my own super-tab behaviour that works more consistently with
       -- the <Tab> keypress between open menus and snippet jumps.
-      -- The default `super-tab` preset in blink.cmp straight up breaks regular 
+      -- The default `super-tab` preset in blink.cmp straight up breaks regular
       -- default tab insertions, and doesn't behave as you'd expect within
       -- snippet jump contexts.
       --
@@ -50,7 +50,7 @@ return {
       --
       -- 5. Snippet active, autocompletion menu visible, selection made.
       --    => select + accept selection
-      -- 
+      --
       -- 6. No autocompletion menu visible.
       --    => Feed default nvim <Tab> behaviour
       --
@@ -69,19 +69,23 @@ return {
             if cmp.get_selected_item() then
               cmp.select_and_accept()
             elseif luasnip.jumpable(1) then
-              vim.schedule(function() luasnip.jump(1) end)
+              vim.schedule(function()
+                luasnip.jump(1)
+              end)
             end
           elseif luasnip.jumpable(1) then
             cmp.cancel()
             -- schedule() is needed to delay the jump until after blink closes.
-            vim.schedule(function() luasnip.jump(1) end)
+            vim.schedule(function()
+              luasnip.jump(1)
+            end)
           else
             -- There is no cmp.fallback() in blink like nvim-cmp has, nor do
             -- the textual fallbacks seem to work. So I resorted to inserting
             -- a literal tab termcode myself to make the tab fallback work. -.-
             vim.api.nvim_feedkeys(
-              vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 
-              'n', 
+              vim.api.nvim_replace_termcodes('<Tab>', true, false, true),
+              'n',
               false
             )
           end
@@ -90,10 +94,10 @@ return {
     },
 
     -- I prefer to see docs where available.
-    completion = { 
+    completion = {
       documentation = { auto_show = true },
       list = { selection = { preselect = false, auto_insert = false } },
     },
   },
-  opts_extend = { "sources.default" }
+  opts_extend = { 'sources.default' },
 }

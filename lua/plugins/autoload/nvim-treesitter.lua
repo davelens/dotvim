@@ -25,24 +25,54 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       ensure_installed = {
-        'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript',
-        'typescript', 'vimdoc', 'vim', 'bash', 'elixir', 'eex', 'heex', 'ruby',
-        'puppet', 'html', 'css', 'scss', 'json', 'yaml', 'dockerfile',
-        'embedded_template'
+        'c',
+        'cpp',
+        'go',
+        'lua',
+        'python',
+        'rust',
+        'tsx',
+        'javascript',
+        'typescript',
+        'vimdoc',
+        'vim',
+        'bash',
+        'elixir',
+        'eex',
+        'heex',
+        'ruby',
+        'puppet',
+        'html',
+        'css',
+        'scss',
+        'json',
+        'yaml',
+        'dockerfile',
+        'embedded_template',
       },
 
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = {
-          'ruby', 'embedded_template', 'elixir', 'eex', 'heex', 'eruby'
+          'ruby',
+          'embedded_template',
+          'elixir',
+          'eex',
+          'heex',
+          'eruby',
         },
       },
 
       indent = {
         enable = true,
         disable = {
-          'ruby', 'embedded_template', 'elixir', 'eex', 'heex', 'eruby'
-        }
+          'ruby',
+          'embedded_template',
+          'elixir',
+          'eex',
+          'heex',
+          'eruby',
+        },
       },
 
       -- nvim - treesitter / nvim - treesitter - textobjects
@@ -76,8 +106,8 @@ return {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     opts = {
-      disable_filetype = { 'snacks_picker_input' }
-    }
+      disable_filetype = { 'snacks_picker_input' },
+    },
   },
 
   {
@@ -88,13 +118,13 @@ return {
     -- https://github.com/windwp/nvim-ts-autotag?tab=readme-ov-file#setup
     'windwp/nvim-ts-autotag',
     config = function()
-      require('nvim-ts-autotag').setup {
+      require('nvim-ts-autotag').setup({
         opts = {
-          enable_close = true,          -- Auto close tags
-          enable_rename = true,         -- Auto rename pairs of tags
-          enable_close_on_slash = false -- Don't auto close on trailing </
+          enable_close = true, -- Auto close tags
+          enable_rename = true, -- Auto rename pairs of tags
+          enable_close_on_slash = false, -- Don't auto close on trailing </
         },
-      }
+      })
     end,
-  }
+  },
 }

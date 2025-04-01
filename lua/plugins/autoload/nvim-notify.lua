@@ -2,6 +2,6 @@
 return {
   'rcarriga/nvim-notify',
   opts = {
-    stages = 'fade'
-  }
+    stages = 'fade',
+  },
 }

@@ -10,11 +10,11 @@ return {
         IncSearch = { bg = colors.lavender },
         -- zbirenbaum/copilot.lua
         CopilotSuggestion = { fg = '#83a598' },
-        CopilotAnnotation = { fg = '#83a598' }
+        CopilotAnnotation = { fg = '#83a598' },
       }
     end,
   },
   init = function()
-    vim.cmd.colorscheme 'catppuccin'
-  end
+    vim.cmd.colorscheme('catppuccin')
+  end,
 }

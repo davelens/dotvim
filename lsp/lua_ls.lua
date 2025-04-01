@@ -4,7 +4,7 @@ return {
   -- that nvim is clever enough to pick up. TBC.
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
-  root_markers = { '.luarc.json', '.luarc.jsonc' },
+  root_markers = { '.stylua.toml', '.luarc.json', '.luarc.jsonc' },
   -- The schema for lua-language-server can be found here:
   -- https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
   settings = {
@@ -19,6 +19,6 @@ return {
         globals = { 'vim', 'Snacks', 'dvim' },
         disable = { 'lowercase-global', 'trailing-space', 'empty-block' },
       },
-    }
-  }
+    },
+  },
 }

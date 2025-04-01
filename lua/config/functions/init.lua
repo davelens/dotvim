@@ -11,7 +11,7 @@ local function setup_dvim_autocommands(opts, callback_opts)
     pattern = opts.pattern,
     callback = function(_)
       opts.autocommands(callback_opts)
-    end
+    end,
   })
 
   if opts.event == 'BufEnter' then
@@ -20,7 +20,7 @@ local function setup_dvim_autocommands(opts, callback_opts)
       pattern = opts.pattern,
       callback = function(_)
         dvim.unload(opts.name)
-      end
+      end,
     })
   end
 end

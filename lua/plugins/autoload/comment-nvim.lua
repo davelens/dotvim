@@ -6,11 +6,11 @@ return {
     },
     toggler = {
       line = '<leader>ci',
-      block = '<leader>cb'
+      block = '<leader>cb',
     },
     opleader = {
       line = '<leader>ci',
-      block = '<leader>cb'
-    }
-  }
+      block = '<leader>cb',
+    },
+  },
 }
