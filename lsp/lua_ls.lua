@@ -9,6 +9,7 @@ return {
   -- https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
   settings = {
     Lua = {
+      format = { enable = false },
       runtime = {
         -- TODO: Change version depending on context. Neovim uses 5.1 and that's
         -- my main usecase, so default to 5.1 for now.
