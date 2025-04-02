@@ -44,4 +44,4 @@ vim.schedule(function()
 end)
 
 vim.lsp.set_log_level('debug')
-vim.lsp.enable({ 'ruby_lsp', 'lua_ls' })
+vim.lsp.enable({ 'ruby_lsp', 'lua_ls', 'elixir_ls' })
