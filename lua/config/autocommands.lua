@@ -15,13 +15,13 @@ autocmd({ 'UIEnter', 'ColorScheme' }, {
     if not normal.bg then
       return
     end
-    io.write(string.format("\027]11;#%06x\027\\", normal.bg))
+    io.write(string.format('\027]11;#%06x\027\\', normal.bg))
   end,
 })
 autocmd('UILeave', {
   group = fix_instance_padding,
   callback = function()
-    io.write("\027]111\027\\")
+    io.write('\027]111\027\\')
   end,
 })
 
@@ -55,7 +55,7 @@ autocmd('FileType', {
       '<cmd>TestFile<cr>',
       { buffer = true, noremap = true, silent = true }
     )
-  end
+  end,
 })
 
 -- Unmap <CR> in Command-line mode, including for vim and terminal buffers
@@ -64,7 +64,7 @@ autocmd('FileType', {
   pattern = { 'vim' },
   callback = function()
     nvim_buf_safe_del_keymap(0, 'n', '<CR>')
-  end
+  end,
 })
 
 -- Map <leader>; to run buffers#append_semicolon() in JS files.
@@ -130,7 +130,8 @@ local function q_handler()
     if special_count == #wins then
       local cur_buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
       local cur_ft = vim.api.nvim_buf_get_option(cur_buf, 'filetype')
-      local msg = 'Closing this buffer with `q` now would exit vim (filetype `%s` is special).'
+      local msg =
+        'Closing this buffer with `q` now would exit vim (filetype `%s` is special).'
       vim.schedule(function()
         vim.notify(string.format(msg, cur_ft), vim.log.levels.ERROR)
       end)

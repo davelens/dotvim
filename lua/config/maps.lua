@@ -3,10 +3,20 @@ local map = vim.keymap.set
 -- Copy to/cut/paste from system clipboard
 -- Originally inspired by
 -- http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-for _, mode in ipairs { 'n', 'v' } do
+for _, mode in ipairs({ 'n', 'v' }) do
   map(mode, '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
-  map(mode, '<leader>p', '"+p', { desc = '[P]aste from system clipboard after cursor' })
-  map(mode, '<leader>P', '"+P', { desc = '[P]aste from system clipboard before cursor' })
+  map(
+    mode,
+    '<leader>p',
+    '"+p',
+    { desc = '[P]aste from system clipboard after cursor' }
+  )
+  map(
+    mode,
+    '<leader>P',
+    '"+P',
+    { desc = '[P]aste from system clipboard before cursor' }
+  )
 end
 
 -- Quick save and exit
@@ -47,8 +57,18 @@ map('n', '<leader>-', 'yypVr-')
 map('n', '<leader>*', 'yypVr*')
 
 -- Buffer maps
-map('n', '<leader>br', dvim.buffers.rename_file, { desc = '[R]ename current buffer', noremap = true, silent = true })
-map('n', '<leader>bc', dvim.buffers.delete_hidden, { desc = '[C]lean up hidden buffers', noremap = true, silent = true })
+map(
+  'n',
+  '<leader>br',
+  dvim.buffers.rename_file,
+  { desc = '[R]ename current buffer', noremap = true, silent = true }
+)
+map(
+  'n',
+  '<leader>bc',
+  dvim.buffers.delete_hidden,
+  { desc = '[C]lean up hidden buffers', noremap = true, silent = true }
+)
 
 -- Quickfix maps
 map('n', '<leader>qc', function()
@@ -56,9 +76,39 @@ map('n', '<leader>qc', function()
 end, { desc = '[Q]quickfix [c]lear list', noremap = true, silent = true })
 
 -- Diagnostic maps
-map('n', '[q', ':silent! w<CR>:cprev<CR>', { desc = 'Go to previous [Q]uickfix message' })
-map('n', ']q', ':silent! w<CR>:cnext<CR>', { desc = 'Go to next [Q]uickfix message' })
-map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-map('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
-map('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix' })
+map(
+  'n',
+  '[q',
+  ':silent! w<CR>:cprev<CR>',
+  { desc = 'Go to previous [Q]uickfix message' }
+)
+map(
+  'n',
+  ']q',
+  ':silent! w<CR>:cnext<CR>',
+  { desc = 'Go to next [Q]uickfix message' }
+)
+map(
+  'n',
+  '[d',
+  vim.diagnostic.goto_prev,
+  { desc = 'Go to previous [D]iagnostic message' }
+)
+map(
+  'n',
+  ']d',
+  vim.diagnostic.goto_next,
+  { desc = 'Go to next [D]iagnostic message' }
+)
+map(
+  'n',
+  '<leader>de',
+  vim.diagnostic.open_float,
+  { desc = 'Show diagnostic [E]rror message' }
+)
+map(
+  'n',
+  '<leader>dq',
+  vim.diagnostic.setqflist,
+  { desc = 'Open diagnostic [Q]uickfix' }
+)

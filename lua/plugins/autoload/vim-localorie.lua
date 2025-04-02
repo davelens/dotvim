@@ -5,9 +5,11 @@ return {
   keys = {
     {
       '<leader>fi',
-      function() vim.fn['localorie#translate']() end,
+      function()
+        vim.fn['localorie#translate']()
+      end,
       desc = '[F]ind [I]18n translation',
-      ft = { 'ruby', 'eruby' }
+      ft = { 'ruby', 'eruby' },
     },
   },
   init = function()
@@ -19,7 +21,7 @@ return {
       pattern = '*.yml',
       callback = function(_)
         print(vim.fn['localorie#expand_key']())
-      end
+      end,
     })
 
     -- Clean up the input line.
@@ -28,7 +30,7 @@ return {
       pattern = '*.yml',
       callback = function(_)
         vim.cmd('echo ""')
-      end
+      end,
     })
-  end
+  end,
 }

@@ -1,12 +1,12 @@
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = ' '            -- using space as leader key
-vim.g.maplocalleader = ','       -- using comma as local leader
+vim.g.mapleader = ' ' -- using space as leader key
+vim.g.maplocalleader = ',' -- using comma as local leader
 -- :checkhealth won't whine about these when disabled.
-vim.g.loaded_perl_provider = 0   -- disable perl provider
-vim.g.loaded_node_provider = 0   -- disable node provider
-vim.g.loaded_ruby_provider = 0   -- disable ruby provider
+vim.g.loaded_perl_provider = 0 -- disable perl provider
+vim.g.loaded_node_provider = 0 -- disable node provider
+vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 vim.g.loaded_python_provider = 0 -- disable python provider
 
 -- Clipboard settings for WSL. I use `cb` on macos as well, so the conditional
@@ -25,3 +25,26 @@ if vim.fn.has('wsl') == 1 then
     cache_enabled = 0,
   }
 end
+
+vim.diagnostic.config({
+  virtual_text = {
+    severity = { max = vim.diagnostic.severity.WARN },
+  },
+  virtual_lines = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  },
+})
+
+-- Inject Blink's capabilities into the LSP config for all filetypes.
+-- The schedule just makes sure it's delayed until our plugins are loaded.
+vim.schedule(function()
+  if vim.fn.has('nvim-0.11') == 1 and vim.lsp.config then
+    vim.lsp.config(
+      '*',
+      { capabilities = require('blink.cmp').get_lsp_capabilities() }
+    )
+  end
+end)
+
+vim.lsp.set_log_level('debug')
+vim.lsp.enable({ 'ruby_lsp', 'lua_ls', 'elixir_ls' })

@@ -30,7 +30,7 @@ end
 --
 function M.get_visual_selection()
   -- Assuming visual mode here, so no explicit checks for it.
-  vim.cmd('normal! "vy')               -- Yank the selection into the unnamed register
+  vim.cmd('normal! "vy') -- Yank the selection into the unnamed register
   local selection = vim.fn.getreg('v') -- Grab and return yanked text
   vim.g.last_word_selection = selection
   return selection

@@ -2,15 +2,13 @@ dvim.load({
   module = 'config.functions.elixir',
   pattern = '*.html.heex',
   autocommands = function(heex)
-    vim.schedule(
-      function()
-        vim.keymap.set(
-          'v',
-          'wg',
-          heex.wrap_with_gettext,
-          { noremap = true, silent = false, buffer = true }
-        )
-      end
-    )
-  end
+    vim.schedule(function()
+      vim.keymap.set(
+        'v',
+        'wg',
+        heex.wrap_with_gettext,
+        { noremap = true, silent = false, buffer = true }
+      )
+    end)
+  end,
 })

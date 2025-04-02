@@ -1,12 +1,12 @@
 -- Indentation and whitespace default
 -- See this screencast to learn how these interoperate:
 -- http://vimcasts.org/episodes/tabs-and-spaces/
-vim.opt.autoindent = true     -- Copy indents from current line when mooving to a new line
-vim.opt.expandtab = true      -- Forces spaces instead of tab characters
-vim.opt.shiftwidth = 2        -- Use 2 spaces as default indent width when using << >>
-vim.opt.smartindent = true    -- Smart(ish) autoindenting when starting a new line
-vim.opt.softtabstop = 2       -- Determines how much whitespace is used while indenting
-vim.opt.tabstop = 2           -- The width of a tab character
+vim.opt.autoindent = true -- Copy indents from current line when mooving to a new line
+vim.opt.expandtab = true -- Forces spaces instead of tab characters
+vim.opt.shiftwidth = 2 -- Use 2 spaces as default indent width when using << >>
+vim.opt.smartindent = true -- Smart(ish) autoindenting when starting a new line
+vim.opt.softtabstop = 2 -- Determines how much whitespace is used while indenting
+vim.opt.tabstop = 2 -- The width of a tab character
 vim.opt_local.smarttab = true -- Inserts/Deletes whitespace in front of lines according to the above settings
 
 -- Behavioural settings
@@ -31,6 +31,7 @@ vim.opt.laststatus = 2 -- Always show a statusline
 vim.opt.linespace = 0 -- Number of pixel lines between characters
 vim.opt.list = true -- Shows <Tab> and <EOL> characters
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Custom list characters in display mode
+vim.opt.relativenumber = true -- Show relative line numbers
 vim.opt.swapfile = false -- Disable swap files
 vim.opt.scrolloff = 10 -- Keep 10 lines above and below the cursor when scrolling
 vim.opt.showmode = false -- Do not show the current mode (it's already in the statusline)

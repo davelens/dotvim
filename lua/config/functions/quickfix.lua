@@ -13,7 +13,7 @@ function quickfix.sanitize()
   local newlist = {}
 
   for _, entry in ipairs(qflist) do
-    if vim.fn.bufname(entry.bufnr) ~= "" then
+    if vim.fn.bufname(entry.bufnr) ~= '' then
       table.insert(newlist, entry)
     end
   end
@@ -25,11 +25,7 @@ end
 function quickfix.rename_files(pattern)
   local input_ok, replacement
 
-  input_ok, pattern = pcall(
-    vim.fn.input,
-    'Look for pattern: ',
-    pattern or ''
-  )
+  input_ok, pattern = pcall(vim.fn.input, 'Look for pattern: ', pattern or '')
 
   if not input_ok or pattern == nil or pattern == '' then
     return dvim.utils.print_redraw('File rename cancelled')
@@ -78,10 +74,8 @@ function quickfix.find_replace(query, replace)
 
   -- Prompt the user for the replacement string, or gtfo.
   if replace == nil or replace == '' then
-    replace_ok, replace = pcall(
-      vim.fn.input,
-      string.format('Replace "%s" with: ', query)
-    )
+    replace_ok, replace =
+      pcall(vim.fn.input, string.format('Replace "%s" with: ', query))
 
     if not replace_ok or replace == nil or replace == '' then
       vim.cmd('ccl')

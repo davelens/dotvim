@@ -7,7 +7,7 @@ return {
       '<leader>o',
       '<cmd>Oil --float<CR>',
       silent = true,
-      desc = 'Open [O]il.nvim'
+      desc = 'Open [O]il.nvim',
     },
-  }
+  },
 }
