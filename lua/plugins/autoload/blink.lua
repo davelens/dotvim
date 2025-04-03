@@ -9,6 +9,8 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    -- Buggy at the time of installation, so disable for now.
+    cmdline = { enabled = false },
     -- Includes the defaults, but I want to be explicit about them.
     snippets = { preset = 'luasnip' },
     sources = {
