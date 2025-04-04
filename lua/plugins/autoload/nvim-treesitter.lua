@@ -24,8 +24,6 @@ return {
     main = 'nvim-treesitter.configs',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
-      -- Auto-indentation on all supported filetypes.
-      indent = { enable = true },
       ensure_installed = {
         'c',
         'cpp',
@@ -61,6 +59,18 @@ return {
           'elixir',
           'eex',
           'heex',
+          'eruby',
+        },
+      },
+
+      indent = {
+        enable = true,
+        disable = {
+          'ruby',
+          'embedded_template',
+          -- 'elixir',
+          -- 'eex',
+          -- 'heex',
           'eruby',
         },
       },
