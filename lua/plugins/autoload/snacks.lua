@@ -5,6 +5,7 @@ return {
   lazy = false,
   opts = {
     image = { enabled = true },
+    notifier = { enabled = true },
     picker = { enabled = true },
     -- Explicitly disable all the others.
     animate = { enabled = false },
@@ -16,7 +17,6 @@ return {
     input = { enabled = false },
     layout = { enabled = false },
     lazygit = { enabled = false },
-    notifier = { enabled = false },
     profiler = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
