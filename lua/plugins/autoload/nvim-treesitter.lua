@@ -68,9 +68,6 @@ return {
         disable = {
           'ruby',
           'embedded_template',
-          -- 'elixir',
-          -- 'eex',
-          -- 'heex',
           'eruby',
         },
       },
