@@ -4,6 +4,9 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    image = { enabled = true },
+    picker = { enabled = true },
+    -- Explicitly disable all the others.
     animate = { enabled = false },
     bigfile = { enabled = false },
     dashboard = { enabled = false },
@@ -14,7 +17,6 @@ return {
     layout = { enabled = false },
     lazygit = { enabled = false },
     notifier = { enabled = false },
-    picker = { enabled = true },
     profiler = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
