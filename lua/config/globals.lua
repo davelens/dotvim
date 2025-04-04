@@ -26,6 +26,8 @@ if vim.fn.has('wsl') == 1 then
   }
 end
 
+-- This removes some excessive clutter; I'm fine with virtual lines on actual
+-- errors. Warnings are fine as-is with virtual text.
 vim.diagnostic.config({
   virtual_text = {
     severity = { max = vim.diagnostic.severity.WARN },
