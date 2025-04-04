@@ -10,7 +10,7 @@ return {
   ---@type blink.cmp.Config
   opts = {
     -- Buggy at the time of installation, so disable for now.
-    cmdline = { enabled = false },
+    cmdline = { enabled = vim.fn.has('wsl') ~= 1 },
     -- Includes the defaults, but I want to be explicit about them.
     snippets = { preset = 'luasnip' },
     sources = {
