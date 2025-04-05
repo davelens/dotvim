@@ -81,6 +81,20 @@ autocmd('FileType', {
   end,
 })
 
+-- No relative number for empty buffers.
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  callback = function()
+    if
+      vim.bo.buftype ~= ''
+      or vim.api.nvim_buf_line_count(0) == 1
+        and vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] == ''
+    then
+      vim.opt_local.number = false
+      vim.opt_local.relativenumber = false
+    end
+  end,
+})
+
 -- Generic buffer close toggler for qf, vim-fugitive, help, etc,...
 -- Hard bound on `q`.
 -- Idea taken from folke's nvim config, but altered so `q` works in any buffer.
