@@ -111,7 +111,18 @@ return {
     -- I prefer to see docs where available.
     completion = {
       documentation = { auto_show = true },
-      list = { selection = { preselect = false, auto_insert = false } },
+      list = {
+        selection = {
+          auto_insert = false,
+          preselect = function(_)
+            -- Preselect in embedded language filetypes only.
+            return vim.tbl_contains(
+              { 'eruby', 'heex', 'eelixir' },
+              vim.bo.filetype
+            )
+          end,
+        },
+      },
     },
   },
   opts_extend = { 'sources.default' },
