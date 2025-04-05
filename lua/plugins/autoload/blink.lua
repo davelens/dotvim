@@ -16,6 +16,13 @@ return {
     sources = {
       default = { 'lsp', 'path', 'snippets', 'copilot', 'buffer' },
       providers = {
+        snippets = {
+          -- Snippets beginning with ';' should always come out on top.
+          -- Keeping until [#1340](https://github.com/Saghen/blink.cmp/issues/1340) is fixed.
+          score_offset = function(tbl)
+            return (tbl.line:sub(1, 1) == ';' and 200 or 1)
+          end,
+        },
         copilot = {
           name = 'copilot',
           module = 'blink-cmp-copilot',
