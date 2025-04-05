@@ -1,0 +1,12 @@
+{
+    "render": {
+        "prefix": ";r",
+        "body": ["<%= $1 %>"],
+        "description": "Inline execution + output [r]endering of Ruby in eruby files."
+    },
+    "exec": {
+        "prefix": ";e",
+        "body": ["<% $1 %>"],
+        "description": "Inline [e]xecution of Ruby in eruby files."
+    }
+}
