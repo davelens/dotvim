@@ -17,6 +17,7 @@ return {
       },
     },
     image = { enabled = true },
+    indent = { enabled = true },
     notifier = { enabled = true },
     picker = { enabled = true },
     -- Explicitly disable all the others.
@@ -24,7 +25,6 @@ return {
     bigfile = { enabled = false },
     dim = { enabled = false },
     gitbrowse = { enabled = false },
-    indent = { enabled = true },
     input = { enabled = false },
     layout = { enabled = false },
     lazygit = { enabled = false },
