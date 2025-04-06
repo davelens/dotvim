@@ -68,5 +68,15 @@ _G.dvim.cursor = require('config.functions.cursor')
 _G.dvim.buffers = require('config.functions.buffers')
 _G.dvim.utils = require('config.functions.utils')
 
--- Global alias for quick debugging
-dd = _G.dvim.utils.dump
+-- Global aliases for quick debugging
+-- These should be used for quick dumping of vars.
+-- For debugging in functions, just use Snacks.debug's DSL.
+_G.dd = function(...)
+  Snacks.debug.inspect(...)
+end
+_G.bt = function(...)
+  Snacks.debug.backtrace(...)
+end
+
+-- Override Neovim's built-in print so `:=` also uses dd().
+vim.print = _G.dd
