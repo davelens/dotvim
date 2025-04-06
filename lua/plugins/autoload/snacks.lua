@@ -50,6 +50,7 @@ return {
     { '<leader>ff', function() Snacks.picker.files() end, desc = '[F]ind [f]iles' },
     { '<leader>fg', function() Snacks.picker.grep() end, desc = '[G]rep' },
     { '<leader>fh', function() Snacks.picker.help() end, desc = '[F]ind [h]elp' },
+    { '<leader>fn', function() Snacks.picker.notifications() end, desc = '[F]ind in [n]otifications history', mode = { 'n', 'x' } },
     { '<leader>fu', function() Snacks.picker.undo() end, desc = '[F]ind in [u]ndofile history', mode = { 'n', 'x' } },
 
     {
