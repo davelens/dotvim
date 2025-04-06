@@ -27,10 +27,6 @@ map('n', '<leader>x', '<Esc>:q!<CR>', { desc = 'E[x]it without saving' })
 map('v', '>', '>gv', { noremap = true })
 map('v', '<', '<gv', { noremap = true })
 
--- Hop from method to method.
-map('n', '<C-n>', ']]')
-map('n', '<C-p>', '[[')
-
 -- Less finger wrecking window navigation.
 -- NOTE: using <TAB> messes with <C-i> in normal mode, since <C-i> is the same
 -- as <TAB> in ASCII. I need to look into working around this, but for now
