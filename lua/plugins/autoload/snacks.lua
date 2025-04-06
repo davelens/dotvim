@@ -20,6 +20,7 @@ return {
     indent = { enabled = true },
     notifier = { enabled = true },
     picker = { enabled = true },
+    words = { enabled = true },
     -- Explicitly disable all the others.
     animate = { enabled = false },
     bigfile = { enabled = false },
@@ -37,7 +38,6 @@ return {
     terminal = { enabled = false },
     toggle = { enabled = false },
     win = { enabled = false },
-    words = { enabled = false },
     zen = { enabled = false },
     styles = { enabled = false },
   },
