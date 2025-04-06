@@ -87,11 +87,11 @@ map(
   'n',
   '<leader>de',
   vim.diagnostic.open_float,
-  { desc = 'Show diagnostic [E]rror message' }
+  { desc = 'Show [D]iagnostic [E]rror message' }
 )
 map(
   'n',
   '<leader>dq',
   vim.diagnostic.setqflist,
-  { desc = 'Open diagnostic [Q]uickfix' }
+  { desc = 'Open [D]iagnostic [Q]uickfix' }
 )
