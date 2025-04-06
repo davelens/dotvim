@@ -6,7 +6,6 @@ return {
   opts = {
     dashboard = {
       enabled = true,
-      wo = { statusline = '', winbar = '' },
       sections = {
         {
           section = 'terminal',
