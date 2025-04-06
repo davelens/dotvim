@@ -79,7 +79,12 @@ function M.load(opts)
   }, opts)
 
   require('lazy').setup(opts)
-  vim.keymap.set('n', opts.keymap, '<cmd>Lazy<cr>')
+  vim.keymap.set(
+    'n',
+    opts.keymap,
+    '<cmd>Lazy<cr>',
+    { desc = 'Open [L]azy overview' }
+  )
 end
 
 return M
