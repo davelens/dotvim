@@ -4,13 +4,25 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    dashboard = {
+      enabled = true,
+      wo = { statusline = '', winbar = '' },
+      sections = {
+        {
+          section = 'terminal',
+          cmd = 'lolcat --seed=29 $XDG_CONFIG_HOME/dvim/logo.cat',
+          indent = 15,
+        },
+        { section = 'keys', gap = 1, padding = 3 },
+        { section = 'startup', gap = 1 },
+      },
+    },
     image = { enabled = true },
     notifier = { enabled = true },
     picker = { enabled = true },
     -- Explicitly disable all the others.
     animate = { enabled = false },
     bigfile = { enabled = false },
-    dashboard = { enabled = false },
     dim = { enabled = false },
     gitbrowse = { enabled = false },
     indent = { enabled = true },
