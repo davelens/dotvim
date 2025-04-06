@@ -65,7 +65,7 @@ map(
 -- Quickfix maps
 map('n', '<leader>qc', function()
   vim.fn.setqflist({})
-end, { desc = '[Q]quickfix [c]lear list', noremap = true, silent = true })
+end, { desc = '[Q]uickfix [c]lear list', noremap = true, silent = true })
 
 -- Diagnostic maps
 map(
