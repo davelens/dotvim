@@ -40,10 +40,6 @@ map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 -- Clear search highlighting when pressing <Esc>
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Easy paste/nopaste
-map('n', '<F5>', ':set paste<CR>')
-map('n', '<F6>', ':set nopaste<CR>')
-
 -- Buffer maps
 map(
   'n',
