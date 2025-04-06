@@ -41,6 +41,7 @@ return {
         'eex',
         'heex',
         'ruby',
+        'regex',
         'puppet',
         'html',
         'css',
