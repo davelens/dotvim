@@ -51,11 +51,6 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<F5>', ':set paste<CR>')
 map('n', '<F6>', ':set nopaste<CR>')
 
--- Underline current line
-map('n', '<leader>=', 'yypVr=')
-map('n', '<leader>-', 'yypVr-')
-map('n', '<leader>*', 'yypVr*')
-
 -- Buffer maps
 map(
   'n',
