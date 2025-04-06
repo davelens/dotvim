@@ -27,7 +27,11 @@ function buffers.delete_hidden()
   -- Iterate through all buffers and delete the hidden ones
   for buf = 1, vim.fn.bufnr('$') do
     if vim.fn.bufexists(buf) == 1 and vim.fn.index(tpbl, buf) == -1 then
-      vim.cmd('silent bwipeout ' .. buf)
+      if Snacks then
+        Snacks.bufdelete(buf) -- Preserves window layout.
+      else
+        vim.cmd('silent bwipeout ' .. buf)
+      end
     end
   end
 end
