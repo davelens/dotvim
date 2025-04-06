@@ -112,6 +112,7 @@ local special_filetypes = {
   'oil',
   'PlenaryTestPopup',
   'qf',
+  'query',
 }
 
 local function q_handler()
