@@ -41,9 +41,6 @@ map('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
 map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 
--- Toggles search highlighting
-map('n', '<F3>', ':set hlsearch!<CR>')
-
 -- Clear search highlighting when pressing <Esc>
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
