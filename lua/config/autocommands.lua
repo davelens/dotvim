@@ -157,7 +157,12 @@ local function q_handler()
       for _, win in ipairs(special_wins) do
         local buf = vim.api.nvim_win_get_buf(win)
         vim.api.nvim_win_close(win, true)
-        pcall(vim.api.nvim_buf_delete, buf, { force = true })
+
+        if Snacks then
+          pcall(Snacks.bufdelete, buf, { force = true })
+        else
+          pcall(vim.api.nvim_buf_delete, buf, { force = true })
+        end
       end
     end)
     return ''
