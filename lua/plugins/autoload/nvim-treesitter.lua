@@ -50,6 +50,7 @@ return {
         'yaml',
         'dockerfile',
         'embedded_template',
+        'markdown',
       },
 
       highlight = {
