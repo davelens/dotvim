@@ -6,5 +6,4 @@ return {
   'tpope/vim-repeat', -- Extended repeat functionality through `.`
   'tpope/vim-surround', -- Maps to manipulate brackets, parens, quotes,..
   'tpope/vim-unimpaired', -- Complementary maps for quickfix, lists, options
-  { 'j-hui/fidget.nvim', opts = {} }, -- Unintrusive feedback window in the bottom right
 }
