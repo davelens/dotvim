@@ -28,14 +28,13 @@ map('v', '>', '>gv', { noremap = true })
 map('v', '<', '<gv', { noremap = true })
 
 -- Less finger wrecking window navigation.
--- NOTE: using <TAB> messes with <C-i> in normal mode, since <C-i> is the same
--- as <TAB> in ASCII. I need to look into working around this, but for now
--- just leave it as is.
---map('n', '<TAB>', '<C-w>w', { desc = 'Cycle windows' })
 map('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
 map('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
 map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
+-- NOTE: mapping <TAB> messes with <C-i> in normal mode, since that's the
+-- equivalent of <TAB> in ASCII. Just use <C-w>w for now.
+--map('n', '<TAB>', '<C-w>w', { desc = 'Cycle windows' })
 
 -- Clear search highlighting when pressing <Esc>
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
