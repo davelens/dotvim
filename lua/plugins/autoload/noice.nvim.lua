@@ -1,5 +1,6 @@
 return {
   'folke/noice.nvim',
+  dependencies = { 'MunifTanjim/nui.nvim' },
   event = 'VeryLazy',
   opts = {
     lsp = {
@@ -9,9 +10,10 @@ return {
         ['vim.lsp.util.stylize_markdown'] = true,
       },
     },
-  },
-  dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    'MunifTanjim/nui.nvim',
+    views = {
+      cmdline_popup = {
+        position = { row = 5 },
+      },
+    },
   },
 }
