@@ -1,6 +1,7 @@
 return {
   'folke/trouble.nvim',
   opts = {},
+  event = 'VeryLazy',
   cmd = 'Trouble',
   keys = {
     { ']t', '<cmd>Trouble next<cr><cmd>Trouble jump<cr>', { silent = true } },

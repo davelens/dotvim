@@ -3,10 +3,10 @@ return {
   version = '1.*',
   event = 'InsertEnter',
   dependencies = {
-    {
-      'giuxtaposition/blink-cmp-copilot',
-    },
+    'giuxtaposition/blink-cmp-copilot',
   },
+  opts_extend = { 'sources.default' },
+
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -126,5 +126,4 @@ return {
       },
     },
   },
-  opts_extend = { 'sources.default' },
 }

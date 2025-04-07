@@ -22,7 +22,7 @@ return {
 
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'VeryLazy',
     opts = {
       ensure_installed = {
         'bash',
@@ -121,6 +121,7 @@ return {
     -- That's why this uses a config function.
     -- https://github.com/windwp/nvim-ts-autotag?tab=readme-ov-file#setup
     'windwp/nvim-ts-autotag',
+    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
     config = function()
       require('nvim-ts-autotag').setup({
         opts = {

@@ -1,6 +1,7 @@
 return {
   'catppuccin/nvim',
   flavour = 'auto', -- latte, frappe, macchiato (default), mocha
+  event = 'VeryLazy',
   name = 'catppuccin',
   priority = 1000,
   opts = {
