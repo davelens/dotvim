@@ -11,9 +11,9 @@ return {
     Lua = {
       format = { enable = false },
       runtime = {
-        -- TODO: Change version depending on context. Neovim uses 5.1 and that's
-        -- my main usecase, so default to 5.1 for now.
-        version = 'Lua 5.1',
+        -- My main usecase is neovim, which uses Lua 5.1. LuaJIT is compatible
+        -- with that version, so that's what we'll use.
+        version = 'LuaJIT',
       },
       diagnostics = {
         globals = { 'vim', 'Snacks', 'dvim' },
