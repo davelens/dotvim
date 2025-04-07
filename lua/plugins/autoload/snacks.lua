@@ -10,7 +10,7 @@ return {
         {
           section = 'terminal',
           cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=29 $XDG_CONFIG_HOME/dvim/assets/logo.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo.cat',
-          indent = 15,
+          indent = 14,
         },
         { section = 'keys', gap = 1, padding = 3 },
         { section = 'startup', gap = 1 },
