@@ -36,6 +36,7 @@ return {
     { 'gy', function() Snacks.picker.lsp_type_definitions() end, desc = '[G]oto T[y]pe Definition' },
     { '<leader>fg', function() Snacks.picker.grep() end, desc = '[G]rep' },
     { '<leader>fb', function() Snacks.picker.buffers() end, desc = '[F]ind [b]uffers' },
+    { '<leader>fc', function() Snacks.picker.files({title = 'Neovim config files', cwd = vim.fn.stdpath('config')}) end, desc = '[F]ind [c]onfig files' },
     { '<leader>ff', function() Snacks.picker.files() end, desc = '[F]ind [f]iles' },
     { '<leader>fn', function() Snacks.picker.notifications() end, desc = '[F]ind in [n]otifications history', mode = { 'n', 'x' } },
     { '<leader>fu', function() Snacks.picker.undo() end, desc = '[F]ind in [u]ndofile history', mode = { 'n', 'x' } },
