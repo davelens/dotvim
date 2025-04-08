@@ -51,11 +51,11 @@ return {
     scratch = { enabled = false },
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
+    styles = { enabled = false },
     terminal = { enabled = false },
     toggle = { enabled = false },
     win = { enabled = false },
     zen = { enabled = false },
-    styles = { enabled = false },
   },
   keys = {
     { 'gd', function() Snacks.picker.lsp_definitions() end, desc = '[G]oto [D]efinition' },
