@@ -16,13 +16,17 @@ return {
         DiagnosticInfo = { fg = colors.lavender },
         DiagnosticSignInfo = { fg = colors.lavender },
         DiagnosticSignWarning = { fg = colors.lavender },
-        -- Default color for float borders.
+        -- Default color for borders on floats.
         FloatBorder = { fg = colors.lavender },
+        -- Snacks overrides
         SnacksDashboardIcon = { fg = colors.lavender },
         SnacksDashboardDesc = { fg = colors.lavender },
         SnacksDashboardKey = { fg = colors.lavender },
         SnacksDashboardFooter = { fg = colors.text },
         SnacksDashboardSpecial = { fg = colors.lavender },
+        SnacksIndent = { fg = colors.overlay0 },
+        SnacksIndentScope = { fg = colors.subtext0 },
+        SnacksIndentChunk = { fg = colors.subtext0 },
       }
     end,
   },
