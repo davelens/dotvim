@@ -51,8 +51,9 @@ return {
   sections = {
     {
       section = 'terminal',
-      cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=29 $XDG_CONFIG_HOME/dvim/assets/logo.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo.cat',
-      indent = 14,
+      cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=40 --spread=6 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-lol.cat',
+      height = 20,
+      indent = 9,
     },
     { section = 'keys', gap = 1, padding = 3 },
     { section = 'startup', gap = 1 },
