@@ -29,6 +29,7 @@ return {
       gap = 1,
       { icon = ' ', key = 'c', desc = 'Neovim',        action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})", },
       { icon = '󰒲 ', key = 'l', desc = 'Lazy',          action = ':Lazy', enabled = package.loaded.lazy ~= nil },
+      { icon = '⛨ ', key = 'h', desc = 'Check health',  action = ':checkhealth' },
     },
     { section = 'startup', gap = 1 },
   },
