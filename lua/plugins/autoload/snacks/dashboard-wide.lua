@@ -6,7 +6,8 @@ return {
     {
       pane = 1,
       section = 'terminal',
-      cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=40 --spread=20 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat',
+      -- cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=40 --spread=20 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat',
+      cmd = '$XDG_CONFIG_HOME/dvim/lua/plugins/autoload/snacks/animate-logo $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat',
       height = 20,
       indent = 41,
       padding = 0,
@@ -14,7 +15,8 @@ return {
     {
       pane = 2,
       section = 'terminal',
-      cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=40 --spread=20 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat',
+      -- cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=40 --spread=20 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat',
+      cmd = '$XDG_CONFIG_HOME/dvim/lua/plugins/autoload/snacks/animate-logo $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat',
       height = 20,
       indent = -4,
       padding = 0,
