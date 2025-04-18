@@ -21,7 +21,7 @@ return {
     -- PANE 1
     {
       title = "Actions\n ",
-      gap = 1, indent = 1, padding = 1,
+      gap = 1, indent = 1, padding = 2,
       { icon = ' ', key = 'n', desc = 'New File',      action = ':ene | startinsert' },
       { icon = ' ', key = 'r', desc = 'Recent Files',  action = ":lua Snacks.dashboard.pick('oldfiles')" },
       { icon = ' ', key = 'f', desc = 'Find File',     action = ":lua Snacks.dashboard.pick('files')" },
@@ -45,7 +45,7 @@ return {
       { section = 'terminal', cmd = 'echo && git changes' },
     },
 
-    { section = 'startup', indent = 59 },
+    { section = 'startup', indent = 60 },
 
     -- PANE 2
     function()
