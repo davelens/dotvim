@@ -1,28 +1,28 @@
 return {
   enabled = true,
   width = 60,
+  formats = {
+    key = function(item)
+      return {
+        { '[', hl = 'special' },
+        { item.key, hl = 'key' },
+        { ']', hl = 'special' },
+      }
+    end,
+  },
   -- stylua: ignore
   sections = {
     {
-      pane = 1,
       section = 'terminal',
-      -- cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=40 --spread=20 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat',
-      cmd = '$XDG_CONFIG_HOME/dvim/lua/plugins/autoload/snacks/animate-logo $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-1.cat',
+      cmd = '$XDG_CONFIG_HOME/dvim/lua/plugins/autoload/snacks/animate-logo $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = 20,
       indent = 41,
       padding = 0,
+      width = 100,
     },
+
+    -- PANE 1
     {
-      pane = 2,
-      section = 'terminal',
-      -- cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=40 --spread=20 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat',
-      cmd = '$XDG_CONFIG_HOME/dvim/lua/plugins/autoload/snacks/animate-logo $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-half-2.cat',
-      height = 20,
-      indent = -4,
-      padding = 0,
-    },
-    {
-      pane = 1,
       title = "Actions\n ",
       indent = 1,
       gap = 1,
@@ -34,7 +34,6 @@ return {
       { icon = ' ', key = 'q', desc = 'Quit',          action = ':qa' },
     },
     {
-      pane = 1,
       title = "Configuration\n ",
       indent = 1,
       padding = 2,
@@ -43,18 +42,44 @@ return {
       { icon = '󰒲 ', key = 'l', desc = 'Lazy',          action = ':Lazy', enabled = package.loaded.lazy ~= nil },
       { icon = '⛨ ', key = 'h', desc = 'Check health',  action = ':checkhealth' },
     },
+    { section = 'terminal', cmd = '', gap = 10 },
+    { section = 'startup', indent = 59 },
+
+    -- PANE 2
     function()
       local in_git = Snacks.git.get_root() ~= nil
       local cmds = {
         {
-          title = "Git Status",
-          cmd = "git status",
-          height = 7,
+          height = 19
         },
         {
-          title = "Github PRs",
-          cmd = "gh pr list -L 3 --json number,title --template '{{range .}}{{tablerow (printf \"#%v\" .number | autocolor \"green\") .title}}{{end}}'",
-          height = 7,
+          title = "Project Status",
+          icon = ' ',
+          cmd = "echo && git status",
+          height = 5,
+          indent = 1
+        },
+        {
+          title = "Pull Requests",
+          icon = ' ',
+          key = 'p',
+          action = function()
+            vim.fn.jobstart("gh pr list --web", { detach = true })
+          end,
+          cmd = "echo && gh pr list -L 3 --json number,title --template '{{range .}}{{tablerow (printf \"#%v\" .number | autocolor \"green\") .title}}{{end}}'",
+          height = 5,
+          indent = 1
+        },
+        {
+          title = "Notifications",
+          icon = ' ',
+          key = 'm',
+          action = function()
+            vim.ui.open("https://github.com/notifications")
+          end,
+          cmd = "echo && gh notify -s -a -n4 | awk '{  printf \"%s %s %-40s\\n\", $2, $3, $4; for (i = 8; i <= NF; i++) printf \"%s \", $i; printf \"\\n\" }'",
+          height = 10,
+          indent = 1
         },
       }
       return vim.tbl_map(function(cmd)
@@ -68,6 +93,5 @@ return {
         }, cmd)
       end, cmds)
     end,
-    { pane = 2, section = 'startup', align = 'left', gap = 1 },
   },
 }
