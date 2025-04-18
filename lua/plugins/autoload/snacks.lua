@@ -39,6 +39,7 @@ return {
     { '<leader>fc', function() Snacks.picker.files({title = 'Neovim config files', cwd = vim.fn.stdpath('config')}) end, desc = '[F]ind [c]onfig files' },
     { '<leader>ff', function() Snacks.picker.files() end, desc = '[F]ind [f]iles' },
     { '<leader>fn', function() Snacks.picker.notifications() end, desc = '[F]ind in [n]otifications history', mode = { 'n', 'x' } },
+    { '<leader>fr', function() Snacks.picker.recent() end, desc = '[F]ind [r]ecent files', mode = { 'n', 'x' } },
     { '<leader>fu', function() Snacks.picker.undo() end, desc = '[F]ind in [u]ndofile history', mode = { 'n', 'x' } },
     { '<leader>fh', function() Snacks.picker.help() end, desc = '[F]ind [h]elp' },
 
