@@ -3,7 +3,7 @@ return {
   'folke/snacks.nvim',
   lazy = false,
   opts = {
-    dashboard = require('plugins.autoload.snacks.dashboard-wide'),
+    dashboard = require('plugins.autoload.snacks.dashboard-laptop'),
     image = { enabled = true },
     indent = { enabled = true },
     notifier = { enabled = true },
