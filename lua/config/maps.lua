@@ -36,6 +36,23 @@ map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 -- equivalent of <TAB> in ASCII. Just use <C-w>w for now.
 --map('n', '<TAB>', '<C-w>w', { desc = 'Cycle windows' })
 
+-- Resize buffers into a certain direction.
+map('n', '<S-h>', function()
+  dvim.buffers.shift_width('left')
+end, { desc = 'Shift width to the left' })
+
+map('n', '<S-l>', function()
+  dvim.buffers.shift_width('right')
+end, { desc = 'Shift width to the right' })
+
+map('n', '+', function()
+  dvim.buffers.shift_width('up')
+end)
+
+map('n', '-', function()
+  dvim.buffers.shift_width('down')
+end)
+
 -- Clear search highlighting when pressing <Esc>
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
