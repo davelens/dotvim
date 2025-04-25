@@ -80,7 +80,9 @@ return {
           section = 'terminal',
           indent = 1, padding = 1,
           ttl = 5 * 60,
-          enabled = function() return Snacks.git.get_root() ~= nil end,
+          enabled = function()
+            return Snacks.git.get_root() ~= nil and vim.o.columns >= 120
+          end,
         }, cmd)
       end, cmds)
     end,
