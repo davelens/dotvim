@@ -5,7 +5,7 @@ return {
   sections = {
     {
       section = 'terminal',
-      cmd = '([[ "$(command -v lolcat)" ]] && lolcat --seed=55 --spread=4 $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat) || cat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl-lol.cat',
+      cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = 20,
       indent = 6,
       padding = 0,

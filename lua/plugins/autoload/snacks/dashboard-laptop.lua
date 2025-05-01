@@ -16,14 +16,6 @@ return {
       section = 'terminal',
       cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = 20, indent = 10, padding = 0,
-      enabled = vim.fn.system('pmset -g batt | grep discharging >/dev/null && echo 1') ~= '1'
-    },
-
-    {
-      section = 'terminal',
-      cmd = 'utility misc rgb $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
-      height = 20, indent = 10, padding = 0,
-      enabled = vim.fn.system('pmset -g batt | grep discharging >/dev/null && echo 1') == '1'
     },
 
     -- PANE 1
