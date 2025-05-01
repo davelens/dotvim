@@ -42,7 +42,10 @@ return {
     -- PANE 2
     function()
       local cmds = {
-        { cmd = '', height = 5 },
+        {
+          cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
+          indent = 11, height = 8
+        },
         {
           icon = ' ', title = 'Git status',
           indent = 1, height = 7,
@@ -52,8 +55,8 @@ return {
 
         {
           icon = ' ', title = 'Pull requests',
-          indent = 1, height = 10,
-          cmd = 'echo && git prs',
+          indent = 1, height = 3,
+          cmd = 'echo && git prs -n',
           key = 'p', action = function()
             vim.fn.jobstart("gh pr list --web", { detach = true })
           end,
