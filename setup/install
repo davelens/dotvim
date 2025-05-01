@@ -3,45 +3,77 @@
 # Stops further execution after any error.
 set -e
 
-readonly SETUP_DIR=$(dirname "$(realpath "$0")")
+SETUP_DIR=$(dirname "$(realpath "$0")")
+ROOT_DIR="$(dirname "$SETUP_DIR")"
+XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
 source "${SETUP_DIR}/helpers.sh"
 
-[ ! -d "${HOME}/.local/bin" ] && mkdir -p "${HOME}/.local/bin"
-
 # Check if ~/.local/bin is in $PATH so we can install getnf if necessary.
-if [[ ! $(echo $PATH | tr ':' '\n' | grep -x "$HOME/.local/bin") ]]; then
-  echo "$(cross) ERROR: ~/.local/bin needs to be in your \$PATH."
-  exit
-fi
+function prep_local_bin {
+  [ ! -d "$XDG_BIN_HOME" ] && mkdir -p "$XDG_BIN_HOME"
 
-echo "$(check) ~/.local/bin is in \$PATH"
+  if [[ ! $(echo $PATH | tr ':' '\n' | grep -x "$XDG_BIN_HOME") ]]; then
+    echo "$(cross) ERROR: $XDG_BIN_HOME needs to be in your \$PATH."
+    exit
+  fi
 
-if [ $(uname -s) == 'darwin' ]; then
-  readonly FONTS_DIR="${HOME}/Library/Fonts"
-else
-  readonly FONTS_DIR="${XDG_DATA_HOME}/fonts"
-fi
+  echo "$(check) ~/.local/bin is in \$PATH"
+}
 
-# Install getnf if not already installed.
-if [ ! -f "${HOME}/.local/bin/getnf" ]; then
-  curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
-fi
+function prep_fonts_dir {
+  if [ "$(uname -s)" == 'darwin' ]; then
+    readonly FONTS_DIR="${HOME}/Library/Fonts"
+  else
+    readonly FONTS_DIR="${XDG_DATA_HOME}/fonts"
+  fi
+}
 
-echo "$(check) getnf is installed"
+function install_fonts {
+  # Install getnf if not already installed.
+  if [ ! -f "${HOME}/.local/bin/getnf" ]; then
+    curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
+  fi
 
-[ ! -d "${FONTS_DIR}/DroidSansMono" ] && getnf -i DroidSansMono 
-[ ! -d "${FONTS_DIR}/Hack" ] && getnf -i Hack 
+  echo "$(check) getnf is installed"
 
-echo "$(check) Nerd fonts installed"
+  [ ! -d "${FONTS_DIR}/DroidSansMono" ] && getnf -i DroidSansMono
+  [ ! -d "${FONTS_DIR}/Hack" ] && getnf -i Hack
+  [ ! -d "${FONTS_DIR}/Noto" ] && getnf -i Noto
 
-[ ! -d "${DOTFILES_CONFIG_PATH}" ] && mkdir "${DOTFILES_CONFIG_PATH}"
-[ ! -d "${DOTFILES_CONFIG_PATH}/dvim" ] && ln -s $(dirname ${SETUP_DIR}) "${DOTFILES_CONFIG_PATH}/dvim"
+  echo "$(check) Nerd fonts installed"
+}
 
-echo "$(check) Symlinks are present in ${DOTFILES_CONFIG_PATH}"
+function prep_install_dir {
+  # if [[ ! $(echo $PATH | tr ':' '\n' | grep -x "$HOME/.local/bin") ]]; then
+  #   echo
+  # fi
 
-if [ ! -f ${HOME}/.local/bin/dvim ]; then
-  cat >> ${HOME}/.local/bin/dvim<< EOF
+  [ ! -d "$XDG_CONFIG_HOME" ] && mkdir -p "$XDG_CONFIG_HOME"
+
+  DVIM_CONFIG_HOME="$XDG_CONFIG_HOME/dvim"
+  if [ -d "$DVIM_CONFIG_HOME" ]; then
+    echo "$(check) $DVIM_CONFIG_HOME already installed!"
+    exit
+  fi
+
+  ln -s "$ROOT_DIR" "$DVIM_CONFIG_HOME"
+  echo "$(check) Symlinks are present in $DVIM_CONFIG_HOME"
+}
+
+###############################################################################
+
+function main() {
+  XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+  FONTS_DIR=
+
+  prep_local_bin
+  prep_fonts_dir
+  prep_install_dir
+  install_fonts
+
+  if [ ! -f "${HOME}/.local/bin/dvim" ]; then
+    cat >>"${HOME}"/.local/bin/dvim <<EOF
 #!/usr/bin/env bash
 
 export NVIM_APPNAME=\${NVIM_APPNAME:-"dvim"}
@@ -49,8 +81,11 @@ exec -a "\$NVIM_APPNAME" nvim -u "~/.config/dvim/init.lua" "\$@"
 
 echo 'Done.'
 EOF
-  chmod +x ${HOME}/.local/bin/dvim
-  echo "$(check) Created ~/.local/bin/dvim executable"
-fi
+    chmod +x "${HOME}/.local/bin/dvim"
+    echo "$(check) Created ${DVIM_CONFIG_HOME/"$HOME"/\~} executable"
+  fi
 
-echo "$(check) dvim successfully installed"
+  echo "$(check) dvim successfully installed"
+}
+
+main "$@"
