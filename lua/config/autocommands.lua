@@ -101,6 +101,7 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 local special_filetypes = {
   'checkhealth',
   'fugitive',
+  'fugitiveblame',
   'git',
   'gitsigns-blame',
   'help',
