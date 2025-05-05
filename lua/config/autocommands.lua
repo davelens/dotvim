@@ -99,6 +99,7 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 -- Hard bound on `q`.
 -- Idea taken from folke's nvim config, but altered so `q` works in any buffer.
 local special_filetypes = {
+  'aerial',
   'checkhealth',
   'fugitive',
   'fugitiveblame',
