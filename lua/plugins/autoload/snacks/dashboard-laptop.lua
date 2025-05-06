@@ -1,3 +1,7 @@
+function big_viewport()
+  return vim.o.columns >= 125 and vim.o.lines >= 45
+end
+
 return {
   enabled = true,
   width = 60,
@@ -15,7 +19,8 @@ return {
     {
       section = 'terminal',
       cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
-      height = 20, indent = 10, padding = 0,
+      height = big_viewport() and 20 or 2, indent = 10, padding = 0,
+      enabled = big_viewport
     },
 
     -- PANE 1
@@ -44,7 +49,8 @@ return {
       local cmds = {
         {
           cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
-          indent = 11, height = 8
+          indent = 11, height = big_viewport() and 8 or 2,
+          enabled = big_viewport
         },
         {
           icon = ' ', title = 'Git status',
@@ -83,9 +89,7 @@ return {
           section = 'terminal',
           indent = 1, padding = 1,
           ttl = 5 * 60,
-          enabled = function()
-            return Snacks.git.get_root() ~= nil and vim.o.columns >= 120
-          end,
+          enabled = Snacks.git.get_root() ~= nil
         }, cmd)
       end, cmds)
     end,
