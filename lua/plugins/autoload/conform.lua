@@ -21,6 +21,8 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       sh = { 'shfmt' },
+      html = { 'htmlbeautifier' },
+      erb = { 'htmlbeautifier' },
     },
   },
 }
