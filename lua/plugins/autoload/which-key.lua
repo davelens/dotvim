@@ -3,6 +3,10 @@ return {
   event = 'VeryLazy',
   opts = {
     preset = 'helix',
+    win = {
+      -- border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
+      border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
+    },
   },
   keys = {
     {
