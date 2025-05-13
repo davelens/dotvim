@@ -16,7 +16,6 @@ return {
     dim = { enabled = false },
     gitbrowse = { enabled = false },
     input = { enabled = false },
-    layout = { enabled = false },
     lazygit = { enabled = false },
     profiler = { enabled = false },
     quickfile = { enabled = false },
