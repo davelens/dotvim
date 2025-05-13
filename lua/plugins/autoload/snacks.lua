@@ -8,6 +8,7 @@ return {
     indent = { enabled = true },
     notifier = { enabled = true },
     picker = { enabled = true },
+    styles = { notification = { border = 'single' } },
     words = { enabled = true },
     -- Explicitly disable all the others.
     animate = { enabled = false },
@@ -23,7 +24,6 @@ return {
     scratch = { enabled = false },
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
-    styles = { enabled = false },
     terminal = { enabled = false },
     toggle = { enabled = false },
     win = { enabled = false },
