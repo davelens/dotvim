@@ -2,6 +2,9 @@ return {
   'stevearc/oil.nvim',
   ---@module 'oil'
   opts = {
+    float = {
+      border = 'single',
+    },
     view_options = {
       show_hidden = true,
     },
