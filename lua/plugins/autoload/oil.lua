@@ -1,7 +1,11 @@
 return {
   'stevearc/oil.nvim',
   ---@module 'oil'
-  opts = {},
+  opts = {
+    view_options = {
+      show_hidden = true,
+    },
+  },
   keys = {
     {
       '<leader>o',
