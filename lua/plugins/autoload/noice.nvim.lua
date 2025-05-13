@@ -13,6 +13,7 @@ return {
     views = {
       cmdline_popup = {
         position = { row = 5 },
+        border = { style = 'single' },
       },
     },
   },
