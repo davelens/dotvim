@@ -115,6 +115,7 @@ local special_filetypes = {
   'PlenaryTestPopup',
   'qf',
   'query',
+  'snacks_notif',
 }
 
 local function q_handler()
