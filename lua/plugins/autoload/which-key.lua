@@ -4,8 +4,9 @@ return {
   opts = {
     preset = 'helix',
     win = {
+      border = 'single',
+      -- This is like `double` but "fuller". Don't think it has a preset name.
       -- border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
-      border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
     },
   },
   keys = {
