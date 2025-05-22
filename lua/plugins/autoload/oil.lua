@@ -4,6 +4,8 @@ return {
   opts = {
     float = {
       border = 'single',
+      max_width = 79,
+      max_height = math.floor(vim.o.lines * 0.6),
     },
     view_options = {
       show_hidden = true,
