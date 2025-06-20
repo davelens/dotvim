@@ -2,8 +2,16 @@ local rails = {
   routes = {},
 }
 
+function rails.present()
+  return vim.fn.findfile('config.ru', '.;') ~= ''
+end
+
 -- Helper to shell out and collect your *_path / *_url helpers
 function rails.load_routes()
+  if not rails.present() then
+    return {}
+  end
+
   local ruby = [[
     routes = Rails.application.routes.routes.each_with_object({}) do |route, h|
       next if route.name.nil? || route.name.empty?
