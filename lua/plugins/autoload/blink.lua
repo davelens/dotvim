@@ -15,8 +15,18 @@ return {
     -- Includes the defaults, but I want to be explicit about them.
     snippets = { preset = 'luasnip' },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'copilot', 'buffer' },
+      default = {
+        'lsp',
+        'rails_routes',
+        'path',
+        'snippets',
+        'copilot',
+        'buffer',
+      },
       providers = {
+        rails_routes = {
+          module = 'config/lsp/rails_routes',
+        },
         snippets = {
           -- Snippets beginning with ';' should always come out on top.
           -- Keeping until [#1340](https://github.com/Saghen/blink.cmp/issues/1340) is fixed.
