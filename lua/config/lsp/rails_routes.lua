@@ -7,12 +7,17 @@ function source.new(_) -- No opts required, I just want a routes dump.
   local self = setmetatable({ routes = {} }, { __index = source })
   self.routes = rails.load_routes()
 
-  vim.api.nvim_create_autocmd('BufWritePost', {
-    pattern = 'config/routes.rb',
-    callback = function()
-      return self.routes
-    end,
-  })
+  -- TODO: Add an auto-reload here when saving the routes
+  -- file. Probably do a file check, too. You can do:
+  --
+  --   Rails.application.reload_routes!
+  --
+  -- vim.api.nvim_create_autocmd('BufWritePost', {
+  --   pattern = 'config/routes.rb',
+  --   callback = function()
+  --     return self.routes
+  --   end,
+  -- })
 
   return self
 end
