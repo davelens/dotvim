@@ -18,7 +18,7 @@ return {
   sections = {
     {
       section = 'terminal',
-      cmd = 'sleep .3 && lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
+      cmd = 'sleep 1 && lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = big_viewport() and 20 or 2, indent = 10, padding = 0,
       enabled = big_viewport
     },
@@ -48,7 +48,7 @@ return {
     function()
       local cmds = {
         {
-          cmd = 'sleep .3 && lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
+          cmd = 'sleep 1 && lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
           indent = 11, height = big_viewport() and 8 or 2,
           enabled = big_viewport
         },
