@@ -33,7 +33,8 @@ end
 function source:get_completions(_, callback)
   local items = {}
   for _, line in ipairs(self.routes) do
-    local route, desc = line:match('^(.-)%|%|(.+)$')
+    local route, desc, controller, action =
+      line:match('^(.-)%|%|(.-)%|%|(.-)%|%|(.+)$')
 
     table.insert(items, {
       label = route,
@@ -41,7 +42,7 @@ function source:get_completions(_, callback)
       kind = require('blink.cmp.types').CompletionItemKind.Text,
       documentation = {
         kind = 'markdown',
-        value = 'Van `config/routes.rb`. Zet er hier nog een controller bij oid',
+        value = tostring(controller) .. ' => ' .. tostring(action),
       },
     })
   end

@@ -23,10 +23,16 @@ function rails.load_routes()
         uri_pattern.include?('/backend') ||
         uri_pattern.include?('/api')
 
-      h[helper] ||= route.path.spec.to_s.gsub(/\/nl/, '')
+      h[helper] ||= {
+        controller: route.defaults[:controller],
+        action: route.defaults[:action],
+        pattern: route.path.spec.to_s.gsub(/\/nl/, '')
+      }
     end
 
-    routes.each { |helper, pattern| puts "#{helper}||#{pattern}" }
+    routes.each do |helper, hash| 
+      puts "#{helper}||#{hash[:pattern]}||#{hash[:controller]}||#{hash[:action]}" 
+    end
   ]]
 
   -- Can probably use vim.fn.jobstart, but we have Plenary installed anyway.
