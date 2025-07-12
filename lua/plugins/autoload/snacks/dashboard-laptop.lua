@@ -18,7 +18,7 @@ return {
   sections = {
     {
       section = 'terminal',
-      cmd = 'sleep 1 && lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
+      cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = big_viewport() and 20 or 2, indent = 10, padding = 0,
       enabled = big_viewport
     },
@@ -48,7 +48,7 @@ return {
     function()
       local cmds = {
         {
-          cmd = 'sleep 1 && lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
+          cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
           indent = 11, height = big_viewport() and 8 or 2,
           enabled = big_viewport
         },
@@ -87,7 +87,7 @@ return {
         return vim.tbl_extend('force', {
           pane = 2,
           section = 'terminal',
-          indent = 1, padding = 1,
+          indent = 1, padding = 1, height = 11,
           ttl = 5 * 60,
           enabled = Snacks.git.get_root() ~= nil
         }, cmd)
