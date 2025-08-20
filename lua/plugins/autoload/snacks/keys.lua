@@ -12,6 +12,7 @@ return {
   { '<leader>fr', function() Snacks.picker.recent() end, desc = '[F]ind [r]ecent files', mode = { 'n', 'x' } },
   { '<leader>fu', function() Snacks.picker.undo() end, desc = '[F]ind in [u]ndofile history', mode = { 'n', 'x' } },
   { '<leader>fh', function() Snacks.picker.help() end, desc = '[F]ind [h]elp' },
+  { '<leader>fk', function() Snacks.picker.keymaps() end, desc = '[F]ind [k]eymaps' },
 
   {
     '<leader>fw',
