@@ -20,6 +20,7 @@ return {
       section = 'terminal',
       cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = big_viewport() and 20 or 2, indent = 10, padding = 0,
+      ttl = 0,
       enabled = big_viewport
     },
 
@@ -49,7 +50,7 @@ return {
       local cmds = {
         {
           cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
-          indent = 11, height = big_viewport() and 8 or 2,
+          indent = 11, height = big_viewport() and 9 or 2,
           enabled = big_viewport
         },
         {
@@ -88,7 +89,7 @@ return {
           pane = 2,
           section = 'terminal',
           indent = 1, padding = 1, height = 11,
-          ttl = 5 * 60,
+          ttl = 0,
           enabled = Snacks.git.get_root() ~= nil
         }, cmd)
       end, cmds)
