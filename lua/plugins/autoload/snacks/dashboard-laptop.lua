@@ -19,7 +19,7 @@ return {
     {
       section = 'terminal',
       cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
-      height = big_viewport() and 20 or 2, indent = 10, padding = 0,
+      height = 20, indent = 10, padding = 0,
       ttl = 0,
       enabled = big_viewport
     },
