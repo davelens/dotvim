@@ -20,8 +20,8 @@ for _, mode in ipairs({ 'n', 'v' }) do
 end
 
 -- Quick save and exit
-map('n', '<leader>s', '<Esc>:w<CR>', { desc = '[S]ave file' })
-map('n', '<leader>x', '<Esc>:q!<CR>', { desc = 'E[x]it without saving' })
+map('n', '<leader>s', '<cmd>w<CR>', { desc = '[S]ave file' })
+map('n', '<leader>x', '<cmd>q!<CR>', { desc = 'E[x]it without saving' })
 
 -- Do not exit visual mode when shifting
 map('v', '>', '>gv', { noremap = true })
@@ -79,13 +79,13 @@ end, { desc = '[Q]uickfix [c]lear list', noremap = true, silent = true })
 map(
   'n',
   '[q',
-  ':silent! w<CR>:cprev<CR>',
+  '<cmd>silent! w<CR><cmd>cprev<CR>',
   { desc = 'Go to previous [Q]uickfix message' }
 )
 map(
   'n',
   ']q',
-  ':silent! w<CR>:cnext<CR>',
+  '<cmd>silent! w<CR><cmd>cnext<CR>',
   { desc = 'Go to next [Q]uickfix message' }
 )
 map(
