@@ -112,3 +112,10 @@ map(
   vim.diagnostic.setqflist,
   { desc = 'Open [D]iagnostic [Q]uickfix' }
 )
+
+map(
+  'n',
+  'q',
+  dvim.load('config.functions.q').handler,
+  { expr = true, desc = 'Close special filetype buffer(s)' }
+)
