@@ -1,14 +1,21 @@
-autocmd = vim.api.nvim_create_autocmd
-function augroup(name)
-  return vim.api.nvim_create_augroup('augroup' .. name, { clear = true })
-end
+-- for _, m in ipairs({
+--   'config.autocommands.ui',
+--   'config.autocommands.editor',
+--   'config.autocommands.filetype_testing',
+--   'config.autocommands.filetype_js',
+--   'config.autocommands.numbers_empty',
+--   'config.autocommands.close_special',
+--   'config.autocommands.recording_feedback',
+-- }) do
+--   pcall(require, m)
+-- end
 
 -- This removes the mysterious padding around the neovim instance when the
 -- terminal background is different from the one set in Neovim.
 --
 -- https://old.reddit.com/r/neovim/comments/1ehidxy/you_can_remove_padding_around_neovim_instance/
-local fix_instance_padding = augroup('fix_instance_padding')
-autocmd({ 'UIEnter', 'ColorScheme' }, {
+local fix_instance_padding = dvim.utils.augroup('fix_instance_padding')
+dvim.utils.autocmd({ 'UIEnter', 'ColorScheme' }, {
   group = fix_instance_padding,
   callback = function()
     local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
@@ -18,7 +25,7 @@ autocmd({ 'UIEnter', 'ColorScheme' }, {
     io.write(string.format('\027]11;#%06x\027\\', normal.bg))
   end,
 })
-autocmd('UILeave', {
+dvim.utils.autocmd('UILeave', {
   group = fix_instance_padding,
   callback = function()
     io.write('\027]111\027\\')
@@ -26,26 +33,26 @@ autocmd('UILeave', {
 })
 
 -- turn off paste mode when leaving insert
-autocmd('InsertLeave', {
-  group = augroup('truly_no_paste'),
+dvim.utils.autocmd('InsertLeave', {
+  group = dvim.utils.augroup('truly_no_paste'),
   pattern = '*',
   command = 'set nopaste',
 })
 
 -- Momentarily highlight text upon yanking
-autocmd('TextYankPost', {
-  group = augroup('highlight_yank'),
+dvim.utils.autocmd('TextYankPost', {
+  group = dvim.utils.augroup('highlight_yank'),
   desc = 'Highlight when yanking (copying) text',
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
--- Define an augroup to manage the autocmds
-local tests_with_cr = augroup('run_tests_on_enter')
+-- Define an dvim.utils.augroup to manage the dvim.utils.autocmds
+local tests_with_cr = dvim.utils.augroup('run_tests_on_enter')
 
 -- Reserve <CR> for running :TestFile in Ruby, Elixir, and JavaScript files
-autocmd('FileType', {
+dvim.utils.autocmd('FileType', {
   group = tests_with_cr,
   pattern = { 'ruby', 'javascript' },
   callback = function()
@@ -59,17 +66,17 @@ autocmd('FileType', {
 })
 
 -- Unmap <CR> in Command-line mode, including for vim and terminal buffers
-autocmd('FileType', {
+dvim.utils.autocmd('FileType', {
   group = tests_with_cr,
   pattern = { 'vim' },
   callback = function()
-    nvim_buf_safe_del_keymap(0, 'n', '<CR>')
+    dvim.utils.nvim_buf_safe_del_keymap(0, 'n', '<CR>')
   end,
 })
 
 -- Map <leader>; to run buffers#append_semicolon() in JS files.
-autocmd('FileType', {
-  group = augroup('append_semicolon'),
+dvim.utils.autocmd('FileType', {
+  group = dvim.utils.augroup('append_semicolon'),
   pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   callback = function()
     vim.keymap.set(
@@ -82,7 +89,7 @@ autocmd('FileType', {
 })
 
 -- No relative number for empty buffers.
-vim.api.nvim_create_autocmd('BufWinEnter', {
+dvim.utils.autocmd('BufWinEnter', {
   callback = function()
     if
       vim.bo.buftype ~= ''
@@ -185,3 +192,22 @@ vim.keymap.set(
   q_handler,
   { expr = true, desc = 'Close special filetype buffer(s)' }
 )
+
+-- Show a message when macro recording starts/stops
+dvim.utils.autocmd('RecordingEnter', {
+  callback = function()
+    local reg = vim.fn.reg_recording()
+    if reg ~= '' then
+      vim.notify('Recording @' .. reg, vim.log.levels.INFO, { title = 'Macro' })
+    end
+  end,
+})
+
+dvim.utils.autocmd('RecordingLeave', {
+  callback = function()
+    -- defer a little so reg_recording() is already cleared
+    vim.schedule(function()
+      vim.notify('Recording stopped', vim.log.levels.INFO, { title = 'Macro' })
+    end)
+  end,
+})

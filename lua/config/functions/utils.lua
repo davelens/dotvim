@@ -1,5 +1,14 @@
 local M = {}
 
+-- I'm aliasing this now, but if the need arises I can force an entrypoint for
+-- when I'd want to hook things in/around autocommand registration.
+M.autocmd = vim.api.nvim_create_autocmd
+
+-- Aliasing some noodly syntax whilst namespacing augroups.
+function M.augroup(name)
+  return vim.api.nvim_create_augroup('augroup_' .. name, { clear = true })
+end
+
 -- Clears stale command-line characters.
 function M.print_redraw(...)
   vim.cmd('redraw')

@@ -13,10 +13,10 @@ return {
     },
   },
   init = function()
-    local group = augroup('vim-localorie')
+    local group = dvim.utils.augroup('vim-localorie')
 
     -- Shows the fully concatenated I18n identifier.
-    autocmd('CursorMoved', {
+    dvim.utils.autocmd('CursorMoved', {
       group = group,
       pattern = '*.yml',
       callback = function(_)
@@ -25,7 +25,7 @@ return {
     })
 
     -- Clean up the input line.
-    autocmd('BufLeave', {
+    dvim.utils.autocmd('BufLeave', {
       group = group,
       pattern = '*.yml',
       callback = function(_)

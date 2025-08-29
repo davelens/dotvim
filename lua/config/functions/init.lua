@@ -4,9 +4,9 @@ local function setup_dvim_autocommands(opts, callback_opts)
     return
   end
 
-  local group = augroup(opts.name)
+  local group = dvim.utils.augroup(opts.name)
 
-  autocmd(opts.event, {
+  dvim.utils.autocmd(opts.event, {
     group = group,
     pattern = opts.pattern,
     callback = function(_)
@@ -15,7 +15,7 @@ local function setup_dvim_autocommands(opts, callback_opts)
   })
 
   if opts.event == 'BufEnter' then
-    autocmd({ 'BufLeave', 'BufDelete', 'FocusLost' }, {
+    dvim.utils.autocmd({ 'BufLeave', 'BufDelete', 'FocusLost' }, {
       group = group,
       pattern = opts.pattern,
       callback = function(_)

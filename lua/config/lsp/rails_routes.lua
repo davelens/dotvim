@@ -12,7 +12,7 @@ function source.new(_) -- No opts required, I just want a routes dump.
   --
   --   Rails.application.reload_routes!
   --
-  -- vim.api.nvim_create_autocmd('BufWritePost', {
+  -- dvim.utils.autocmd('BufWritePost', {
   --   pattern = 'config/routes.rb',
   --   callback = function()
   --     return self.routes
