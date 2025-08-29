@@ -126,7 +126,8 @@ local function q_handler()
   local wins = vim.api.nvim_list_wins()
   local special_count = 0
   local gitcommit_found = false
-  local special_wins = {}
+  -- I want windows + buffers *before* scheduling.
+  local special_targets = {} ---@type { win: integer, buf: integer }[]
 
   for _, win in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -136,7 +137,7 @@ local function q_handler()
     end
     if vim.tbl_contains(special_filetypes, ft) then
       special_count = special_count + 1
-      table.insert(special_wins, win)
+      table.insert(special_targets, { win = win, buf = buf })
     end
   end
 
@@ -157,14 +158,18 @@ local function q_handler()
     end
 
     vim.schedule(function()
-      for _, win in ipairs(special_wins) do
-        local buf = vim.api.nvim_win_get_buf(win)
-        vim.api.nvim_win_close(win, true)
+      for _, t in ipairs(special_targets) do
+        -- Windows/buffers may be gone by now, so check before closing.
+        if t.win and vim.api.nvim_win_is_valid(t.win) then
+          pcall(vim.api.nvim_win_close, t.win, true)
+        end
 
-        if Snacks then
-          pcall(Snacks.bufdelete, buf, { force = true })
-        else
-          pcall(vim.api.nvim_buf_delete, buf, { force = true })
+        if t.buf and vim.api.nvim_buf_is_valid(t.buf) then
+          if Snacks then
+            pcall(Snacks.bufdelete, t.buf, { force = true })
+          else
+            pcall(vim.api.nvim_buf_delete, t.buf, { force = true })
+          end
         end
       end
     end)
