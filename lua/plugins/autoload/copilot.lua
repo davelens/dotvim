@@ -16,7 +16,14 @@ return {
     'sh',
   },
   opts = {
-    suggestion = { enabled = false },
+    suggestion = {
+      enabled = true,
+      auto_trigger = false,
+      keymap = {
+        next = '<C-n>',
+        prev = '<C-p>',
+      },
+    },
     panel = { enabled = false },
   },
 }

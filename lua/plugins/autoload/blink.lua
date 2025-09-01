@@ -2,9 +2,6 @@ return {
   'saghen/blink.cmp',
   version = '1.*',
   event = 'InsertEnter',
-  dependencies = {
-    'giuxtaposition/blink-cmp-copilot',
-  },
   opts_extend = { 'sources.default' },
 
   ---@module 'blink.cmp'
@@ -17,28 +14,21 @@ return {
     sources = {
       default = {
         'lsp',
-        'rails_routes',
+        -- 'rails_routes',
         'path',
         'snippets',
-        'copilot',
         'buffer',
       },
       providers = {
-        rails_routes = {
-          module = 'config/lsp/rails_routes',
-        },
+        -- rails_routes = {
+        --   module = 'config/lsp/rails_routes',
+        -- },
         snippets = {
           -- Snippets beginning with ';' should always come out on top.
           -- Keeping until [#1340](https://github.com/Saghen/blink.cmp/issues/1340) is fixed.
           score_offset = function(tbl)
             return (tbl.line:sub(1, 1) == ';' and 1 or 200)
           end,
-        },
-        copilot = {
-          name = 'copilot',
-          module = 'blink-cmp-copilot',
-          score_offset = 100,
-          async = true,
         },
       },
     },
