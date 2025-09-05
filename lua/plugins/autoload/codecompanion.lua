@@ -7,22 +7,10 @@ return {
     'CodeCompanionActions',
   },
   keys = {
-    { ';cp', '<cmd>CodeCompanion', desc = '[C]odeCompanion: Basic [p]rompt' },
-    {
-      ';ca',
-      '<cmd>CodeCompanionActions<cr>',
-      desc = '[C]odeCompanion: Perform an [A]ction',
-    },
-    {
-      ';cc',
-      '<cmd>CodeCompanionChat<cr>',
-      desc = '[C]odeCompanion: Open [c]hat',
-    },
-    {
-      ';cr',
-      '<cmd>CodeCompanionCmd<cr>',
-      desc = '[C]odeCompanion: [R]un a shell command',
-    },
+    { ';cp', '<cmd>CodeCompanion<cr>', desc = '[P]rompt inline' },
+    { ';ca', '<cmd>CodeCompanionActions<cr>', desc = '[A]ctions palette' },
+    { ';cc', '<cmd>CodeCompanionChat Toggle<cr>', desc = '[C]hat toggle' },
+    { ';cg', '<cmd>CodeCompanionCmd<cr>', desc = '[G]enerate shell command' },
   },
   opts = {
     opts = {
@@ -33,6 +21,9 @@ return {
         adapter = 'copilot',
         model = 'gpt5',
         keymaps = {
+          close = {
+            modes = { n = 'q' },
+          },
           next_chat = {
             modes = { n = 'cn' },
           },
