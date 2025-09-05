@@ -1,6 +1,11 @@
 return {
   'olimorris/codecompanion.nvim',
-  cmd = { 'CodeCompanion' },
+  cmd = {
+    'CodeCompanion',
+    'CodeCompanionChat',
+    'CodeCompanionCmd',
+    'CodeCompanionActions',
+  },
   opts = {
     opts = {
       log_level = 'DEBUG',
