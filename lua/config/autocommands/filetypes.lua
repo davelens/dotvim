@@ -43,3 +43,16 @@ dvim.utils.autocmd('FileType', {
     )
   end,
 })
+
+dvim.utils.autocmd('FileType', {
+  group = grp,
+  pattern = { 'markdown', 'text' },
+  callback = function()
+    vim.keymap.set(
+      'n',
+      '<CR>',
+      require('config.functions.todo').toggle,
+      { buffer = true, silent = true }
+    )
+  end,
+})
