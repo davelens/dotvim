@@ -8,6 +8,10 @@ return {
       -- This is like `double` but "fuller". Don't think it has a preset name.
       -- border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
     },
+    spec = {
+      { ';', desc = ';' },
+      { ';c', group = '[C]odeCompanion' },
+    },
   },
   keys = {
     {
