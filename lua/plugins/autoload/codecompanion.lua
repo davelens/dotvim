@@ -11,7 +11,21 @@ return {
       log_level = 'DEBUG',
     },
     strategies = {
-      chat = { adapter = 'copilot' },
+      chat = {
+        adapter = 'copilot',
+        model = 'gpt5',
+        keymaps = {
+          close = {
+            modes = { n = 'q' },
+          },
+          next_chat = {
+            modes = { n = 'cn' },
+          },
+          previous_chat = {
+            modes = { n = 'cp' },
+          },
+        },
+      },
       inline = { adapter = 'copilot' },
       cmd = { adapter = 'copilot' },
     },
