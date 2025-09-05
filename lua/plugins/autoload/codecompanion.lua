@@ -8,7 +8,7 @@ return {
   },
   opts = {
     opts = {
-      log_level = 'DEBUG',
+      log_level = 'ERROR', -- Here for when I need it changed to DEBUG quickly.
     },
     strategies = {
       chat = {
@@ -29,20 +29,6 @@ return {
       inline = { adapter = 'copilot' },
       cmd = { adapter = 'copilot' },
     },
-    -- prompts = {
-    --   explain = 'Explain this code',
-    --   commit = 'Write a commit message for the following changes',
-    --   tests = 'Write tests for this code',
-    --   fix = 'Fix the following code',
-    -- },
-    -- adapters = {
-    --   openai = function()
-    --     return require('codecompanion.adapters').extend('openai', {
-    --       env = { api_key = vim.env.OPENAI_API_KEY },
-    --       -- schema = { model = { default = 'gpt-4.1' }, temperature = 0.7 },
-    --     })
-    --   end,
-    -- },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
