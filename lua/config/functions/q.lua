@@ -6,6 +6,7 @@ local q = {}
 q.special_filetypes = {
   'aerial',
   'checkhealth',
+  'codecompanion',
   'fugitive',
   'fugitiveblame',
   'git',
