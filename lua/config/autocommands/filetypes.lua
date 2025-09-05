@@ -26,7 +26,14 @@ dvim.utils.autocmd('FileType', {
 -- Map <leader>; to run buffers#append_semicolon() in JS files.
 dvim.utils.autocmd('FileType', {
   group = grp,
-  pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  pattern = {
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    'css',
+    'scss',
+  },
   callback = function()
     vim.keymap.set(
       'n',
