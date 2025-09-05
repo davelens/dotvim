@@ -15,9 +15,6 @@ return {
         adapter = 'copilot',
         model = 'gpt5',
         keymaps = {
-          close = {
-            modes = { n = 'q' },
-          },
           next_chat = {
             modes = { n = 'cn' },
           },
