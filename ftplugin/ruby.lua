@@ -33,7 +33,12 @@ dvim.load({
         'n',
         '<leader>rl',
         rspec.refactor_assignment_to_let,
-        { noremap = true, silent = false, buffer = true }
+        {
+          desc = 'Convert assignment to #let',
+          noremap = true,
+          silent = false,
+          buffer = true,
+        }
       )
     end)
   end,
