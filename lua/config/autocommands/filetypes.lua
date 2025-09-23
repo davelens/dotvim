@@ -51,7 +51,7 @@ dvim.utils.autocmd('FileType', {
     vim.keymap.set(
       'n',
       '<CR>',
-      require('config.functions.todo').toggle,
+      require('config.functions.todo').toggle_state,
       { buffer = true, silent = true }
     )
   end,
