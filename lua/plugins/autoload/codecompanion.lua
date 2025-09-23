@@ -12,7 +12,7 @@ return {
     { ';cg', '<cmd>CodeCompanionCmd<cr>', desc = '[G]enerate shell command' },
     {
       ';cc',
-      'CodeCompanionChat Toggle<cr>',
+      '<cmd>CodeCompanionChat Toggle<cr>',
       desc = '[C]hat toggle',
       mode = 'n',
     },
