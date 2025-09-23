@@ -9,8 +9,19 @@ return {
   keys = {
     { ';cp', '<cmd>CodeCompanion<cr>', desc = '[P]rompt inline' },
     { ';ca', '<cmd>CodeCompanionActions<cr>', desc = '[A]ctions palette' },
-    { ';cc', '<cmd>CodeCompanionChat Toggle<cr>', desc = '[C]hat toggle' },
     { ';cg', '<cmd>CodeCompanionCmd<cr>', desc = '[G]enerate shell command' },
+    {
+      ';cc',
+      'CodeCompanionChat Toggle<cr>',
+      desc = '[C]hat toggle',
+      mode = 'n',
+    },
+    {
+      ';cc',
+      ':CodeCompanion #{buffer} ',
+      desc = '[C]hat toggle for selection',
+      mode = 'v',
+    },
   },
   opts = {
     opts = {
