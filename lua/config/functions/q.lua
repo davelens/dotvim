@@ -21,6 +21,7 @@ q.special_filetypes = {
   'qf',
   'query',
   'snacks_notif',
+  'TODO',
 }
 
 function q.handler()
