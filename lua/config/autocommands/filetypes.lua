@@ -46,7 +46,7 @@ dvim.utils.autocmd('FileType', {
 
 dvim.utils.autocmd('FileType', {
   group = grp,
-  pattern = { 'markdown', 'text' },
+  pattern = { 'markdown', 'text', 'TODO' },
   callback = function()
     vim.keymap.set(
       'n',
