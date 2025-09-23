@@ -24,6 +24,13 @@ return {
     },
   },
   opts = {
+    display = {
+      chat = {
+        window = {
+          layout = 'float',
+        },
+      },
+    },
     opts = {
       log_level = 'ERROR', -- Here for when I need it changed to DEBUG quickly.
     },
