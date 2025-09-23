@@ -119,3 +119,10 @@ map(
   dvim.load('config.functions.q').handler,
   { expr = true, desc = 'Close special filetype buffer(s)' }
 )
+
+map(
+  'n',
+  '<leader>td',
+  require('config.functions.todo').toggle_file,
+  { desc = '[T]oggle TODO file' }
+)
