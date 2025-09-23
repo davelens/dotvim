@@ -1,3 +1,4 @@
+.notes/
 vim/.netrwhist
 vim/bundle/*
 vim/autoload/plug.vim
