@@ -44,7 +44,7 @@ local function move_to_first_uncompleted_todo(bufnr)
 
   for i, line in ipairs(lines) do
     if line:match('%- %[ %]') then
-      vim.api.nvim_win_set_cursor(0, { i, 0 })
+      vim.api.nvim_win_set_cursor(0, { i, #line })
       return
     end
   end
