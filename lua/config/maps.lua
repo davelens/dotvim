@@ -123,7 +123,7 @@ map(
 
 map(
   'n',
-  '<leader>tt',
+  ';t',
   dvim.load('config.functions.todo').toggle_file,
-  { desc = '[T]oggle [T]ODO file' }
+  { desc = 'TODO list' }
 )

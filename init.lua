@@ -4,7 +4,7 @@ require('config.functions')
 require('config.autocommands')
 require('config.maps')
 require('config.lazy').load({
-  keymap = '<leader>L',
+  keymap = ';p',
   spec = {
     { import = 'plugins.basic' },
     { import = 'plugins.autoload' },

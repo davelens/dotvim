@@ -3,7 +3,7 @@ return {
   'tpope/vim-fugitive',
   cmd = 'Git',
   keys = {
-    { '<leader>g', '<cmd>G<cr>', desc = 'Open vim-fu[g]itive window' },
+    { ';g', '<cmd>G<cr>', desc = 'Git (vim-fugitive)' },
     { 'gu', '<cmd>Git pull<cr>', ft = 'fugitive', desc = '[G]it p[u]ll' },
     { 'gp', '<cmd>Git push<cr>', ft = 'fugitive', desc = '[G]it [p]ush' },
   },

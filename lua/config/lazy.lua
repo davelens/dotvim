@@ -83,7 +83,7 @@ function M.load(opts)
     'n',
     opts.keymap,
     '<cmd>Lazy<cr>',
-    { desc = 'Open [L]azy overview' }
+    { desc = 'Plugins (lazy.nvim)' }
   )
 end
 
