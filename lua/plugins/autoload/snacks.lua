@@ -2,6 +2,7 @@
 return {
   'folke/snacks.nvim',
   lazy = false,
+  priority = 1000,
   keys = require('plugins.autoload.snacks.keys'),
   opts = {
     dashboard = require('plugins.autoload.snacks.dashboard-laptop'),
