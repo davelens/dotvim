@@ -2,6 +2,7 @@ local group = dvim.utils.augroup('ft-TODO')
 
 dvim.utils.autocmd({ 'BufLeave', 'BufUnload', 'FocusLost' }, {
   group = group,
+  pattern = { 'todo.md', 'TODO.md' },
   callback = function()
     if vim.bo.modified then
       vim.cmd('write')
