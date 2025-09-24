@@ -1,6 +1,7 @@
 -- Git wrapper for (n)vim.
 return {
   'tpope/vim-fugitive',
+  cmd = 'Git',
   keys = {
     { '<leader>g', '<cmd>G<cr>', desc = 'Open vim-fu[g]itive window' },
     { 'gu', '<cmd>Git pull<cr>', ft = 'fugitive', desc = '[G]it p[u]ll' },
