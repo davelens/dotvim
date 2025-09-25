@@ -13,7 +13,6 @@ return {
       { ' g', desc = 'Git' },
       { ';', mode = { 'n', 'v' }, desc = 'Toggles' },
       { ';a', group = 'AI agent' },
-      { ';e', group = 'Explorer' },
     },
   },
   keys = {

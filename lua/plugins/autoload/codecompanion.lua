@@ -18,8 +18,8 @@ return {
     },
     {
       ';a',
-      ':CodeCompanion #{buffer} ',
-      desc = 'AI (prompt for selection)',
+      '<cmd>CodeCompanion<cr>',
+      desc = 'AI agent (prompt for selection)',
       mode = 'v',
     },
   },

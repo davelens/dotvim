@@ -44,6 +44,7 @@ dvim.utils.autocmd('FileType', {
   end,
 })
 
+-- Check markdown checkboxes in a list ("- [ ]" -> "- [x]")
 dvim.utils.autocmd('FileType', {
   group = grp,
   pattern = { 'markdown', 'text', 'TODO' },
