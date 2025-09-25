@@ -76,6 +76,7 @@ function M.toggle_state()
   end
 end
 
+-- Opens or closes the float with the relevant .notes/todos/*.md file.
 function M.toggle_file()
   if M.float_id and vim.api.nvim_win_is_valid(M.float_id) then
     vim.api.nvim_win_close(M.float_id, true)
