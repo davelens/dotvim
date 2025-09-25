@@ -5,6 +5,12 @@ return {
   name = 'catppuccin',
   priority = 1000,
   opts = {
+    float = {
+      transparent = true,
+    },
+    dim_inactive = {
+      enabled = true,
+    },
     custom_highlights = function(colors)
       return {
         -- folke/lazy.nvim
