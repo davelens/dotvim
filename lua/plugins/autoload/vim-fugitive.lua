@@ -7,7 +7,7 @@ return {
     {
       '<leader>ga',
       '<cmd>G add %<cr>',
-      desc = 'Add current buffer to stage',
+      desc = 'Stage current buffer',
     },
     {
       '<leader>gp',
@@ -26,6 +26,7 @@ return {
     },
     { 'gu', '<cmd>Git pull<cr>', ft = 'fugitive', desc = '[G]it p[u]ll' },
     { 'gp', '<cmd>Git push<cr>', ft = 'fugitive', desc = '[G]it [p]ush' },
+    { ';g', '<cmd>q<cr>', ft = 'fugitive', desc = 'Git (close)' },
   },
   -- no opts needed here since this is a pure vim plugin.
 }

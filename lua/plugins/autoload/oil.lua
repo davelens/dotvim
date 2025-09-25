@@ -18,5 +18,6 @@ return {
       silent = true,
       desc = 'Explorer (oil.nvim)',
     },
+    { ';e', '<cmd>q<cr>', ft = 'oil', desc = 'Explorer (close)' },
   },
 }
