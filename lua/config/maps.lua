@@ -1,27 +1,12 @@
 local map = vim.keymap.set
 
--- Copy to/cut/paste from system clipboard
--- Originally inspired by
--- http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-for _, mode in ipairs({ 'n', 'v' }) do
-  map(mode, '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
-  map(
-    mode,
-    '<leader>p',
-    '"+p',
-    { desc = '[P]aste from system clipboard after cursor' }
-  )
-  map(
-    mode,
-    '<leader>P',
-    '"+P',
-    { desc = '[P]aste from system clipboard before cursor' }
-  )
-end
+-- Copy system clipboard
+map('n', '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
+map('v', '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
 
 -- Quick save and exit
-map('n', '<leader>s', '<cmd>w<CR>', { desc = '[S]ave file' })
-map('n', '<leader>x', '<cmd>q!<CR>', { desc = 'E[x]it without saving' })
+map('n', '<leader>s', '<cmd>w<CR>', { desc = 'Save file' })
+map('n', '<leader>x', '<cmd>q!<CR>', { desc = 'Close file without saving' })
 
 -- Do not exit visual mode when shifting
 map('v', '>', '>gv', { noremap = true })
@@ -57,61 +42,29 @@ end)
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Buffer maps
+-- NOTE: Renaming is sort of deprecated due to oil.nvim. The latter is
+-- "smart" in that it has some LSP tie-ins.
 map(
   'n',
   '<leader>br',
   dvim.buffers.rename_file,
-  { desc = '[R]ename current buffer', noremap = true, silent = true }
+  { desc = 'Rename current', noremap = true, silent = true }
 )
 map(
   'n',
   '<leader>bc',
   dvim.buffers.delete_hidden,
-  { desc = '[C]lean up hidden buffers', noremap = true, silent = true }
+  { desc = 'Clean hidden', noremap = true, silent = true }
 )
 
 -- Quickfix maps
 map('n', '<leader>qc', function()
   vim.fn.setqflist({})
-end, { desc = '[Q]uickfix [c]lear list', noremap = true, silent = true })
+end, { desc = 'Clear list', noremap = true, silent = true })
 
 -- Diagnostic maps
-map(
-  'n',
-  '[q',
-  '<cmd>silent! w<CR><cmd>cprev<CR>',
-  { desc = 'Go to previous [Q]uickfix message' }
-)
-map(
-  'n',
-  ']q',
-  '<cmd>silent! w<CR><cmd>cnext<CR>',
-  { desc = 'Go to next [Q]uickfix message' }
-)
-map(
-  'n',
-  '[d',
-  vim.diagnostic.goto_prev,
-  { desc = 'Go to previous [D]iagnostic message' }
-)
-map(
-  'n',
-  ']d',
-  vim.diagnostic.goto_next,
-  { desc = 'Go to next [D]iagnostic message' }
-)
-map(
-  'n',
-  '<leader>de',
-  vim.diagnostic.open_float,
-  { desc = 'Show [D]iagnostic [E]rror message' }
-)
-map(
-  'n',
-  '<leader>dq',
-  vim.diagnostic.setqflist,
-  { desc = 'Open [D]iagnostic [Q]uickfix' }
-)
+map('n', '<leader>df', vim.diagnostic.open_float, { desc = 'List in float' })
+map('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'List in quickfix' })
 
 map(
   'n',

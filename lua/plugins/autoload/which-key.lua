@@ -9,19 +9,30 @@ return {
       -- border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
     },
     spec = {
-      { ' ', mode = { 'n', 'v' }, desc = 'Actions' },
+      { ']', desc = 'Jump forward', mode = { 'n', 'v' } },
+      { '[', desc = 'Jump backward', mode = { 'n', 'v' } },
+
+      { ';', desc = 'Toggles', mode = { 'n', 'v' } },
+      { ';a', group = 'AI agent', mode = { 'n', 'v' } },
+
+      { ' ', desc = 'Actions', mode = { 'n', 'v' } },
+      { ' b', desc = 'Buffers' },
+      { ' c', desc = 'Comments', mode = { 'n', 'v' } },
+      { ' d', desc = 'Diagnostics' },
+      { ' f', desc = 'Fuzzy finder', mode = 'n', 'v' },
       { ' g', desc = 'Git' },
-      { ';', mode = { 'n', 'v' }, desc = 'Toggles' },
-      { ';a', group = 'AI agent' },
+      { ' l', desc = 'LSP' },
+      { ' q', desc = 'Quickfix' },
+      { ' w', desc = 'Window' },
     },
   },
   keys = {
     {
-      '<leader>?',
+      '<leader>b?',
       function()
         require('which-key').show({ global = false })
       end,
-      desc = 'Buffer Local Keymaps (which-key)',
+      desc = 'Local Keymaps (which-key)',
     },
   },
 }
