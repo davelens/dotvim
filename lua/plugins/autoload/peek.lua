@@ -7,13 +7,13 @@ return {
   -- Thinking I should use an autocommand here instead of a keymap.
   keys = {
     {
-      '<leader>tp',
+      ';m',
       function()
         peek = require('peek')
         return peek.is_open() and peek.close() or peek.open()
       end,
       ft = 'markdown',
-      desc = '[T]oggle [P]eek preview window',
+      desc = 'Markdown preview (peek.nvim)',
     },
   },
 }
