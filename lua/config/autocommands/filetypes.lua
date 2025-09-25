@@ -56,3 +56,18 @@ dvim.utils.autocmd('FileType', {
     )
   end,
 })
+
+-- Undo the `q` keymap in CodeCompanion (CC) buffers.
+-- CC comes with a dynamically mapped `q`:
+-- * When no API requests are active, it is mapped to "close chat".
+-- * When an API request is active, it is mapped to "stop request".
+-- The issue is that a request "sometimes" seems to last indefinitely.
+-- To alleviate and trust on my global `q` map for special filetypes, I have
+-- unmapped `q` entirely from codecompanion buffers.
+-- You can still use <Esc> to manually stop requests, if need be.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'codecompanion',
+  callback = function(args)
+    pcall(vim.keymap.del, 'n', 'q', { buffer = args.buf })
+  end,
+})
