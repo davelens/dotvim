@@ -1,16 +1,26 @@
 -- Ensure the todo file and its directory exist, creating them if necessary.
+--
+-- TODO: This might need filename normalization for the *.md file when using
+-- the project root folder.
+--
 local function ensure_todo_file()
-  local todo_path = vim.fn.expand('./.notes/todo.md')
+  -- Find project root (looks for .git, else uses cwd)
+  local root = vim.fs.root(0, { '.git' }) or vim.fn.getcwd()
+  local branch = nil
+
+  if vim.fn.isdirectory(root .. '/.git') == 1 then
+    branch = vim.fn.system({ 'git', '-C', root, 'b' }):gsub('%s+$', '')
+    if branch == '' then
+      branch = nil
+    end
+  end
+
+  local name = branch or vim.fn.fnamemodify(root, ':t')
+  local todo_path = root .. '/.notes/todos/' .. name .. '.md'
 
   if vim.fn.filereadable(todo_path) == 0 then
-    local notes_dir = vim.fn.fnamemodify(todo_path, ':h')
-
-    if vim.fn.isdirectory(notes_dir) == 0 then
-      vim.fn.mkdir(notes_dir, 'p')
-    end
-
+    vim.fn.mkdir(vim.fn.fnamemodify(todo_path, ':h'), 'p')
     local fd = io.open(todo_path, 'w')
-
     if fd then
       fd:write('# TODO\n\n- [ ] ')
       fd:close()
