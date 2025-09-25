@@ -13,10 +13,10 @@ return {
   },
   keys = {
     {
-      '<leader>o',
+      ';e',
       '<cmd>Oil --float<CR>',
       silent = true,
-      desc = 'Open [O]il.nvim',
+      desc = 'Explorer (oil.nvim)',
     },
   },
 }

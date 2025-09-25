@@ -9,8 +9,8 @@ return {
       -- border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
     },
     spec = {
-      { ' ', desc = 'Actions' },
-      { ';', desc = 'Toggles' },
+      { ' ', mode = { 'n', 'v' }, desc = 'Actions' },
+      { ';', mode = { 'n', 'v' }, desc = 'Toggles' },
       { ';c', group = '[C]odeCompanion' },
     },
   },
