@@ -57,7 +57,7 @@ return {
           icon = ' ', title = 'Git status',
           indent = 1, height = 7,
           cmd = 'echo && git changes',
-          key = 's', action = '<leader>g',
+          key = 's', action = ';g',
         },
 
         {
