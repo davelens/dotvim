@@ -10,6 +10,7 @@ return {
     },
     spec = {
       { ' ', mode = { 'n', 'v' }, desc = 'Actions' },
+      { ' g', desc = 'Git' },
       { ';', mode = { 'n', 'v' }, desc = 'Toggles' },
       { ';c', group = '[C]odeCompanion' },
     },
