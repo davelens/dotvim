@@ -1,6 +1,9 @@
--- Register the 'todo' filetype and use treesitter to highlight as markdown
 vim.filetype.add({
-  pattern = { ['todo.md'] = 'TODO' },
+  pattern = {
+    ['.*%.env'] = 'conf',
+    ['todo.md'] = 'TODO',
+  },
 })
 
+-- The TODO filetype should syntax highlight as markdown.
 vim.treesitter.language.register('markdown', 'TODO')
