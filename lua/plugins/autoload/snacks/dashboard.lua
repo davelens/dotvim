@@ -54,7 +54,7 @@ return {
             vim.fn.fnamemodify(vim.fn.getcwd(), ':t'):gsub("^.", string.upper)
           ),
           height = big_viewport() and 6 or 2,
-          enabled = big_viewport
+          enabled = big_viewport and vim.fn.isdirectory(vim.fn.getcwd() .. '/.git') == 1
         },
         {
           icon = ' ', title = 'Git status',
