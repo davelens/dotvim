@@ -49,8 +49,11 @@ return {
     function()
       local cmds = {
         {
-          cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/project.cat',
-          indent = 11, height = big_viewport() and 9 or 2,
+          cmd = string.format(
+            'figlet -f rectangles "%s" | lolcat', 
+            vim.fn.fnamemodify(vim.fn.getcwd(), ':t'):gsub("^.", string.upper)
+          ),
+          height = big_viewport() and 6 or 2,
           enabled = big_viewport
         },
         {
