@@ -5,7 +5,7 @@ return {
   priority = 1000,
   keys = require('plugins.autoload.snacks.keys'),
   opts = {
-    dashboard = require('plugins.autoload.snacks.dashboard-laptop'),
+    dashboard = require('plugins.autoload.snacks.dashboard'),
     image = { enabled = true },
     indent = { enabled = true },
     notifier = { enabled = true },
