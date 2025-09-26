@@ -1,3 +1,6 @@
+math.randomseed(os.time())
+local lolseed = math.random(1, 1000000)
+
 function big_viewport()
   return vim.o.columns >= 125 and vim.o.lines >= 45
 end
@@ -18,7 +21,7 @@ return {
   sections = {
     {
       section = 'terminal',
-      cmd = 'lolcat $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
+      cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = 20, indent = 10, padding = 0,
       ttl = 0,
       enabled = big_viewport
@@ -50,7 +53,7 @@ return {
       local cmds = {
         {
           cmd = string.format(
-            'figlet -f rectangles "%s" | lolcat', 
+            'figlet -f rectangles "%s" | lolcat --seed=' .. lolseed, 
             vim.fn.fnamemodify(vim.fn.getcwd(), ':t'):gsub("^.", string.upper)
           ),
           height = big_viewport() and 6 or 2,
