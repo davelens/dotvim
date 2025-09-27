@@ -7,7 +7,7 @@ SETUP_DIR=$(dirname "$(realpath "$0")")
 ROOT_DIR="$(dirname "$SETUP_DIR")"
 XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
-source "${SETUP_DIR}/helpers.sh"
+source "$SETUP_DIR"/helpers.sh
 
 # Check if ~/.local/bin is in $PATH so we can install getnf if necessary.
 function prep_local_bin {
@@ -23,15 +23,15 @@ function prep_local_bin {
 
 function prep_fonts_dir {
   if [ "$(uname -s)" == 'darwin' ]; then
-    readonly FONTS_DIR="${HOME}/Library/Fonts"
+    readonly FONTS_DIR="$HOME"/Library/Fonts
   else
-    readonly FONTS_DIR="${XDG_DATA_HOME}/fonts"
+    readonly FONTS_DIR="$XDG_DATA_HOME"/fonts
   fi
 }
 
 function install_fonts {
   # Install getnf if not already installed.
-  if [ ! -f "${HOME}/.local/bin/getnf" ]; then
+  if [ ! -f "$HOME"/.local/bin/getnf ]; then
     curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
   fi
 
@@ -51,7 +51,7 @@ function prep_install_dir {
 
   [ ! -d "$XDG_CONFIG_HOME" ] && mkdir -p "$XDG_CONFIG_HOME"
 
-  DVIM_CONFIG_HOME="$XDG_CONFIG_HOME/dvim"
+  DVIM_CONFIG_HOME="$XDG_CONFIG_HOME"/dvim
   if [ -d "$DVIM_CONFIG_HOME" ]; then
     echo "$(check) $DVIM_CONFIG_HOME already installed!"
     exit
@@ -72,8 +72,8 @@ function main() {
   prep_install_dir
   install_fonts
 
-  if [ ! -f "${HOME}/.local/bin/dvim" ]; then
-    cat >>"${HOME}"/.local/bin/dvim <<EOF
+  if [ ! -f "$HOME"/.local/bin/dvim ]; then
+    cat >>"$HOME"/.local/bin/dvim <<EOF
 #!/usr/bin/env bash
 
 XDG_CONFIG_HOME="\${XDG_CONFIG_HOME:-\$HOME/.config}"
@@ -82,7 +82,7 @@ exec -a "\$NVIM_APPNAME" nvim -u "\$XDG_CONFIG_HOME"/dvim/init.lua "\$@"
 
 echo 'Done.'
 EOF
-    chmod +x "${HOME}/.local/bin/dvim"
+    chmod +x "$HOME"/.local/bin/dvim
     echo "$(check) Created ${DVIM_CONFIG_HOME/"$HOME"/\~} executable"
   fi
 
