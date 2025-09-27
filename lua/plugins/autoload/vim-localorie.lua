@@ -4,11 +4,11 @@ return {
   ft = { 'ruby', 'eruby', 'yaml', 'eruby.yaml' },
   keys = {
     {
-      '<leader>fi',
+      '<leader>fti',
       function()
         vim.fn['localorie#translate']()
       end,
-      desc = '[F]ind [I]18n translation',
+      desc = 'Identifier (vim-localorie)',
       ft = { 'ruby', 'eruby' },
     },
   },

@@ -46,7 +46,7 @@ return {
   },
 
   {
-    '<leader>fl',
+    '<leader>ftl',
     function()
       Snacks.picker.grep_word({
         cwd = 'config/locales',
@@ -57,7 +57,7 @@ return {
         title = 'Rails translations',
       })
     end,
-    desc = 'I18n matches',
+    desc = 'Term',
     ft = { 'ruby', 'eruby', 'eruby.yaml' },
     mode = { 'n', 'v' },
   },

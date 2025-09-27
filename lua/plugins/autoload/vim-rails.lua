@@ -4,16 +4,16 @@ return {
   ft = { 'ruby', 'eruby' },
   keys = {
     {
-      '<leader>a',
+      '<leader>ra',
       '<cmd>A<cr>',
       ft = { 'ruby', 'eruby' },
-      desc = 'Switch to [A]lternate file',
+      desc = 'Go to alternate file',
     },
     {
-      '<leader>r',
+      '<leader>rr',
       '<cmd>R<cr>',
       ft = { 'ruby', 'eruby' },
-      desc = 'Switch to [R]elated file',
+      desc = 'Go to related file',
     },
   },
   -- no opts needed here since this is a pure vim plugin.
