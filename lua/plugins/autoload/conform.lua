@@ -23,6 +23,7 @@ return {
       sh = { 'shfmt' },
       html = { 'htmlbeautifier' },
       erb = { 'htmlbeautifier' },
+      rust = { 'rustfmt' },
     },
   },
 }
