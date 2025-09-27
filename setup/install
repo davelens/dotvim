@@ -13,7 +13,7 @@ source "$SETUP_DIR"/helpers.sh
 function prep_local_bin {
   [ ! -d "$XDG_BIN_HOME" ] && mkdir -p "$XDG_BIN_HOME"
 
-  if [[ ! $(echo $PATH | tr ':' '\n' | grep -x "$XDG_BIN_HOME") ]]; then
+  if ! echo "$PATH" | tr ':' '\n' | grep -qx "$XDG_BIN_HOME"; then
     echo "$(cross) ERROR: $XDG_BIN_HOME needs to be in your \$PATH."
     exit
   fi
