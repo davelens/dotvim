@@ -76,8 +76,9 @@ function main() {
     cat >>"${HOME}"/.local/bin/dvim <<EOF
 #!/usr/bin/env bash
 
+XDG_CONFIG_HOME="\${XDG_CONFIG_HOME:-\$HOME/.config}"
 export NVIM_APPNAME=\${NVIM_APPNAME:-"dvim"}
-exec -a "\$NVIM_APPNAME" nvim -u "~/.config/dvim/init.lua" "\$@"
+exec -a "\$NVIM_APPNAME" nvim -u "\$XDG_CONFIG_HOME"/dvim/init.lua "\$@"
 
 echo 'Done.'
 EOF
