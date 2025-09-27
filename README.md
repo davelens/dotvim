@@ -26,7 +26,7 @@ As for the `d`:
 🤷🏻‍♂️
 
 ### Nerd fonts
-The script will install both the `DroidSansMono` and `Hack` [nerd fonts](https://www.nerdfonts.com/). These are necessary to have access to certain icons and glyphs, though you'll need to configure your terminal app of choice to actually start using them.
+The script will install some [nerd fonts](https://www.nerdfonts.com/). These are necessary to have access to certain icons and glyphs, though you'll need to configure your terminal app of choice to actually start using them.
 
 ### Uninstall
 ```sh
