@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 
 -- Copy system clipboard
-map('n', '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
-map('v', '<C-y>', '"+y', { desc = '[Y]ank to system clipboard' })
+map('n', '<C-y>', '"+y', { desc = 'Yank to system clipboard' })
+map('v', '<C-y>', '"+y', { desc = 'Yank to system clipboard' })
 
 -- Quick save and exit
 map('n', '<leader>s', '<cmd>w<CR>', { desc = 'Save file' })

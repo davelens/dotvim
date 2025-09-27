@@ -10,8 +10,8 @@ return {
     { '<leader>gU', '<cmd>G pull<cr>', desc = 'Pull' },
     { '<leader>gc', '<cmd>G commit<cr>', desc = 'Commit staged files' },
     { '<leader>gr', '<cmd>G rebase -i<cr>', desc = 'Interactive rebase' },
-    { 'gu', '<cmd>Git pull<cr>', ft = 'fugitive', desc = '[G]it p[u]ll' },
-    { 'gp', '<cmd>Git push<cr>', ft = 'fugitive', desc = '[G]it [p]ush' },
+    { 'gu', '<cmd>Git pull<cr>', ft = 'fugitive', desc = 'Pull' },
+    { 'gp', '<cmd>Git push<cr>', ft = 'fugitive', desc = 'Push' },
     { ';g', '<cmd>q<cr>', ft = 'fugitive', desc = 'Git (close)' },
   },
   -- no opts needed here since this is a pure vim plugin.
