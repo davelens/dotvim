@@ -3,13 +3,14 @@
 # Stops further execution after any error.
 set -e
 
-readonly SETUP_DIR=$(dirname "$(realpath "$0")")
+SETUP_DIR=$(dirname "$(realpath "$0")")
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
 source "${SETUP_DIR}/helpers.sh"
 
-getnf -u DroidSansMono,Hack && echo "$(check) Nerd fonts uninstalled"
+getnf -u DroidSansMono,Hack,Noto && echo "$(check) Nerd fonts uninstalled"
 
-[ -f "${DOTFILES_CONFIG_PATH}/dvim" ] && rm "${DOTFILES_CONFIG_PATH}/dvim" && echo "$(check) Removed dvim config"
+[ -d "${XDG_CONFIG_HOME}/dvim" ] && rm "${XDG_CONFIG_HOME}/dvim" && echo "$(check) Removed dvim config"
 [ -f ~/.local/bin/dvim ] && rm ~/.local/bin/dvim && echo "$(check) Removed dvim executable"
 
 echo "$(check) dvim successfully uninstalled"
