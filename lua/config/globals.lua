@@ -48,4 +48,4 @@ vim.schedule(function()
   end
 end)
 
-vim.lsp.enable({ 'ruby_lsp', 'lua_ls', 'elixir_ls', 'bashls' })
+vim.lsp.enable({ 'ruby', 'lua', 'elixir', 'bash' })
