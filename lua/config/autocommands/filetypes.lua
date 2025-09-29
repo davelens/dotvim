@@ -72,3 +72,41 @@ vim.api.nvim_create_autocmd('FileType', {
     pcall(vim.keymap.del, 'n', 'q', { buffer = args.buf })
   end,
 })
+
+local rails = require('config.functions.rails')
+local rails_i18n = dvim.load('config.functions.rails-i18n')
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'yaml', 'eruby.yaml' },
+  callback = function(_)
+    if rails.present() then
+      local group = dvim.utils.augroup('rails-i18n')
+
+      dvim.utils.autocmd('CursorMoved', {
+        group = group,
+        pattern = '*.yml',
+        callback = function(_)
+          print(rails_i18n.expand_yaml_key_under_cursor())
+        end,
+      })
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'ruby', 'eruby' },
+  callback = function(_)
+    vim.keymap.set('n', '<leader>fti', function()
+      local cword = vim.fn.expand('<cWORD>')
+      local key = cword:match('%w+%([\'"]([%w%._]+)[\'"]%)') or cword
+      local items = rails_i18n.translations_quickfix_for(key)
+
+      if items then
+        vim.fn.setqflist({}, ' ', { title = 'Rails I18n', items = items })
+        vim.cmd('copen')
+      else
+        vim.notify('No translations found for: ' .. key, vim.log.levels.INFO)
+      end
+    end, { buffer = true, silent = true })
+  end,
+})
