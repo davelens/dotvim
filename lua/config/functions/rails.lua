@@ -3,7 +3,17 @@ local rails = {
 }
 
 function rails.present()
-  return vim.fn.findfile('config.ru', '.;') ~= ''
+  local rails_files = {
+    'config.ru',
+    'config/application.rb',
+    'bin/rails',
+  }
+  for _, file in ipairs(rails_files) do
+    if vim.fn.filereadable(file) == 1 or vim.fn.isdirectory(file) == 1 then
+      return true
+    end
+  end
+  return false
 end
 
 -- Helper to shell out and collect your *_path / *_url helpers
