@@ -5,6 +5,7 @@ return {
   keys = {
     { ';g', '<cmd>G<cr>', desc = 'Git (vim-fugitive)' },
     { '<leader>ga', '<cmd>G add %<cr>', desc = 'Stage current buffer' },
+    { '<leader>gb', '<cmd>G blame<cr>', desc = 'Blame / praise' },
     { '<leader>gp', '<cmd>G add -p %<cr>', desc = 'Add patches to stage' },
     { '<leader>gP', '<cmd>G push<cr>', desc = 'Push' },
     { '<leader>gU', '<cmd>G pull<cr>', desc = 'Pull' },
