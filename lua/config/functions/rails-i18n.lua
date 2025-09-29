@@ -73,17 +73,9 @@ function M.translations_for(key)
   local flat = M.parse_and_flatten_yaml_files()
   local results = {}
 
-  -- Direct matches
   for k, v in pairs(flat) do
-    if k == key then
-      results[k] = v
-    end
-  end
-
-  -- Suffix matches.
-  local suffix = '.' .. key
-  for k, v in pairs(flat) do
-    if k:sub(-#suffix) == suffix then
+    -- Direct match OR if `k` ends with a dot followed by our `key`.
+    if k == key or (k:sub(-#key + 1)) == '.' .. key then
       results[k] = v
     end
   end
