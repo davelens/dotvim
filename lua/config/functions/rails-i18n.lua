@@ -40,16 +40,22 @@ function M.translations_quickfix_for(key)
   for _, file in ipairs(files) do
     local json = vim.fn.system({ 'yq', '-o=json', file })
     local ok, tbl = pcall(vim.fn.json_decode, json)
+
     if ok and type(tbl) == 'table' then
       local flat = {}
+
       flatten_table(tbl, '', flat)
+
       for k, v in pairs(flat) do
+        -- Direct match OR if `k` ends with a dot followed by our `key`.
         local match = (k == key) or (k:sub(-(#key + 1)) == '.' .. key)
+
         if match then
           -- Find line number in file
           local lines = vim.fn.readfile(file)
           local last = k:match('([^.]+)$')
           local pattern = '^%s*' .. vim.pesc(last) .. ':'
+
           for i, line in ipairs(lines) do
             if line:match(pattern) then
               table.insert(items, {
