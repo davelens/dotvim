@@ -11,6 +11,14 @@ return {
     { '<leader>gU', '<cmd>G pull<cr>', desc = 'Pull' },
     { '<leader>gc', '<cmd>G commit<cr>', desc = 'Commit staged files' },
     { '<leader>gr', '<cmd>G rebase -i<cr>', desc = 'Interactive rebase' },
+    {
+      '<leader>gs',
+      function()
+        vim.cmd('terminal git s')
+        vim.api.nvim_feedkeys('i', 'n', false) -- Enter insert mode
+      end,
+      desc = 'Switch branch',
+    },
     { 'gu', '<cmd>Git pull<cr>', ft = 'fugitive', desc = 'Pull' },
     { 'gp', '<cmd>Git push<cr>', ft = 'fugitive', desc = 'Push' },
     { ';g', '<cmd>q<cr>', ft = 'fugitive', desc = 'Git (close)' },
