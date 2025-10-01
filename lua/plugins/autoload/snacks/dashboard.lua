@@ -20,8 +20,16 @@ local function project_name()
   end
 end
 
+local function wide_viewport()
+  return vim.o.columns >= 125
+end
+
+local function tall_viewport()
+  return vim.o.lines >= 45
+end
+
 local function big_viewport()
-  return vim.o.columns >= 125 and vim.o.lines >= 45
+  return wide_viewport() and tall_viewport()
 end
 
 local function project_header()
@@ -56,7 +64,7 @@ return {
       cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = 20, indent = 10, padding = 0,
       ttl = 0,
-      enabled = big_viewport
+      enabled = big_viewport()
     },
 
     -- PANE 1
