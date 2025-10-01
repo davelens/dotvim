@@ -6,6 +6,10 @@ local function large_project_name()
   return #base_project_name > 15
 end
 
+local function is_git_project()
+  return vim.fn.isdirectory(vim.fn.getcwd() .. '/.git') == 1
+end
+
 local function project_name()
   if large_project_name() then
     local cwd = vim.fn.getcwd()
@@ -83,13 +87,14 @@ return {
           icon = ' ', title = 'Project',
           indent = 1, height = large_project_name() and 3 or 6,
           cmd = project_header(),
-          enabled = big_viewport() and vim.fn.isdirectory(vim.fn.getcwd() .. '/.git') == 1,
+          enabled = big_viewport() and is_git_project(),
           key = 'e', action = ';e',
         },
         {
           icon = ' ', title = 'Git status',
           indent = 1, height = 7,
           cmd = 'echo && git changes',
+          enabled = big_viewport() and is_git_project(),
           key = 's', action = ';g',
         },
 
@@ -97,6 +102,7 @@ return {
           icon = ' ', title = 'Pull requests',
           indent = 1, height = 3,
           cmd = 'echo && git prs -n',
+          enabled = big_viewport() and is_git_project(),
           key = 'p', action = function()
             vim.fn.jobstart("gh pr list --web", { detach = true })
           end,
@@ -106,6 +112,7 @@ return {
           icon = ' ', title = "Notifications",
           indent = 1, height = 12,
           cmd = 'echo && git notifications',
+          enabled = big_viewport() and is_git_project(),
           key = 'm', action = function()
             vim.ui.open(
               string.format(
