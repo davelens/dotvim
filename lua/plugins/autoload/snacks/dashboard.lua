@@ -83,7 +83,8 @@ return {
           icon = ' ', title = 'Project',
           indent = 1, height = large_project_name() and 3 or 6,
           cmd = project_header(),
-          enabled = big_viewport() and vim.fn.isdirectory(vim.fn.getcwd() .. '/.git') == 1
+          enabled = big_viewport() and vim.fn.isdirectory(vim.fn.getcwd() .. '/.git') == 1,
+          key = 'e', action = ';e',
         },
         {
           icon = ' ', title = 'Git status',
