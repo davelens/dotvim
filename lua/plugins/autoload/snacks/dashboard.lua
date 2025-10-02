@@ -64,7 +64,6 @@ return {
       cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       height = 20, indent = 10, padding = 0,
       ttl = 0,
-      enabled = big_viewport()
     },
 
     -- PANE 1
