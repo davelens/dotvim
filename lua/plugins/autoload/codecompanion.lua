@@ -32,11 +32,20 @@ return {
         },
       },
     },
+    adapters = {
+      acp = {
+        claude_code = function()
+          return require('codecompanion.adapters').extend('claude_code', {
+            env = {
+              CLAUDE_CODE_OAUTH_TOKEN = vim.env.CLAUDE_CODE_OAUTH_TOKEN,
+            },
+          })
+        end,
+      },
     },
     strategies = {
       chat = {
-        adapter = 'copilot',
-        model = 'gpt5',
+        adapter = 'claude_code',
         keymaps = {
           close = {
             modes = { n = 'q' },
@@ -50,7 +59,7 @@ return {
         },
       },
       inline = { adapter = 'copilot' },
-      cmd = { adapter = 'copilot' },
+      cmd = { adapter = 'claude_code' },
     },
   },
   dependencies = {
