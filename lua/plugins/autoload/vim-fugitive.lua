@@ -16,6 +16,14 @@ return {
       function()
         vim.cmd('terminal git s')
         vim.api.nvim_feedkeys('i', 'n', false) -- Enter insert mode
+
+        vim.api.nvim_create_autocmd('TermClose', {
+          buffer = 0,
+          once = true,
+          callback = function()
+            vim.cmd('bdelete!')
+          end,
+        })
       end,
       desc = 'Switch branch',
     },
