@@ -24,6 +24,7 @@ return {
     },
   },
   opts = {
+    log_level = 'ERROR', -- Here for when I need it changed to DEBUG quickly.
     display = {
       chat = {
         window = {
@@ -31,8 +32,6 @@ return {
         },
       },
     },
-    opts = {
-      log_level = 'ERROR', -- Here for when I need it changed to DEBUG quickly.
     },
     strategies = {
       chat = {
