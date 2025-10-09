@@ -7,9 +7,11 @@ return {
     'CodeCompanionActions',
   },
   keys = {
-    -- { ';cp', '<cmd>CodeCompanion<cr>', desc = '[P]rompt inline' },
-    -- { ';ca', '<cmd>CodeCompanionActions<cr>', desc = '[A]ctions palette' },
-    -- { ';cg', '<cmd>CodeCompanionCmd<cr>', desc = '[G]enerate shell command' },
+    {
+      '<leader>a',
+      '<cmd>CodeCompanionActions<cr>',
+      desc = 'AI (codecompanion.nvim)',
+    },
     {
       ';a',
       '<cmd>CodeCompanionChat Toggle<cr>',
