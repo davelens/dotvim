@@ -89,6 +89,16 @@ end
 -- Opens or closes the float with the relevant .notes/todos/*.md file.
 function M.toggle_file()
   if M.float_id and vim.api.nvim_win_is_valid(M.float_id) then
+    -- Save the buffer before closing the floating window
+    if
+      vim.api.nvim_buf_get_option(
+        vim.api.nvim_win_get_buf(M.float_id),
+        'modified'
+      )
+    then
+      vim.api.nvim_command('write')
+    end
+
     vim.api.nvim_win_close(M.float_id, true)
     M.float_id = nil
     return
