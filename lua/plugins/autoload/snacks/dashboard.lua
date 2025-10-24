@@ -2,8 +2,8 @@ math.randomseed(os.time())
 local lolseed = math.random(1, 1000000)
 local base_project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
-local function large_project_name()
-  return #base_project_name > 15
+local function long_project_name()
+  return #base_project_name >= 15
 end
 
 local function is_git_project()
@@ -11,7 +11,7 @@ local function is_git_project()
 end
 
 local function project_name()
-  if large_project_name() then
+  if long_project_name() then
     local cwd = vim.fn.getcwd()
     local parts = vim.split(cwd, '/')
     return table.concat({ parts[#parts - 1] or '', parts[#parts] }, '/')
@@ -35,7 +35,7 @@ end
 local function project_header()
   local command = 'figlet -f rectangles -w 60 "%s"'
 
-  if large_project_name() then
+  if long_project_name() then
     command = 'echo && echo "' .. project_name() .. '"'
   end
 
@@ -92,7 +92,7 @@ return {
       local cmds = {
         {
           icon = ' ', title = 'Project',
-          indent = 1, height = large_project_name() and 3 or 6,
+          indent = 1, height = long_project_name() and 3 or 6,
           cmd = project_header(),
           enabled = big_viewport() and is_git_project(),
           key = 'e', action = ';e',
