@@ -93,6 +93,22 @@ function buffers.is_open(buf_type)
   return false
 end
 
+-- Copy the current buffer's file path to the clipboard.
+function buffers.copy_filepath()
+  local filepath = vim.fn.expand('%')
+  local copy_cmd = 'xclip -selection clipboard'
+
+  if vim.fn.has('wsl') == 1 then
+    copy_cmd = 'clip.exe'
+  end
+
+  if vim.fn.has('mac') == 1 then
+    copy_cmd = 'pbcopy'
+  end
+
+  vim.fn.system('echo -n ' .. vim.fn.shellescape(filepath) .. ' | ' .. copy_cmd)
+end
+
 -- Shifts the width of the buffer into a given direction.
 -- `direction` = either 'left', 'right', 'up', or 'down'
 function buffers.shift_width(direction)

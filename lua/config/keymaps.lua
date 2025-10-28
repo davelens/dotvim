@@ -56,6 +56,12 @@ map(
   dvim.buffers.delete_hidden,
   { desc = 'Clean hidden', noremap = true, silent = true }
 )
+map(
+  'n',
+  '<leader>by',
+  dvim.buffers.copy_filepath,
+  { desc = 'Yank filepath', noremap = true, silent = true }
+)
 
 -- Quickfix maps
 map('n', '<leader>qc', function()
