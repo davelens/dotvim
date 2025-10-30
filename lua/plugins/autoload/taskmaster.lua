@@ -1,7 +1,14 @@
 return {
   dir = '~/Repositories/davelens/taskmaster.nvim',
-  cmd = { 'T' },
   name = 'taskmaster.nvim',
+  cmd = { 'T' },
+  keys = {
+    {
+      ';m',
+      '<cmd>T<cr>',
+      desc = 'Taskmaster',
+    },
+  },
   opts = {},
   enabled = function()
     return vim.fn.isdirectory(

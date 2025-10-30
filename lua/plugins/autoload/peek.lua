@@ -7,7 +7,7 @@ return {
   -- Thinking I should use an autocommand here instead of a keymap.
   keys = {
     {
-      ';m',
+      '<leader>m',
       function()
         peek = require('peek')
         return peek.is_open() and peek.close() or peek.open()
