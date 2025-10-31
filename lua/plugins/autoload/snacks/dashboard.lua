@@ -62,7 +62,7 @@ return {
     {
       section = 'terminal',
       cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
-      height = 20, indent = 10, padding = 0,
+      height = 19, indent = 10, padding = 0,
       ttl = 0,
     },
 
@@ -99,7 +99,7 @@ return {
         },
         {
           icon = ' ', title = 'Git status',
-          indent = 1, height = 7,
+          indent = 1, height = 6,
           cmd = 'echo && git changes',
           enabled = big_viewport() and is_git_project(),
           key = 's', action = ';g',
