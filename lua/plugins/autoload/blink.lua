@@ -112,15 +112,6 @@ return {
     -- I prefer to see docs where available.
     completion = {
       documentation = { auto_show = true },
-      menu = {
-        should_show_items = function()
-          local ok, copilot_suggestion = pcall(require, 'copilot.suggestion')
-          if ok and copilot_suggestion.is_visible() then
-            return false
-          end
-          return true
-        end,
-      },
       list = {
         selection = {
           auto_insert = false,
