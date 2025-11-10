@@ -15,7 +15,7 @@ function prep_local_bin {
 
   if ! echo "$PATH" | tr ':' '\n' | grep -qx "$XDG_BIN_HOME"; then
     echo "$(cross) ERROR: $XDG_BIN_HOME needs to be in your \$PATH."
-    exit
+    exit 1
   fi
 
   echo "$(check) ~/.local/bin is in \$PATH"
@@ -29,32 +29,78 @@ function prep_fonts_dir {
   fi
 }
 
+function is_font_installed {
+  local font_name="$1"
+
+  if [ "$(uname -s)" == 'darwin' ]; then
+    # On macOS, check if any font files with the name exist
+    # Search recursively and check for both .ttf and .otf extensions
+    if find "$FONTS_DIR" -type f \( -name "*${font_name}*.ttf" -o -name "*${font_name}*.otf" \) 2>/dev/null | grep -q .; then
+      return 0
+    fi
+    # Also check system fonts directory as fallback
+    if find /Library/Fonts -type f \( -name "*${font_name}*.ttf" -o -name "*${font_name}*.otf" \) 2>/dev/null | grep -q .; then
+      return 0
+    fi
+    return 1
+  else
+    # On Linux, use fc-list with specific format to ensure consistent matching
+    # Check for the font family name in the output
+    fc-list : family | grep -qi "^${font_name}" || fc-list : family | grep -qi "${font_name}"
+  fi
+}
+
 function install_fonts {
-  # Install getnf if not already installed.
+  local fonts_to_install=()
+
+  # Check each font and add to install list if not present
+  if ! is_font_installed "DroidSansMono"; then
+    fonts_to_install+=("DroidSansMono")
+  else
+    echo "$(check) DroidSansMono Nerd Font already installed"
+  fi
+
+  if ! is_font_installed "Hack"; then
+    fonts_to_install+=("Hack")
+  else
+    echo "$(check) Hack Nerd Font already installed"
+  fi
+
+  if ! is_font_installed "Noto"; then
+    fonts_to_install+=("Noto")
+  else
+    echo "$(check) Noto Nerd Font already installed"
+  fi
+
+  # Only install getnf and fonts if there are fonts to install
+  if [ ${#fonts_to_install[@]} -eq 0 ]; then
+    echo "$(check) All Nerd fonts already installed"
+    return
+  fi
+
+  # Install getnf if not already installed
   if [ ! -f "$HOME"/.local/bin/getnf ]; then
     curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
   fi
 
   echo "$(check) getnf is installed"
 
-  [ ! -d "${FONTS_DIR}/DroidSansMono" ] && getnf -i DroidSansMono
-  [ ! -d "${FONTS_DIR}/Hack" ] && getnf -i Hack
-  [ ! -d "${FONTS_DIR}/Noto" ] && getnf -i Noto
+  # Install missing fonts
+  for font in "${fonts_to_install[@]}"; do
+    echo "Installing ${font} Nerd Font..."
+    getnf -i "$font"
+  done
 
   echo "$(check) Nerd fonts installed"
 }
 
 function prep_install_dir {
-  # if [[ ! $(echo $PATH | tr ':' '\n' | grep -x "$HOME/.local/bin") ]]; then
-  #   echo
-  # fi
-
   [ ! -d "$XDG_CONFIG_HOME" ] && mkdir -p "$XDG_CONFIG_HOME"
 
   DVIM_CONFIG_HOME="$XDG_CONFIG_HOME"/dvim
   if [ -d "$DVIM_CONFIG_HOME" ]; then
     echo "$(check) $DVIM_CONFIG_HOME already installed!"
-    exit
+    return
   fi
 
   ln -s "$ROOT_DIR" "$DVIM_CONFIG_HOME"
@@ -105,8 +151,6 @@ function main() {
 XDG_CONFIG_HOME="\${XDG_CONFIG_HOME:-\$HOME/.config}"
 export NVIM_APPNAME=\${NVIM_APPNAME:-"dvim"}
 exec -a "\$NVIM_APPNAME" nvim -u "\$XDG_CONFIG_HOME"/dvim/init.lua "\$@"
-
-echo 'Done.'
 EOF
     chmod +x "$HOME"/.local/bin/dvim
     echo "$(check) Created ${DVIM_CONFIG_HOME/"$HOME"/\~} executable"
