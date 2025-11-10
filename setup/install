@@ -98,24 +98,34 @@ function prep_install_dir {
   [ ! -d "$XDG_CONFIG_HOME" ] && mkdir -p "$XDG_CONFIG_HOME"
 
   DVIM_CONFIG_HOME="$XDG_CONFIG_HOME"/dvim
-  if [ -d "$DVIM_CONFIG_HOME" ]; then
-    echo "$(check) $DVIM_CONFIG_HOME already installed!"
+
+  # Check if it exists as a symlink
+  if [ -L "$DVIM_CONFIG_HOME" ]; then
+    echo "$(check) $DVIM_CONFIG_HOME symlink exists"
     return
   fi
 
-  ln -s "$ROOT_DIR" "$DVIM_CONFIG_HOME"
-  echo "$(check) Symlinks are present in $DVIM_CONFIG_HOME"
+  # Check if it exists as a file (error case)
+  if [ -e "$DVIM_CONFIG_HOME" ]; then
+    echo "$(cross) ERROR: $DVIM_CONFIG_HOME exists but is not a dir or symlink."
+    exit 1
+  fi
+
+  if ! ln -s "$ROOT_DIR" "$DVIM_CONFIG_HOME"; then
+    echo "$(cross) ERROR: Failed to create symlink at $DVIM_CONFIG_HOME"
+    exit 1
+  fi
+
+  echo "$(check) Symlink created at $DVIM_CONFIG_HOME"
 }
 
 function install_claude_acp {
   # Check if npm is installed
   if ! command -v npm &>/dev/null; then
-    echo "$(warn) WARNING: npm is not installed. Skipping claude-code-acp installation."
+    echo "$(warn) WARNING: npm not installed. Skipping claude-code-acp install."
     echo "    Install npm to enable claude-code-acp support."
     return
   fi
-
-  echo "$(check) npm is installed"
 
   # Check if claude-code-acp is already installed
   if npm list -g claude-code-acp &>/dev/null; then
@@ -136,7 +146,6 @@ function install_claude_acp {
 
 function main() {
   XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-  FONTS_DIR=
 
   prep_local_bin
   prep_fonts_dir
