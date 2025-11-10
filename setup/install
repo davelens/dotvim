@@ -61,6 +61,31 @@ function prep_install_dir {
   echo "$(check) Symlinks are present in $DVIM_CONFIG_HOME"
 }
 
+function install_claude_acp {
+  # Check if npm is installed
+  if ! command -v npm &>/dev/null; then
+    echo "$(warn) WARNING: npm is not installed. Skipping claude-code-acp installation."
+    echo "    Install npm to enable claude-code-acp support."
+    return
+  fi
+
+  echo "$(check) npm is installed"
+
+  # Check if claude-code-acp is already installed
+  if npm list -g claude-code-acp &>/dev/null; then
+    echo "$(check) claude-code-acp is already installed"
+    return
+  fi
+
+  # Install claude-code-acp
+  echo "Installing claude-code-acp..."
+  if npm install -g claude-code-acp; then
+    echo "$(check) claude-code-acp successfully installed"
+  else
+    echo "$(cross) ERROR: Failed to install claude-code-acp"
+  fi
+}
+
 ###############################################################################
 
 function main() {
@@ -71,6 +96,7 @@ function main() {
   prep_fonts_dir
   prep_install_dir
   install_fonts
+  install_claude_acp
 
   if [ ! -f "$HOME"/.local/bin/dvim ]; then
     cat >>"$HOME"/.local/bin/dvim <<EOF
