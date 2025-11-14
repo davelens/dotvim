@@ -94,8 +94,16 @@ function buffers.is_open(buf_type)
 end
 
 -- Copy the current buffer's file path to the clipboard.
-function buffers.copy_filepath()
-  local filepath = vim.fn.expand('%')
+-- @param opts table Options table with the following keys:
+--   - absolute: boolean (default: false) If true, use absolute path. If false, use path relative to cwd.
+function buffers.copy_filepath(opts)
+  opts = opts or { absolute = false }
+  local filepath = vim.fn.expand('%:.')
+
+  if opts.absolute then
+    filepath = vim.fn.expand('%:p')
+  end
+
   local copy_cmd = 'xclip -selection clipboard'
 
   if vim.fn.has('wsl') == 1 then

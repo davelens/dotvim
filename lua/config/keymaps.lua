@@ -60,7 +60,16 @@ map(
   'n',
   '<leader>by',
   dvim.buffers.copy_filepath,
-  { desc = 'Yank filepath', noremap = true, silent = true }
+  { desc = 'Yank relative filepath', noremap = true, silent = true }
+)
+-- stylua: ignore
+map(
+  'n',
+  '<leader>bY',
+  function()
+    dvim.buffers.copy_filepath({ absolute = true })
+  end,
+  { desc = 'Yank absolute filepath', noremap = true, silent = true }
 )
 
 -- Quickfix maps
