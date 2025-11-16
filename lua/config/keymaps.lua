@@ -95,3 +95,7 @@ map(
   dvim.load('config.functions.todo').toggle_file,
   { desc = 'TODO list' }
 )
+
+map('i', '<C-k>', function()
+  dvim.load('config.functions.rails').complete_routes()
+end, { desc = 'Complete Rails routes' })

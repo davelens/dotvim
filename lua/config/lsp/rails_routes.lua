@@ -1,23 +1,31 @@
 --- @module 'blink.cmp'
 --- @class blink.cmp.Source
-local source = {}
+local source = {
+  -- Set a custom name that will show in the source_name column
+  name = 'Rails Routes',
+}
 local rails = require('config.functions.rails')
 
-function source.new(_) -- No opts required, I just want a routes dump.
-  local self = setmetatable({ routes = {} }, { __index = source })
-  self.routes = rails.load_routes()
+function source.new(_)
+  local self = setmetatable({}, { __index = source })
 
-  -- TODO: Add an auto-reload here when saving the routes
-  -- file. Probably do a file check, too. You can do:
-  --
-  --   Rails.application.reload_routes!
-  --
-  -- dvim.utils.autocmd('BufWritePost', {
-  --   pattern = 'config/routes.rb',
-  --   callback = function()
-  --     return self.routes
-  --   end,
-  -- })
+  -- Auto-reload cache when routes file changes
+  local group =
+    vim.api.nvim_create_augroup('RailsRoutesReload', { clear = true })
+  vim.api.nvim_create_autocmd('BufWritePost', {
+    group = group,
+    pattern = '*/config/routes.rb',
+    callback = function()
+      rails.load_routes(function(routes)
+        if #routes > 0 then
+          require('snacks').notify(
+            string.format('Refreshed %d routes in cache.', #routes),
+            { level = 'info', title = 'Rails completion' }
+          )
+        end
+      end, true) -- force reload
+    end,
+  })
 
   return self
 end
@@ -31,29 +39,33 @@ function source:enabled()
 end
 
 function source:get_completions(_, callback)
-  local items = {}
-  for _, line in ipairs(self.routes) do
-    local route, desc, controller, action =
-      line:match('^(.-)%|%|(.-)%|%|(.-)%|%|(.+)$')
+  rails.load_routes(function(routes)
+    local items = {}
+    for _, line in ipairs(routes) do
+      local route, desc, controller, action =
+        line:match('^(.-)%|%|(.-)%|%|(.-)%|%|(.+)$')
 
-    table.insert(items, {
-      label = route,
-      detail = desc,
-      kind = require('blink.cmp.types').CompletionItemKind.Text,
-      documentation = {
-        kind = 'markdown',
-        value = tostring(controller) .. ' => ' .. tostring(action),
-      },
+      if route then
+        table.insert(items, {
+          label = route,
+          detail = desc,
+          kind = require('blink.cmp.types').CompletionItemKind.Function,
+          documentation = {
+            kind = 'markdown',
+            value = tostring(controller) .. ' => ' .. tostring(action),
+          },
+        })
+      end
+    end
+
+    callback({
+      items = items,
+      is_incomplete_backward = false,
+      is_incomplete_forward = false,
     })
-  end
+  end)
 
-  callback({
-    items = items,
-    is_incomplete_backward = false, -- Trigger on char removal
-    is_incomplete_forward = false, -- Trigger on char addition
-  })
-
-  return function() end -- To avoid memleaks when the completion fails.
+  return function() end
 end
 
 return source

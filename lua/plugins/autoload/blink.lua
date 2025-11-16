@@ -14,15 +14,16 @@ return {
     sources = {
       default = {
         'lsp',
-        -- 'rails_routes',
         'path',
         'snippets',
         'buffer',
       },
       providers = {
-        -- rails_routes = {
-        --   module = 'config/lsp/rails_routes',
-        -- },
+        rails_routes = {
+          module = 'config/lsp/rails_routes',
+          async = true,
+          timeout_ms = 5000,
+        },
         snippets = {
           -- Snippets beginning with ';' should always come out on top.
           -- Keeping until [#1340](https://github.com/Saghen/blink.cmp/issues/1340) is fixed.
