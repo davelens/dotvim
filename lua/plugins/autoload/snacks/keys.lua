@@ -4,6 +4,7 @@ return {
   { '<leader>lr', function() Snacks.picker.lsp_references() end, desc = 'References', nowait = true },
   { '<leader>li', function() Snacks.picker.lsp_implementations() end, desc = 'Implementations' },
   { '<leader>lt', function() Snacks.picker.lsp_type_definitions() end, desc = 'Type definitions' },
+  { '<leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'Symbols' },
 
   { '<leader>ff', function() Snacks.picker.files() end, desc = 'Files' },
   { '<leader>fr', function() Snacks.picker.recent() end, desc = 'Recent files' },
