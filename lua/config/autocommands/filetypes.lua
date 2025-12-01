@@ -3,7 +3,7 @@ local grp = dvim.utils.augroup('filetypes')
 -- Reserve <CR> for running :TestFile in Ruby, Elixir, and JavaScript files
 dvim.utils.autocmd('FileType', {
   group = grp,
-  pattern = { 'ruby', 'javascript' },
+  pattern = { 'ruby', 'javascript', 'elixir' },
   callback = function()
     vim.keymap.set(
       'n',
