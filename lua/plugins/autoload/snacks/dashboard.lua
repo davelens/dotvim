@@ -111,7 +111,7 @@ return {
           cmd = 'echo && git prs -n',
           enabled = big_viewport() and is_git_project(),
           key = 'p', action = function()
-            vim.fn.jobstart("gh pr list --web", { detach = true })
+            Snacks.picker.gh_pr()
           end,
         },
 
