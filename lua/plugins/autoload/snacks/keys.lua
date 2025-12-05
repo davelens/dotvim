@@ -13,6 +13,7 @@ return {
   { '<leader>fu', function() Snacks.picker.undo() end, desc = 'Undofile history' },
   { '<leader>fn', function() Snacks.picker.notifications() end, desc = 'Notifications history' },
   { '<leader>fk', function() Snacks.picker.keymaps() end, desc = 'Keymaps' },
+  { '<leader>fp', function() Snacks.picker.gh_pr() end, desc = 'Pull Requests on GitHub' },
   { '<leader>fc', function() Snacks.picker.files({title = 'Neovim config files', cwd = vim.fn.stdpath('config')}) end, desc = 'Neovim config files' },
   { '<leader>fh', function() Snacks.picker.help() end, desc = 'Help' },
 
