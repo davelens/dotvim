@@ -1,3 +1,9 @@
+-- Set the exunit compiler for Elixir test files.
+-- This enables proper quickfix integration with vim-dispatch.
+if vim.fn.expand('%'):match('_test%.exs$') then
+  vim.cmd('compiler exunit')
+end
+
 dvim.load({
   module = 'config.functions.elixir',
   pattern = { '*.ex', '*.html.heex' },

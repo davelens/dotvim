@@ -17,7 +17,5 @@ return {
       nearest = 'neovim',
       file = 'dispatch',
     }
-    --TODO: override only when Docker is running and active.
-    --vim.g['test#ruby#rspec#executable'] = 'docker compose exec test bin/rspec'
   end,
 }
