@@ -66,9 +66,19 @@ dvim.utils.autocmd('FileType', {
 -- To alleviate and trust on my global `q` map for special filetypes, I have
 -- unmapped `q` entirely from codecompanion buffers.
 -- You can still use <Esc> to manually stop requests, if need be.
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'codecompanion',
+dvim.utils.autocmd('FileType', {
+  group = grp,
+  pattern = { 'codecompanion' },
   callback = function(args)
     pcall(vim.keymap.del, 'n', 'q', { buffer = args.buf })
   end,
 })
+
+-- vim-projectionist heuristics for a module+test file pattern.
+-- This makes :A work like it does in Rails for *.rb -> *_spec.rb files.
+vim.g.projectionist_heuristics = {
+  ['mix.exs'] = {
+    ['lib/*.ex'] = { alternate = 'test/{}_test.exs', type = 'source' },
+    ['test/*_test.exs'] = { alternate = 'lib/{}.ex', type = 'test' },
+  },
+}
