@@ -9,6 +9,7 @@ return {
   { '<leader>ff', function() Snacks.picker.files() end, desc = 'Files' },
   { '<leader>fr', function() Snacks.picker.recent() end, desc = 'Recent files' },
   { '<leader>fg', function() Snacks.picker.grep() end, desc = 'Grep words' },
+  { '<leader>fa', '<cmd>A<cr>', desc = 'Alternate file' },
   { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Buffers' },
   { '<leader>fu', function() Snacks.picker.undo() end, desc = 'Undofile history' },
   { '<leader>fn', function() Snacks.picker.notifications() end, desc = 'Notifications history' },
