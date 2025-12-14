@@ -82,4 +82,9 @@ function M.nvim_buf_safe_del_keymap(bufnr, mode, lhs)
   return false
 end
 
+function M.app_name()
+  local project_root = vim.fn.getcwd()
+  return vim.fn.fnamemodify(project_root, ':t')
+end
+
 return M
