@@ -17,5 +17,15 @@ return {
       nearest = 'neovim',
       file = 'dispatch',
     }
+
+    -- Tell vim-dispatch to recognize docker-prefixed test commands.
+    -- This ensures dispatch uses the correct compiler for quickfix parsing,
+    -- and doesn't open up the quickfix when all tests pass.
+    vim.g.dispatch_compilers = {
+      ['docker compose exec rails '] = '',
+      ['docker compose exec rails bin/rspec'] = 'rspec',
+      ['docker compose exec phoenix '] = '',
+      ['docker compose exec phoenix mix test'] = 'exunit',
+    }
   end,
 }
