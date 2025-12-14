@@ -29,17 +29,29 @@ dvim.load({
   pattern = '*_spec.rb',
   autocommands = function(rspec)
     vim.schedule(function()
-      vim.keymap.set(
-        'n',
-        '<leader>rl',
-        rspec.refactor_assignment_to_let,
-        {
-          desc = 'Convert assignment to #let',
-          noremap = true,
-          silent = false,
-          buffer = true,
-        }
-      )
+      vim.keymap.set('n', '<leader>rl', rspec.refactor_assignment_to_let, {
+        desc = 'Convert assignment to #let',
+        noremap = true,
+        silent = false,
+        buffer = true,
+      })
+    end)
+  end,
+})
+
+-- Overrides vim-test's RSpec executable with a docker prefix, but only when
+-- the 'rails' container is running.
+dvim.load({
+  module = 'config.functions.docker',
+  pattern = { '*.rb', '*_spec.rb' },
+  autocommands = function(docker)
+    vim.schedule(function()
+      if docker.container_running('rails') then
+        vim.g['test#ruby#rspec#executable'] =
+          'docker compose exec rails bin/rspec'
+      else
+        vim.g['test#ruby#rspec#executable'] = nil
+      end
     end)
   end,
 })

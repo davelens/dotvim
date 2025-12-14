@@ -18,3 +18,20 @@ dvim.load({
     end)
   end,
 })
+
+-- Overrides vim-test's exunit executable with a docker prefix, but only when
+-- the 'phoenix' container is running.
+dvim.load({
+  module = 'config.functions.docker',
+  pattern = { '*.ex', '*.html.heex' },
+  autocommands = function(docker)
+    vim.schedule(function()
+      if docker.container_running('phoenix') then
+        vim.g['test#elixir#exunit#executable'] =
+          'docker compose exec phoenix mix test'
+      else
+        vim.g['test#elixir#exunit#executable'] = nil
+      end
+    end)
+  end,
+})
