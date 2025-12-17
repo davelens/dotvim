@@ -11,18 +11,9 @@ return {
 
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      -- Probably good to read up on text objects and how to add custom ones:
-      -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
-      { 'nvim-treesitter/nvim-treesitter-textobjects', lazy = true },
-
-      -- nvim-treesitter extension to autoclose Ruby/Elixir/Lua/... blocks
-      { 'RRethy/nvim-treesitter-endwise', lazy = true },
-    },
-
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
-    event = 'VeryLazy',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       ensure_installed = {
         'bash',
@@ -78,28 +69,46 @@ return {
           'eruby',
         },
       },
+    },
+  },
 
-      -- nvim - treesitter / nvim - treesitter - textobjects
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
-            ['ab'] = '@block.outer',
-            ['ib'] = '@block.inner',
+  -- Treesitter textobjects - loaded after nvim-treesitter
+  -- Probably good to read up on text objects and how to add custom ones:
+  -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
+              ['ab'] = '@block.outer',
+              ['ib'] = '@block.inner',
+            },
           },
         },
-      },
+      })
+    end,
+  },
 
-      -- RRethy / nvim - treesitter - endwise
-      endwise = {
-        enable = true,
-      },
-    },
+  -- Treesitter endwise - loaded after nvim-treesitter
+  {
+    'RRethy/nvim-treesitter-endwise',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        endwise = { enable = true },
+      })
+    end,
   },
 
   {
