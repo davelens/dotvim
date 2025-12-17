@@ -1,137 +1,102 @@
 -- Treesitter abstraction layer for Neovim.
 -- Provides advanced / context-aware syntax highlighting.
 --
--- NOTE: Because my 'endwise'-solution is a treesitter plugin, I opted to
--- include every plugin related to auto-pairs and auto-tags in this file.
--- The biggest chunk is nvim-treesitter itself, so it seems overkill to split
--- them up in multiple files.
+-- NOTE: This config now uses the nvim-treesitter 1.0 API (main branch).
+-- The old API using require('nvim-treesitter.configs').setup() is deprecated.
 return {
-  -- Autoformats log files on common patterns for more default readability.
-  { 'fei6409/log-highlight.nvim', event = 'BufRead *.log', opts = {} },
-
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      -- These are lazy=true so they don't auto-source their plugin files
-      { 'nvim-treesitter/nvim-treesitter-textobjects', lazy = true },
-      { 'RRethy/nvim-treesitter-endwise', lazy = true },
-    },
-    build = function()
-      -- Wrap in pcall to avoid errors during initial headless install
-      pcall(function()
-        require('nvim-treesitter.install').update({ with_sync = true })()
-      end)
-    end,
-    event = { 'BufReadPost', 'BufNewFile' },
+    build = ':TSUpdate',
+    lazy = false,
     config = function()
-      -- Setup nvim-treesitter with all config including textobjects and endwise
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = {
-          'bash',
-          'c',
-          'cpp',
-          'css',
-          'dockerfile',
-          'eex',
-          'elixir',
-          'embedded_template',
-          'go',
-          'heex',
-          'html',
-          'javascript',
-          'json',
-          'latex',
-          'lua',
-          'markdown',
-          'norg',
-          'puppet',
-          'python',
-          'regex',
-          'ruby',
-          'rust',
-          'scss',
-          'svelte',
-          'tsx',
-          'typescript',
-          'typst',
-          'vim',
-          'vimdoc',
-          'vue',
-          'yaml',
-        },
+      ts = require('nvim-treesitter')
 
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = {
-            'ruby',
-            'embedded_template',
-            'elixir',
-            'eex',
-            'heex',
-            'eruby',
-          },
-        },
-
-        indent = {
-          enable = true,
-          disable = {
-            'ruby',
-            'embedded_template',
-            'eruby',
-          },
-        },
-
-        -- nvim-treesitter-textobjects config
-        -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
-              ['ab'] = '@block.outer',
-              ['ib'] = '@block.inner',
-            },
-          },
-        },
-
-        -- nvim-treesitter-endwise config
-        endwise = { enable = true },
+      -- Setup the install directory for treesitter parsers.
+      -- I don't understand why this is named `site` in nvim-treesitter's
+      -- README.md, but I'll just leave it as-is for now.
+      ts.setup({
+        install_dir = vim.fn.stdpath('data') .. '/site',
       })
-    end,
-  },
 
-  {
-    -- Smart brackets, parens, quotes,...
-    -- Binds <CR> to position between the pairs + auto-indent as well.
-    -- NOTE: nvim-ts-autotag is the one that autocloses HTML/XML tags, but the
-    -- auto-indent logic comes from this
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    opts = {
-      disable_filetype = { 'snacks_picker_input' },
-    },
-  },
-
-  {
-    -- Auto rename of HTML/XML tags on change motions.
-    -- NOTE: The author has deprecated 'setup({}) through opts = {}', because
-    -- nvim-treesitter will supposedly do the same in their 1.0 release.
-    -- That's why this uses a config function.
-    -- https://github.com/windwp/nvim-ts-autotag?tab=readme-ov-file#setup
-    'windwp/nvim-ts-autotag',
-    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
-    config = function()
-      require('nvim-ts-autotag').setup({
-        opts = {
-          enable_close = true, -- Auto close tags
-          enable_rename = true, -- Auto rename pairs of tags
-          enable_close_on_slash = false, -- Don't auto close on trailing </
-        },
+      -- Install parsers
+      ts.install({
+        'bash',
+        'c',
+        'cpp',
+        'css',
+        'dockerfile',
+        'eex',
+        'elixir',
+        'embedded_template',
+        'go',
+        'heex',
+        'html',
+        'javascript',
+        'json',
+        'latex',
+        'lua',
+        'markdown',
+        'norg',
+        'puppet',
+        'python',
+        'regex',
+        'ruby',
+        'rust',
+        'scss',
+        'svelte',
+        'tsx',
+        'typescript',
+        'typst',
+        'vim',
+        'vimdoc',
+        'vue',
+        'yaml',
       })
+
+      -- Filetypes that should use additional vim regex highlighting
+      local regex_highlight_filetypes = {
+        ruby = true,
+        embedded_template = true,
+        elixir = true,
+        eex = true,
+        heex = true,
+        eruby = true,
+      }
+
+      -- Filetypes where treesitter indent should be disabled
+      local disable_indent_filetypes = {
+        ruby = true,
+        embedded_template = true,
+        eruby = true,
+      }
+
+      -- Enable treesitter highlighting dynamically
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          local ft = vim.bo[args.buf].filetype
+          -- Start treesitter highlighting
+          local start_ok = pcall(vim.treesitter.start, args.buf)
+          if not start_ok then
+            return
+          end
+
+          -- Enable additional vim regex highlighting for certain filetypes
+          if regex_highlight_filetypes[ft] then
+            vim.bo[args.buf].syntax = 'ON'
+          end
+
+          -- Set treesitter-based indentation (except for disabled filetypes)
+          if not disable_indent_filetypes[ft] then
+            vim.bo[args.buf].indentexpr =
+              "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
+
+      -- Because treesitter has made these changes, I'm required to load these
+      -- in at this point. Both won't work without calling them here first.
+      require('nvim-treesitter-textobjects')
+      require('nvim-treesitter-endwise')
     end,
   },
 }
