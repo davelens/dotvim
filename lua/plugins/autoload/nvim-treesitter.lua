@@ -11,76 +11,78 @@ return {
 
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs',
-    event = { 'BufReadPost', 'BufNewFile' },
-    opts = {
-      ensure_installed = {
-        'bash',
-        'c',
-        'cpp',
-        'css',
-        'dockerfile',
-        'eex',
-        'elixir',
-        'embedded_template',
-        'go',
-        'heex',
-        'html',
-        'javascript',
-        'json',
-        'latex',
-        'lua',
-        'markdown',
-        'norg',
-        'puppet',
-        'python',
-        'regex',
-        'ruby',
-        'rust',
-        'scss',
-        'svelte',
-        'tsx',
-        'typescript',
-        'typst',
-        'vim',
-        'vimdoc',
-        'vue',
-        'yaml',
-      },
-
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = {
-          'ruby',
-          'embedded_template',
-          'elixir',
-          'eex',
-          'heex',
-          'eruby',
-        },
-      },
-
-      indent = {
-        enable = true,
-        disable = {
-          'ruby',
-          'embedded_template',
-          'eruby',
-        },
-      },
+    dependencies = {
+      -- These are lazy=true so they don't auto-source their plugin files
+      { 'nvim-treesitter/nvim-treesitter-textobjects', lazy = true },
+      { 'RRethy/nvim-treesitter-endwise', lazy = true },
     },
-  },
-
-  -- Treesitter textobjects - loaded after nvim-treesitter
-  -- Probably good to read up on text objects and how to add custom ones:
-  -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    build = function()
+      -- Wrap in pcall to avoid errors during initial headless install
+      pcall(function()
+        require('nvim-treesitter.install').update({ with_sync = true })()
+      end)
+    end,
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
+      -- Setup nvim-treesitter with all config including textobjects and endwise
       require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+          'bash',
+          'c',
+          'cpp',
+          'css',
+          'dockerfile',
+          'eex',
+          'elixir',
+          'embedded_template',
+          'go',
+          'heex',
+          'html',
+          'javascript',
+          'json',
+          'latex',
+          'lua',
+          'markdown',
+          'norg',
+          'puppet',
+          'python',
+          'regex',
+          'ruby',
+          'rust',
+          'scss',
+          'svelte',
+          'tsx',
+          'typescript',
+          'typst',
+          'vim',
+          'vimdoc',
+          'vue',
+          'yaml',
+        },
+
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = {
+            'ruby',
+            'embedded_template',
+            'elixir',
+            'eex',
+            'heex',
+            'eruby',
+          },
+        },
+
+        indent = {
+          enable = true,
+          disable = {
+            'ruby',
+            'embedded_template',
+            'eruby',
+          },
+        },
+
+        -- nvim-treesitter-textobjects config
+        -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
         textobjects = {
           select = {
             enable = true,
@@ -95,17 +97,8 @@ return {
             },
           },
         },
-      })
-    end,
-  },
 
-  -- Treesitter endwise - loaded after nvim-treesitter
-  {
-    'RRethy/nvim-treesitter-endwise',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = function()
-      require('nvim-treesitter.configs').setup({
+        -- nvim-treesitter-endwise config
         endwise = { enable = true },
       })
     end,
