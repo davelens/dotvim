@@ -57,9 +57,12 @@ function M.load(opts)
     change_detection = { notify = false },
     checker = { enabled = false },
     debug = false,
-    -- On first run, don't auto-load plugins during install to avoid errors
-    defaults = { lazy = first_run },
-    install = { colorscheme = { vim.colorscheme } },
+    -- On first run, skip auto-install to avoid sourcing errors.
+    -- User must run :Lazy sync manually, then restart.
+    install = {
+      missing = not first_run,
+      colorscheme = { vim.colorscheme },
+    },
 
     performance = {
       cache = {
@@ -84,6 +87,18 @@ function M.load(opts)
   }, opts)
 
   require('lazy').setup(opts)
+
+  -- On first run, prompt user to sync and restart
+  if first_run then
+    vim.defer_fn(function()
+      vim.notify(
+        'First run detected. Run :Lazy sync then restart Neovim.',
+        vim.log.levels.WARN
+      )
+      vim.cmd('Lazy')
+    end, 100)
+  end
+
   vim.keymap.set(
     'n',
     opts.keymap,
