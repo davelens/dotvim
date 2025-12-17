@@ -45,6 +45,10 @@ vim.opt.rtp:prepend(lazypath)
 local M = {}
 
 function M.load(opts)
+  -- Detect first run (no plugins installed yet)
+  local lazy_path = vim.fn.stdpath('data') .. '/lazy'
+  local first_run = vim.fn.isdirectory(lazy_path .. '/nvim-treesitter') == 0
+
   opts = vim.tbl_deep_extend('force', {
     spec = {
       { import = 'plugins.basic' },
@@ -53,7 +57,8 @@ function M.load(opts)
     change_detection = { notify = false },
     checker = { enabled = false },
     debug = false,
-    --defaults = { lazy = true }, -- Not yet. When I understand it better.
+    -- On first run, don't auto-load plugins during install to avoid errors
+    defaults = { lazy = first_run },
     install = { colorscheme = { vim.colorscheme } },
 
     performance = {
