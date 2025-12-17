@@ -39,12 +39,11 @@ vim.diagnostic.config({
 
 -- Inject Blink's capabilities into the LSP config for all filetypes.
 -- The schedule just makes sure it's delayed until our plugins are loaded.
+-- The pcall ensures we skip this on first run when blink isn't installed yet.
 vim.schedule(function()
-  if vim.fn.has('nvim-0.11') == 1 and vim.lsp.config then
-    vim.lsp.config(
-      '*',
-      { capabilities = require('blink.cmp').get_lsp_capabilities() }
-    )
+  local ok, blink = pcall(require, 'blink.cmp')
+  if ok and vim.fn.has('nvim-0.11') == 1 and vim.lsp.config then
+    vim.lsp.config('*', { capabilities = blink.get_lsp_capabilities() })
   end
 end)
 
