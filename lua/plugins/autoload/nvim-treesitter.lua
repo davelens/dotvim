@@ -14,10 +14,10 @@ return {
     dependencies = {
       -- Probably good to read up on text objects and how to add custom ones:
       -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      { 'nvim-treesitter/nvim-treesitter-textobjects', lazy = true },
 
       -- nvim-treesitter extension to autoclose Ruby/Elixir/Lua/... blocks
-      'RRethy/nvim-treesitter-endwise',
+      { 'RRethy/nvim-treesitter-endwise', lazy = true },
     },
 
     build = ':TSUpdate',
