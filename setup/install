@@ -165,6 +165,14 @@ EOF
     echo "$(check) Created ${DVIM_CONFIG_HOME/"$HOME"/\~} executable"
   fi
 
+  # Run headless plugin install to avoid first-run errors
+  echo "Installing plugins (headless)..."
+  if dvim --headless "+Lazy! sync" +qa 2>/dev/null; then
+    echo "$(check) Plugins installed"
+  else
+    echo "$(warn) Plugin install had errors (this is usually fine, run dvim to complete)"
+  fi
+
   echo "$(check) dvim successfully installed"
 }
 

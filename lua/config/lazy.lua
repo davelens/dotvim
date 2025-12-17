@@ -45,10 +45,6 @@ vim.opt.rtp:prepend(lazypath)
 local M = {}
 
 function M.load(opts)
-  -- Detect first run (no plugins installed yet)
-  local lazy_path = vim.fn.stdpath('data') .. '/lazy'
-  local first_run = vim.fn.isdirectory(lazy_path .. '/nvim-treesitter') == 0
-
   opts = vim.tbl_deep_extend('force', {
     spec = {
       { import = 'plugins.basic' },
@@ -57,12 +53,7 @@ function M.load(opts)
     change_detection = { notify = false },
     checker = { enabled = false },
     debug = false,
-    -- On first run, skip auto-install to avoid sourcing errors.
-    -- User must run :Lazy sync manually, then restart.
-    install = {
-      missing = not first_run,
-      colorscheme = { vim.colorscheme },
-    },
+    install = { colorscheme = { vim.colorscheme } },
 
     performance = {
       cache = {
@@ -87,18 +78,6 @@ function M.load(opts)
   }, opts)
 
   require('lazy').setup(opts)
-
-  -- On first run, prompt user to sync and restart
-  if first_run then
-    vim.defer_fn(function()
-      vim.notify(
-        'First run detected. Run :Lazy sync then restart Neovim.',
-        vim.log.levels.WARN
-      )
-      vim.cmd('Lazy')
-    end, 100)
-  end
-
   vim.keymap.set(
     'n',
     opts.keymap,
