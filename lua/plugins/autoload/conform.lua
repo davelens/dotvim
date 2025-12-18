@@ -18,6 +18,11 @@ return {
         lsp_format = lsp_format_opt,
       }
     end,
+    formatters = {
+      shfmt = {
+        prepend_args = { '--apply-ignore' },
+      },
+    },
     formatters_by_ft = {
       lua = { 'stylua' },
       sh = { 'shfmt' },
