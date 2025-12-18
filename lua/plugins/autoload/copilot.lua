@@ -14,6 +14,7 @@ return {
     'ruby',
     'scss',
     'sh',
+    'yaml',
     'yaml.eruby',
   },
   opts = {
