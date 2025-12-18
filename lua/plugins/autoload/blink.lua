@@ -19,7 +19,8 @@ return {
         'buffer',
       },
       per_filetype = {
-        sql = { 'snippets', 'dadbod', 'buffer' },
+        mysql = { 'dadbod' },
+        pgsql = { 'dadbod' },
       },
       providers = {
         dadbod = {
