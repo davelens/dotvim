@@ -18,6 +18,9 @@ return {
     'yaml.eruby',
   },
   opts = {
+    filetypes = {
+      yaml = true,
+    },
     suggestion = {
       enabled = true,
       auto_trigger = false,
