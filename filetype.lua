@@ -2,7 +2,7 @@ vim.filetype.add({
   pattern = {
     ['.*%.env'] = 'conf',
     ['todo.md'] = 'TODO',
-    ['.*config/locales/.*%.yml'] = 'yaml.eruby',
+    ['.*/config/locales/.*%.yml'] = 'yaml.eruby',
   },
 })
 
