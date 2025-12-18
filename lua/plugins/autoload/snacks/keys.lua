@@ -61,7 +61,7 @@ return {
       })
     end,
     desc = 'Term',
-    ft = { 'ruby', 'eruby', 'eruby.yaml' },
+    ft = { 'ruby', 'eruby', 'eruby.yaml', 'yaml.eruby' },
     mode = { 'n', 'v' },
   },
 }

@@ -1,7 +1,7 @@
 -- Maps and functions for Rails I18n interaction
 return {
   'airblade/vim-localorie',
-  ft = { 'ruby', 'eruby', 'yaml', 'eruby.yaml' },
+  ft = { 'ruby', 'eruby', 'yaml', 'eruby.yaml', 'yaml.eruby' },
   keys = {
     {
       '<leader>fti',
