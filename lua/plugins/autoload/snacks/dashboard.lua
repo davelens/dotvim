@@ -40,7 +40,7 @@ local function project_header()
   end
 
   return string.format(
-    command .. ' | lolcat --seed=' .. lolseed,
+    command .. ' | lolcat --seed=' .. lolseed .. ' && sleep 1',
     project_name():gsub('^.', string.upper)
   )
 end
