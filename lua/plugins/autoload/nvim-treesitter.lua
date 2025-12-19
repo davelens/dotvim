@@ -43,6 +43,7 @@ return {
         'ruby',
         'rust',
         'scss',
+        'sh',
         'svelte',
         'tsx',
         'typescript',
@@ -68,6 +69,8 @@ return {
         ruby = true,
         embedded_template = true,
         eruby = true,
+        sh = true,
+        bash = true,
       }
 
       -- Enable treesitter highlighting dynamically
