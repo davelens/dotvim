@@ -61,7 +61,10 @@ return {
   sections = {
     {
       section = 'terminal',
-      cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
+      -- The sleep is because the `lolcat` I'm using is the Rust one.
+      -- The classic one has a 70mb Ruby dependency. -.-
+      cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat && sleep 1',
+      -- 19 high to cut off the [Process exited 0] message.
       height = 19, indent = 10, padding = 0,
       ttl = 0,
     },
