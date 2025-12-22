@@ -36,7 +36,7 @@ return {
           -- Snippets beginning with ';' should always come out on top.
           -- Keeping until [#1340](https://github.com/Saghen/blink.cmp/issues/1340) is fixed.
           score_offset = function(tbl)
-            return (tbl.line:sub(1, 1) == ';' and 1 or 200)
+            return (tbl.line:sub(1, 1) == ';' and 200 or -100)
           end,
         },
       },
