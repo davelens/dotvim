@@ -18,15 +18,7 @@ return {
         'snippets',
         'buffer',
       },
-      per_filetype = {
-        mysql = { 'dadbod' },
-        pgsql = { 'dadbod' },
-      },
       providers = {
-        dadbod = {
-          name = 'Dadbod',
-          module = 'vim_dadbod_completion.blink',
-        },
         rails_routes = {
           module = 'config/lsp/rails_routes',
           async = true,
