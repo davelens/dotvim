@@ -28,4 +28,18 @@ return {
       },
     },
   },
+  win = {
+    input = {
+      keys = {
+        ['<C-v>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
+        ['<C-s>'] = { 'edit_split', mode = { 'i', 'n' } },
+      },
+    },
+    list = {
+      keys = {
+        ['<C-v>'] = 'edit_vsplit',
+        ['<C-s>'] = 'edit_split',
+      },
+    },
+  },
 }
