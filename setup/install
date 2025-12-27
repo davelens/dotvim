@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # TODO: cargo install lolcat
-# TODO: sudo pacman -S figlet
+# TODO: sudo pacman -S figlet xclip
 # TODO: Put https://www.figlet.org/fonts/rectangles.flf in `$(figlet -I 2)`.
 
 # Stops further execution after any error.
