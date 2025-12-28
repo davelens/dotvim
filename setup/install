@@ -48,9 +48,8 @@ function is_font_installed {
     fi
     return 1
   else
-    # On Linux, use fc-list with specific format to ensure consistent matching
-    # Check for the font family name in the output
-    fc-list : family | grep -qi "^${font_name}" || fc-list : family | grep -qi "${font_name}"
+    # On Linux, check for Nerd Font variant specifically
+    fc-list : family | grep -i "${font_name}" | grep -qi "Nerd Font"
   fi
 }
 
