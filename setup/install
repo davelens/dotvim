@@ -56,23 +56,10 @@ function is_font_installed {
 function install_fonts {
   local fonts_to_install=()
 
-  # Check each font and add to install list if not present
-  if ! is_font_installed "DroidSansMono"; then
-    fonts_to_install+=("DroidSansMono")
-  else
-    echo "$(check) DroidSansMono Nerd Font already installed"
-  fi
-
   if ! is_font_installed "Hack"; then
     fonts_to_install+=("Hack")
   else
     echo "$(check) Hack Nerd Font already installed"
-  fi
-
-  if ! is_font_installed "Noto"; then
-    fonts_to_install+=("Noto")
-  else
-    echo "$(check) Noto Nerd Font already installed"
   fi
 
   # Only install getnf and fonts if there are fonts to install
