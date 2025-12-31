@@ -25,10 +25,9 @@ return {
           timeout_ms = 5000,
         },
         snippets = {
-          -- Snippets beginning with ';' should always come out on top.
-          -- Keeping until [#1340](https://github.com/Saghen/blink.cmp/issues/1340) is fixed.
-          score_offset = function(tbl)
-            return (tbl.line:sub(1, 1) == ';' and 200 or -100)
+          -- Only show snippets when the line starts with ';'
+          should_show_items = function(ctx)
+            return ctx.line:sub(1, 1) == ';'
           end,
         },
       },
