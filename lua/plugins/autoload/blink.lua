@@ -24,6 +24,28 @@ return {
           async = true,
           timeout_ms = 5000,
         },
+        lsp = {
+          -- Deprioritize completions inherited from core/stdlib classes.
+          -- Methods defined on the class itself will have owner_name matching the
+          -- class, while inherited methods show BasicObject/Kernel/Object as owner.
+          transform_items = function(_, items)
+            local deprioritized_owners = {
+              BasicObject = -200,
+              Kernel = -150,
+              Object = -100,
+            }
+
+            for _, item in ipairs(items) do
+              local owner = item.data and item.data.owner_name
+
+              if owner and deprioritized_owners[owner] then
+                item.score_offset = (item.score_offset or 0)
+                  + deprioritized_owners[owner]
+              end
+            end
+            return items
+          end,
+        },
         snippets = {
           -- Only show snippets when the line starts with ';'
           should_show_items = function(ctx)
