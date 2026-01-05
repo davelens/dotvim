@@ -127,7 +127,7 @@ return {
             vim.ui.open(
               string.format(
                 'https://github.com/notifications?query=repo:%s',
-                vim.fn.system('git repo')
+                vim.fn.system('git origin')
               )
             )
           end,
