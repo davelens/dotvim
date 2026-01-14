@@ -20,7 +20,7 @@ return {
       },
       providers = {
         rails_routes = {
-          module = 'config/lsp/rails_routes',
+          module = 'rails-routes.blink',
           async = true,
           timeout_ms = 5000,
         },
