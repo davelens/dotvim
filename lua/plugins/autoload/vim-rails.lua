@@ -4,13 +4,13 @@ return {
   ft = { 'ruby', 'eruby' },
   keys = {
     {
-      '<leader>ra',
+      '<leader>rA',
       '<cmd>A<cr>',
       ft = { 'ruby', 'eruby' },
       desc = 'Go to alternate file',
     },
     {
-      '<leader>rr',
+      '<leader>rR',
       '<cmd>R<cr>',
       ft = { 'ruby', 'eruby' },
       desc = 'Go to related file',
