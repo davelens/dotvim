@@ -1,6 +1,5 @@
 return {
-  dir = '~/Repositories/davelens/rails-routes.nvim',
-  name = 'rails-routes.nvim',
+  'davelens/rails-routes.nvim',
   ft = { 'ruby', 'eruby' },
   opts = {},
   keys = {
@@ -24,9 +23,4 @@ return {
       desc = 'Index routes',
     },
   },
-  enabled = function()
-    return vim.fn.isdirectory(
-      vim.fn.expand('~/Repositories/davelens/rails-routes.nvim')
-    ) == 1
-  end,
 }
