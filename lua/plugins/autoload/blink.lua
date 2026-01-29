@@ -47,9 +47,9 @@ return {
           end,
         },
         snippets = {
-          -- Only show snippets when the line starts with ';'
+          -- Only show snippets when typing a trigger that starts with ';'
           should_show_items = function(ctx)
-            return ctx.line:sub(1, 1) == ';'
+            return ctx.line:sub(1, ctx.cursor[2]):match(';%S*$') ~= nil
           end,
         },
       },
