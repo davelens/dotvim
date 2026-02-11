@@ -75,8 +75,10 @@ return {
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
           local ft = vim.bo[args.buf].filetype
+          -- Get the treesitter language for this filetype (handles compound filetypes)
+          local lang = vim.treesitter.language.get_lang(ft)
           -- Start treesitter highlighting
-          local start_ok = pcall(vim.treesitter.start, args.buf)
+          local start_ok = pcall(vim.treesitter.start, args.buf, lang)
           if not start_ok then
             return
           end
