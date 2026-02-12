@@ -34,34 +34,10 @@ return {
         },
       },
     },
-    adapters = {
-      acp = {
-        claude_code = function()
-          return require('codecompanion.adapters').extend('claude_code', {
-            env = {
-              CLAUDE_CODE_OAUTH_TOKEN = vim.env.CLAUDE_CODE_OAUTH_TOKEN,
-            },
-          })
-        end,
-      },
-    },
-    strategies = {
-      chat = {
-        adapter = 'claude_code',
-        keymaps = {
-          close = {
-            modes = { n = 'q' },
-          },
-          next_chat = {
-            modes = { n = 'cn' },
-          },
-          previous_chat = {
-            modes = { n = 'cp' },
-          },
-        },
-      },
-      inline = { adapter = 'copilot' },
-      cmd = { adapter = 'claude_code' },
+    interactions = {
+      chat = { adapter = 'opencode' },
+      inline = { adapter = 'openai' },
+      cmd = { adapter = 'opencode' },
     },
   },
   dependencies = {
