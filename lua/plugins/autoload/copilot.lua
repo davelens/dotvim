@@ -1,6 +1,7 @@
 -- AI pair programmer :x
 return {
   'zbirenbaum/copilot.lua',
+  enabled = false,
   ft = {
     'css',
     'eelixir',
@@ -15,7 +16,6 @@ return {
     'scss',
     'sh',
     'yaml',
-    'yaml.eruby',
   },
   opts = {
     filetypes = {
