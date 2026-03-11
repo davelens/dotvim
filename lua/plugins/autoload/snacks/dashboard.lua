@@ -40,7 +40,7 @@ local function project_header()
   end
 
   return string.format(
-    command .. ' | lolcat --seed=' .. lolseed .. ' && sleep 1',
+    command .. ' | lolcat --seed=' .. lolseed,
     project_name():gsub('^.', string.upper)
   )
 end
@@ -61,9 +61,7 @@ return {
   sections = {
     {
       section = 'terminal',
-      -- The sleep is because the `lolcat` I'm using is the Rust one.
-      -- The classic one has a 70mb Ruby dependency. -.-
-      cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat && sleep 1',
+      cmd = 'lolcat --seed=' .. lolseed .. ' $XDG_CONFIG_HOME/dvim/assets/logo/pretzl.cat',
       -- 19 high to cut off the [Process exited 0] message.
       height = 19, indent = 10, padding = 0,
       ttl = 0,
