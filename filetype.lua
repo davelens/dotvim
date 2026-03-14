@@ -2,6 +2,7 @@ vim.filetype.add({
   pattern = {
     ['.*%.env'] = 'conf',
     ['todo.md'] = 'TODO',
+    ['TODO.md'] = 'TODO',
   },
 })
 

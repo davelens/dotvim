@@ -1,8 +1,6 @@
 -- Ensure the todo file and its directory exist, creating them if necessary.
---
--- TODO: This might need filename normalization for the *.md file when using
--- the project root folder.
---
+-- On develop/master, a root-level TODO.md takes precedence when it exists.
+-- Other branches always get their own .notes/todos/<branch>.md file.
 local function ensure_todo_file()
   -- Find project root (looks for .git, else uses cwd)
   local root = vim.fs.root(0, { '.git' }) or vim.fn.getcwd()
@@ -12,6 +10,15 @@ local function ensure_todo_file()
     branch = vim.fn.system({ 'git', '-C', root, 'b' }):gsub('%s+$', '')
     if branch == '' then
       branch = nil
+    end
+  end
+
+  -- Prefer a root-level TODO.md on develop/master.
+  local default_branches = { develop = true, master = true }
+  if default_branches[branch] then
+    local root_todo = root .. '/TODO.md'
+    if vim.fn.filereadable(root_todo) == 1 then
+      return root_todo
     end
   end
 
@@ -31,7 +38,7 @@ local function ensure_todo_file()
 end
 
 -- Open the given buffer in a floating window and return the window id.
-local function open_todo_float(buf)
+local function open_todo_float(buf, title)
   local width = math.floor(vim.o.columns * 0.6)
   local height = math.floor(vim.o.lines * 0.6)
   local row = math.floor((vim.o.lines - height) / 2)
@@ -45,6 +52,8 @@ local function open_todo_float(buf)
     col = col,
     style = 'minimal',
     border = 'single',
+    title = ' ' .. title .. ' ',
+    title_pos = 'center',
   })
 end
 
@@ -86,7 +95,7 @@ function M.toggle_state()
   end
 end
 
--- Opens or closes the float with the relevant .notes/todos/*.md file.
+-- Opens or closes the float with the project's todo file.
 function M.toggle_file()
   if M.float_id and vim.api.nvim_win_is_valid(M.float_id) then
     -- Save the buffer before closing the floating window
@@ -112,7 +121,11 @@ function M.toggle_file()
   vim.api.nvim_buf_set_option(buf, 'buflisted', false)
   vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
 
-  M.float_id = open_todo_float(buf)
+  -- Show the path relative to the project root in the float title.
+  local root = vim.fs.root(0, { '.git' }) or vim.fn.getcwd()
+  local title = todo_path:sub(#root + 2)
+
+  M.float_id = open_todo_float(buf, title)
   move_to_first_uncompleted_todo(buf)
 end
 
