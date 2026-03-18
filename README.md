@@ -2,6 +2,9 @@
 
 > This is my [vim](https://neovim.io). There are many like it, but this one is mine. My vim is my best friend. It is my life. I must master it as I must master my life. Without me, my vim is useless. Without my vim, I am useless.
 
+<img width="1507" height="1061" alt="image" src="https://github.com/user-attachments/assets/9f249ff7-0898-417d-b229-35531dc8344d" />
+
+
 ## History
 * [Est. 2011](https://github.com/davelens/dotvim/commits/master/?since=2011-05-01&until=2011-05-31)
 * Switched from Vim to Neovim in september 2019, after experiencing how much quicker it was dealing with very large files
