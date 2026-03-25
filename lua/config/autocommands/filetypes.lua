@@ -47,12 +47,26 @@ dvim.utils.autocmd('FileType', {
 -- Check markdown checkboxes in a list ("- [ ]" -> "- [x]")
 dvim.utils.autocmd('FileType', {
   group = grp,
-  pattern = { 'markdown', 'text', 'TODO' },
+  pattern = { 'text', 'TODO' },
   callback = function()
     vim.keymap.set(
       'n',
       '<CR>',
       require('config.functions.todo').toggle_state,
+      { buffer = true, silent = true }
+    )
+  end,
+})
+
+-- Follow links or toggle checkboxes in markdown files
+dvim.utils.autocmd('FileType', {
+  group = grp,
+  pattern = { 'markdown' },
+  callback = function()
+    vim.keymap.set(
+      'n',
+      '<CR>',
+      require('config.functions.markdown').enter,
       { buffer = true, silent = true }
     )
   end,
