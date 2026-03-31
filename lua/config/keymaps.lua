@@ -95,3 +95,8 @@ map(
   dvim.load('config.functions.todo').toggle_file,
   { desc = 'TODO list' }
 )
+
+-- Colour inspection
+map('n', '<leader>hi', function()
+  dvim.load('config.functions.colors').inspect_under_cursor()
+end, { desc = 'Inspect colour under cursor' })
