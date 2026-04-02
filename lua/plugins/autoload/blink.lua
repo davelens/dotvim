@@ -18,7 +18,14 @@ return {
         'snippets',
         'buffer',
       },
+      per_filetype = {
+        html = { inherit_defaults = true, 'ac_users' },
+      },
       providers = {
+        ac_users = {
+          name = 'ActiveCollab',
+          module = 'active-collab.blink',
+        },
         rails_routes = {
           module = 'rails-routes.blink',
           async = true,
