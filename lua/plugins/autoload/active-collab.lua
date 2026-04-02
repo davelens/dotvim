@@ -1,5 +1,5 @@
 return {
-  dir = 'davelens/active_collab.nvim',
+  'davelens/active_collab.nvim',
   ft = { 'html' },
   opts = {},
 }
