@@ -19,12 +19,16 @@ return {
         'buffer',
       },
       per_filetype = {
-        html = { inherit_defaults = true, 'ac_users' },
+        html = { inherit_defaults = true, 'ac_users', 'ac_tasks' },
       },
       providers = {
         ac_users = {
-          name = 'ActiveCollab',
-          module = 'active-collab.blink',
+          name = 'ActiveCollab - users',
+          module = 'active-collab.blink.users',
+        },
+        ac_tasks = {
+          name = 'ActiveCollab - tasks',
+          module = 'active-collab.blink.tasks',
         },
         rails_routes = {
           module = 'rails-routes.blink',
