@@ -1,11 +1,11 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LuaSnip": { "branch": "master", "commit": "5a1e39223db9a0498024a77b8441169d260c8c25" },
-  "active_collab.nvim": { "branch": "master", "commit": "fc11fa74ac359ef1821035fa2f6b95fbd0c7ac01" },
+  "active_collab.nvim": { "branch": "master", "commit": "1420be5d97a79c723d09c12926223b8f17116aab" },
   "aerial.nvim": { "branch": "master", "commit": "645d108a5242ec7b378cbe643eb6d04d4223f034" },
   "blink.cmp": { "branch": "main", "commit": "451168851e8e2466bc97ee3e026c3dcb9141ce07" },
   "catppuccin": { "branch": "main", "commit": "16408d203973da7e43fab87c6f9d3bf7fa98fa8b" },
-  "codecompanion.nvim": { "branch": "main", "commit": "eadd05011e6941bcd8a614e7702748b358d07722" },
+  "codecompanion.nvim": { "branch": "main", "commit": "893f56bdd41c5f58a49a1b0ab28e2ac6ad4667cc" },
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
   "copilot.lua": { "branch": "master", "commit": "2d7511494245129aa6c2176f9c71cc2bc1360ed9" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
