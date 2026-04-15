@@ -23,11 +23,11 @@ return {
       },
       providers = {
         ac_users = {
-          name = 'ActiveCollab - users',
+          name = 'ActiveCollab - Users',
           module = 'active-collab.blink.users',
         },
         ac_tasks = {
-          name = 'ActiveCollab - tasks',
+          name = 'ActiveCollab - Tasks',
           module = 'active-collab.blink.tasks',
         },
         rails_routes = {
