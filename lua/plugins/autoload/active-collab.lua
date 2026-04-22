@@ -1,6 +1,5 @@
 return {
-  dir = '~/Repositories/davelens/active_collab-nvim',
-  name = 'active_collab.nvim',
+  'davelens/active_collab-nvim',
   cmd = { 'AC' },
   keys = {
     { ';m', '<cmd>AC<cr>', desc = 'Time records' },
@@ -11,9 +10,4 @@ return {
       filetypes = { 'html' },
     },
   },
-  enabled = function()
-    return vim.fn.isdirectory(
-      vim.fn.expand('~/Repositories/davelens/active_collab-nvim')
-    ) == 1
-  end,
 }
