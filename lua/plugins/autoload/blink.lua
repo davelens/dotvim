@@ -157,6 +157,15 @@ return {
           end,
         },
       },
+      menu = {
+        draw = {
+          columns = {
+            { 'label', gap = 6 },
+            { 'label_description', gap = 6 },
+            { 'kind_icon', 'kind', gap = 1 },
+          },
+        },
+      },
     },
   },
 }
