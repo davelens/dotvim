@@ -9,6 +9,9 @@ return {
     dim_inactive = {
       enabled = true,
     },
+    integrations = {
+      snacks = true,
+    },
     custom_highlights = function(colors)
       return {
         -- folke/lazy.nvim
@@ -28,9 +31,6 @@ return {
         SnacksDashboardKey = { fg = colors.lavender },
         SnacksDashboardFooter = { fg = colors.text },
         SnacksDashboardSpecial = { fg = colors.lavender },
-        SnacksIndent = { fg = colors.overlay0 },
-        SnacksIndentScope = { fg = colors.subtext0 },
-        SnacksIndentChunk = { fg = colors.subtext0 },
       }
     end,
   },
