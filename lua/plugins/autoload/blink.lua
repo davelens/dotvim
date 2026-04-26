@@ -56,6 +56,7 @@ return {
             return items
           end,
         },
+
         snippets = {
           -- Only show snippets when typing a trigger that starts with ';'
           should_show_items = function(ctx)
@@ -144,6 +145,7 @@ return {
     -- I prefer to see docs where available.
     completion = {
       documentation = { auto_show = true },
+      ghost_text = { enabled = true },
       list = {
         selection = {
           auto_insert = false,
