@@ -1,7 +1,14 @@
 return {
   'saghen/blink.cmp',
+  dependencies = { 'saghen/blink.lib' },
   event = 'InsertEnter',
   opts_extend = { 'sources.default' },
+
+  build = function()
+    -- build the fuzzy matcher, wait up to 60 seconds
+    -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+    require('blink.cmp').build():wait(60000)
+  end,
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
