@@ -10,10 +10,15 @@ return {
       enabled = true,
     },
     integrations = {
+      blink_cmp = true,
       snacks = true,
     },
     custom_highlights = function(colors)
       return {
+        -- saghen/blink.cmp
+        BlinkCmpMenu = { bg = colors.base },
+        BlinkCmpMenuBorder = { fg = colors.lavender, bg = colors.base },
+        BlinkCmpDoc = { bg = colors.base },
         -- folke/lazy.nvim
         IncSearch = { bg = colors.lavender },
         -- zbirenbaum/copilot.lua

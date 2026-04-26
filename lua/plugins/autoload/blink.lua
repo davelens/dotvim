@@ -144,7 +144,12 @@ return {
 
     -- I prefer to see docs where available.
     completion = {
-      documentation = { auto_show = true },
+      documentation = {
+        auto_show = true,
+        window = {
+          border = 'single',
+        },
+      },
       ghost_text = { enabled = true },
       list = {
         selection = {
@@ -159,6 +164,7 @@ return {
         },
       },
       menu = {
+        border = 'single',
         draw = {
           columns = {
             { 'label', gap = 6 },
