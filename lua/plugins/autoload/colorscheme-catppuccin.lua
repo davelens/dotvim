@@ -1,7 +1,5 @@
 return {
   'catppuccin/nvim',
-  flavour = 'auto', -- latte, frappe, macchiato (default), mocha
-  event = 'VeryLazy',
   name = 'catppuccin',
   priority = 1000,
   opts = {
@@ -36,7 +34,13 @@ return {
       }
     end,
   },
+  -- This is a wee trick: init() runs before config(), but using vim.schedule()
+  -- allows me to defer the colorscheme setting somehwere further along the
+  -- main event loop. I don't like overriding config() directly.
+  -- This was not required in Neovim 0.11, but 0.12 changed it somehow.
   init = function()
-    vim.cmd.colorscheme('catppuccin')
+    vim.schedule(function()
+      vim.cmd.colorscheme('catppuccin')
+    end)
   end,
 }
