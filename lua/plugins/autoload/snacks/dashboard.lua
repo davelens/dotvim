@@ -45,25 +45,10 @@ local function project_header()
   )
 end
 
-local function command_text(command, height)
-  local lines = vim.fn.systemlist(command)
-  if vim.v.shell_error ~= 0 then
-    lines = { 'Command failed: ' .. command }
-  end
-
-  lines = vim.tbl_map(function(line)
-    return line:gsub('\27%[[0-?]*[ -/]*[@-~]', ''):gsub('^.*\r', '')
-  end, lines)
-
-  while #lines < height do
-    table.insert(lines, '')
-  end
-
-  if #lines > height then
-    lines = vim.list_slice(lines, 1, height)
-  end
-
-  return table.concat(lines, '\n')
+--- Pads a shell command with trailing blank lines to push the
+--- [Process exited 0] message below the visible terminal height.
+local function padded_cmd(cmd, height)
+  return string.format('%s; printf "\\n%%.0s" $(seq 1 %d)', cmd, height)
 end
 
 return {
@@ -120,17 +105,17 @@ return {
           key = 'e', action = ';e',
         },
         {
-          icon = ' ', title = 'Git status',
-          indent = 1, height = 7, section = false,
-          { text = '\n' .. command_text('git changes', 6) },
+          icon = ' ', title = "Git status\n ",
+          indent = 1, height = 6,
+          cmd = padded_cmd('git changes', 6),
           enabled = big_viewport() and is_git_project(),
           key = 's', action = ';g',
         },
 
         {
-          icon = ' ', title = 'Pull requests',
-          indent = 1, height = 4, section = false,
-          { text = '\n' .. command_text('git prs -n', 3) },
+          icon = ' ', title = "Pull requests\n ",
+          indent = 1, height = 3,
+          cmd = padded_cmd('git prs -n', 3),
           enabled = big_viewport() and is_git_project(),
           key = 'p', action = function()
             Snacks.picker.gh_pr()
@@ -138,9 +123,9 @@ return {
         },
 
         {
-          icon = ' ', title = "Notifications",
-          indent = 1, height = 12, section = false,
-          { text = '\n' .. command_text('git notifications', 11) },
+          icon = ' ', title = "Notifications\n ",
+          indent = 1, height = 11,
+          cmd = padded_cmd('git notifications', 11),
           enabled = big_viewport() and is_git_project(),
           key = 'm', action = function()
             vim.ui.open(
@@ -154,15 +139,9 @@ return {
       }
 
       return vim.tbl_map(function(cmd)
-        local section = 'terminal'
-        if cmd.section == false then
-          section = nil
-        end
-        cmd.section = nil
-
         return vim.tbl_extend('force', {
           pane = 2,
-          section = section,
+          section = 'terminal',
           indent = 1, padding = 1, height = 11,
           ttl = 0,
           enabled = Snacks.git.get_root() ~= nil
