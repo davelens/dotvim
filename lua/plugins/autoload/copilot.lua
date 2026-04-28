@@ -4,7 +4,6 @@ return {
   enabled = false,
   ft = {
     'css',
-    'eelixir',
     'elixir',
     'eruby',
     'eruby.yaml',

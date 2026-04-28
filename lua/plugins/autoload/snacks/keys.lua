@@ -44,7 +44,7 @@ return {
       })
     end,
     desc = 'Method definitions',
-    ft = { 'ruby', 'eruby', 'elixir', 'eelixir', 'heex' },
+    ft = { 'ruby', 'eruby', 'elixir', 'heex' },
     mode = { 'n', 'v' },
   },
 

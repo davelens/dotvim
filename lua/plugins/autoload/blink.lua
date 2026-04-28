@@ -164,7 +164,7 @@ return {
           preselect = function(_)
             -- Preselect in embedded language filetypes only.
             return vim.tbl_contains(
-              { 'eruby', 'heex', 'eelixir' },
+              { 'eruby', 'heex', 'elixir' },
               vim.bo.filetype
             )
           end,
