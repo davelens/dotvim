@@ -36,6 +36,7 @@ return {
         'latex',
         'lua',
         'markdown',
+        'norg',
         'puppet',
         'python',
         'regex',
