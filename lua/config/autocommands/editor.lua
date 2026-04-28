@@ -12,6 +12,6 @@ dvim.utils.autocmd('TextYankPost', {
   group = grp,
   desc = 'Highlight when yanking (copying) text',
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
