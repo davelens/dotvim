@@ -5,6 +5,8 @@ return {
   cmd = { 'AC' },
   keys = {
     { ';m', '<cmd>AC<cr>', desc = 'Time records' },
+    { ';m', '<cmd>AC<cr>', desc = 'Time records' },
+    { '<leader>gpr', '<cmd>AC pr<cr>', desc = 'Pull request' },
   },
   opts = {
     account_url = 'https://next-app.activecollab.com/167099',
