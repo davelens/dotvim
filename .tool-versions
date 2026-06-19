@@ -1,6 +1,6 @@
 lua-language-server 3.18.2
 asdf:mise-plugins/mise-luaJIT 2.1.ROLLING
-neovim              0.12.1
+neovim              0.12.3
 ruby                3.4.8
 shfmt               3.13.1
 stylua              2.4.1
