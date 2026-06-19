@@ -1,5 +1,5 @@
 lua-language-server 3.18.2
-luajit              2.1.ROLLING
+asdf:mise-plugins/mise-luaJIT 2.1.ROLLING
 neovim              0.12.1
 ruby                3.4.8
 shfmt               3.13.1
