@@ -27,7 +27,7 @@ return {
       lua = { 'stylua' },
       sh = { 'shfmt' },
       html = { 'htmlbeautifier' },
-      erb = { 'htmlbeautifier' },
+      eruby = { 'htmlbeautifier' },
       rust = { 'rustfmt' },
     },
   },
