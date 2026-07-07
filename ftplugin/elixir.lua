@@ -21,17 +21,19 @@ dvim.load({
 
 -- Overrides vim-test's exunit executable with a docker prefix, but only when
 -- the 'phoenix' container is running.
+-- NOTE: a distinct `name` avoids colliding with the Ruby docker augroup.
+-- `*.exs` is included so entering a test file directly triggers the override.
 dvim.load({
   module = 'config.functions.docker',
-  pattern = { '*.ex', '*.html.heex' },
+  name = 'docker_elixir',
+  pattern = { '*.ex', '*.exs', '*.html.heex' },
   autocommands = function(docker)
-    vim.schedule(function()
-      if docker.container_running('phoenix') then
-        vim.g['test#elixir#exunit#executable'] =
-          'docker compose exec phoenix mix test'
-      else
-        vim.g['test#elixir#exunit#executable'] = nil
-      end
+    docker.container_running('phoenix', function(running)
+      vim.schedule(function()
+        vim.g['test#elixir#exunit#executable'] = running
+            and 'docker compose exec phoenix mix test'
+          or nil
+      end)
     end)
   end,
 })

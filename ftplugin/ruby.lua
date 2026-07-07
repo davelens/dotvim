@@ -41,17 +41,20 @@ dvim.load({
 
 -- Overrides vim-test's RSpec executable with a docker prefix, but only when
 -- the 'rails' container is running.
+-- NOTE: a distinct `name` is required so this augroup doesn't collide with the
+-- Elixir docker loader (both would otherwise share `augroup_docker`).
+-- `*_spec.rb` is a subset of `*.rb`, so the single pattern covers both.
 dvim.load({
   module = 'config.functions.docker',
-  pattern = { '*.rb', '*_spec.rb' },
+  name = 'docker_ruby',
+  pattern = '*.rb',
   autocommands = function(docker)
-    vim.schedule(function()
-      if docker.container_running('rails') then
-        vim.g['test#ruby#rspec#executable'] =
-          'docker compose exec rails bin/rspec'
-      else
-        vim.g['test#ruby#rspec#executable'] = nil
-      end
+    docker.container_running('rails', function(running)
+      vim.schedule(function()
+        vim.g['test#ruby#rspec#executable'] = running
+            and 'docker compose exec rails bin/rspec'
+          or nil
+      end)
     end)
   end,
 })
