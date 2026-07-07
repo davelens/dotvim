@@ -37,14 +37,7 @@ vim.diagnostic.config({
   },
 })
 
--- Inject Blink's capabilities into the LSP config for all filetypes.
--- The schedule just makes sure it's delayed until our plugins are loaded.
--- The pcall ensures we skip this on first run when blink isn't installed yet.
-vim.schedule(function()
-  local ok, blink = pcall(require, 'blink.cmp')
-  if ok and vim.fn.has('nvim-0.11') == 1 and vim.lsp.config then
-    vim.lsp.config('*', { capabilities = blink.get_lsp_capabilities() })
-  end
-end)
-
-vim.lsp.enable({ 'ruby', 'lua', 'elixir', 'bash' })
+-- Blink's LSP capabilities are injected from blink.cmp's own `config` (see
+-- plugins/autoload/blink.lua). blink loads at startup, which runs before any
+-- LSP server attaches to the first buffer, so capabilities are always present.
+vim.lsp.enable({ 'ruby', 'lua', 'elixir', 'bash', 'rust' })
