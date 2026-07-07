@@ -37,7 +37,7 @@ function q.handler()
 
   for _, win in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(win)
-    local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+    local ft = vim.bo[buf].filetype
     if ft == 'gitcommit' then
       gitcommit_found = true
     end
@@ -54,7 +54,7 @@ function q.handler()
   if special_count > 0 then
     if special_count == #wins then
       local cur_buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
-      local cur_ft = vim.api.nvim_buf_get_option(cur_buf, 'filetype')
+      local cur_ft = vim.bo[cur_buf].filetype
       local msg =
         'Closing this buffer with `q` now would exit vim (filetype `%s` is special).'
       vim.schedule(function()
