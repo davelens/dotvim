@@ -1,5 +1,8 @@
 return {
   'stevearc/oil.nvim',
+  -- Load at startup so oil hijacks directory buffers (e.g. `nvim some/dir/`);
+  -- netrw is disabled, so keys-only lazy loading would leave those empty.
+  lazy = false,
   ---@module 'oil'
   opts = {
     float = {
