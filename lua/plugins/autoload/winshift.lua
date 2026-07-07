@@ -6,7 +6,6 @@ return {
     { '<leader>wm', '<cmd>WinShift<cr>', desc = 'Move' },
     { '<leader>wx', '<cmd>WinShift swap<cr>', desc = 'Swap' },
     { '<leader>wk', '<cmd>WinShift up<cr>', desc = 'Move up' },
-    { '<leader>wk', '<cmd>WinShift up<cr>', desc = 'Move up' },
     { '<leader>wj', '<cmd>WinShift down<cr>', desc = 'Move down' },
     { '<leader>wh', '<cmd>WinShift left<cr>', desc = 'Move left' },
     { '<leader>wl', '<cmd>WinShift right<cr>', desc = 'Move right' },
