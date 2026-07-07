@@ -7,9 +7,12 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    -- The 1.0 API lives on `main`; `master` is still the repo default, so pin
+    -- it explicitly or a fresh clone lands on the old (incompatible) API.
+    branch = 'main',
     lazy = false,
     config = function()
-      ts = require('nvim-treesitter')
+      local ts = require('nvim-treesitter')
 
       -- Setup the install directory for treesitter parsers.
       -- I don't understand why this is named `site` in nvim-treesitter's
