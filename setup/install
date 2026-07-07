@@ -26,17 +26,17 @@ function prep_local_bin {
 }
 
 function prep_fonts_dir {
-  if [ "$(uname -s)" == 'darwin' ]; then
+  if [ "$(uname -s)" == 'Darwin' ]; then
     readonly FONTS_DIR="$HOME"/Library/Fonts
   else
-    readonly FONTS_DIR="$XDG_DATA_HOME"/fonts
+    readonly FONTS_DIR="${XDG_DATA_HOME:-$HOME/.local/share}"/fonts
   fi
 }
 
 function is_font_installed {
   local font_name="$1"
 
-  if [ "$(uname -s)" == 'darwin' ]; then
+  if [ "$(uname -s)" == 'Darwin' ]; then
     # On macOS, check if any font files with the name exist
     # Search recursively and check for both .ttf and .otf extensions
     if find "$FONTS_DIR" -type f \( -name "*${font_name}*.ttf" -o -name "*${font_name}*.otf" \) 2>/dev/null | grep -q .; then
