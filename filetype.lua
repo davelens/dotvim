@@ -1,8 +1,12 @@
 vim.filetype.add({
-  pattern = {
-    ['.*%.env'] = 'conf',
+  -- Exact basenames belong under `filename`; as `pattern` keys they were
+  -- unanchored Lua patterns (`.` matched any char, so `mytodo.md` matched too).
+  filename = {
     ['todo.md'] = 'TODO',
     ['TODO.md'] = 'TODO',
+  },
+  pattern = {
+    ['.*%.env'] = 'conf',
   },
 })
 
