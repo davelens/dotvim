@@ -19,7 +19,7 @@ local function insert_checkbox(key)
   return is_checkbox and key .. '- [ ] ' or key
 end
 
-opts = { buffer = true, expr = true }
+local opts = { buffer = true, expr = true }
 vim.keymap.set('i', '<CR>', function()
   return insert_checkbox('\n')
 end, opts)
