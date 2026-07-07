@@ -1,16 +1,27 @@
 return {
   'folke/trouble.nvim',
   opts = {},
-  event = 'VeryLazy',
+  -- No VeryLazy event: cmd/keys are the real lazy-load triggers.
   cmd = 'Trouble',
   keys = {
-    { ']t', '<cmd>Trouble next<cr><cmd>Trouble jump<cr>', { silent = true } },
-    { '[t', '<cmd>Trouble prev<cr><cmd>Trouble jump<cr>', { silent = true } },
-    { ']j', '<cmd>Trouble jump<cr>', { silent = true } },
-    --{ 'n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>' },
-    --{ 'n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>' },
-    --{ 'n', '<leader>xl', '<cmd>Trouble loclist<cr>' },
-    --{ 'n', '<leader>xq', '<cmd>Trouble quickfix<cr>' },
+    {
+      ']t',
+      '<cmd>Trouble next<cr><cmd>Trouble jump<cr>',
+      silent = true,
+      desc = 'Next Trouble item',
+    },
+    {
+      '[t',
+      '<cmd>Trouble prev<cr><cmd>Trouble jump<cr>',
+      silent = true,
+      desc = 'Previous Trouble item',
+    },
+    {
+      ']j',
+      '<cmd>Trouble jump<cr>',
+      silent = true,
+      desc = 'Jump to Trouble item',
+    },
   },
 
   specs = {
