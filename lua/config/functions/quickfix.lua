@@ -1,26 +1,5 @@
 local quickfix = {}
 
--- Wips the quickfix list clean.
-function quickfix.clear()
-  vim.fn.setqflist({})
-  vim.cmd('ccl')
-end
-
--- Clean up all unusable quickfix items without a filename reference.
--- They lose their filename reference after a bwipeout.
-function quickfix.sanitize()
-  local qflist = vim.fn.getqflist()
-  local newlist = {}
-
-  for _, entry in ipairs(qflist) do
-    if vim.fn.bufname(entry.bufnr) ~= '' then
-      table.insert(newlist, entry)
-    end
-  end
-
-  vim.fn.setqflist(newlist)
-end
-
 -- TODO: These are just files, so attempt directories.
 function quickfix.rename_files(pattern)
   local input_ok, replacement
@@ -40,7 +19,7 @@ function quickfix.rename_files(pattern)
     return dvim.utils.print_redraw('File rename cancelled')
   end
 
-  gsub_subcmd = string.format(
+  local gsub_subcmd = string.format(
     'string.gsub(%s, "%s", "%s")',
     'vim.fn.expand("%:t")',
     pattern,
@@ -65,6 +44,7 @@ function quickfix.find_replace(query, replace)
 
   -- Blank query at this point = ask for input, or gtfo.
   if query == nil or query == '' then
+    local search_ok
     search_ok, query = pcall(vim.fn.input, 'Look for: ', query)
     if not search_ok or query == nil or query == '' then
       vim.cmd('ccl')
@@ -74,6 +54,7 @@ function quickfix.find_replace(query, replace)
 
   -- Prompt the user for the replacement string, or gtfo.
   if replace == nil or replace == '' then
+    local replace_ok
     replace_ok, replace =
       pcall(vim.fn.input, string.format('Replace "%s" with: ', query))
 

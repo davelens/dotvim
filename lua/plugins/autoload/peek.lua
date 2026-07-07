@@ -9,7 +9,7 @@ return {
     {
       '<leader>m',
       function()
-        peek = require('peek')
+        local peek = require('peek')
         return peek.is_open() and peek.close() or peek.open()
       end,
       ft = 'markdown',

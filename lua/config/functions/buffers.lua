@@ -80,19 +80,6 @@ function buffers.rename_file(old_name, new_name)
   dvim.utils.print_redraw('Renamed ' .. old_name .. ' to ' .. new_name)
 end
 
--- Check if any buffer for the given type is currently open.
-function buffers.is_open(buf_type)
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(bufnr) then
-      local bufname = vim.api.nvim_buf_get_name(bufnr)
-      if bufname:match(buf_type) then
-        return true
-      end
-    end
-  end
-  return false
-end
-
 -- Copy the current buffer's file path to the clipboard.
 -- @param opts table Options table with the following keys:
 --   - absolute: boolean (default: false) If true, use absolute path. If false, use path relative to cwd.

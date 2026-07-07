@@ -46,26 +46,6 @@ function M.last_word_selection()
   return vim.g.last_word_selection
 end
 
--- Useful to use this on keymaps to quickly run external scripts.
--- Mostly done to have a single point where these kind of arguments get
--- sanitized.
-function M.run_script_on_visual_selection(script_path)
-  local visual_selection = M.get_visual_selection()
-  visual_selection = visual_selection:gsub("'", "'\\''")
-
-  -- Run the cmd, grab the output as a systemlist
-  local output = vim.fn.systemlist(script_path .. ' ' .. visual_selection)
-
-  -- Check for any errors in command execution (non-zero exit status)
-  if vim.v.shell_error ~= 0 then
-    print('Error running ' .. script_path)
-    return
-  end
-
-  vim.fn.setqflist({}, 'r', { title = script_path, lines = output })
-  vim.cmd('copen')
-end
-
 -- Runs a check to see if a keymap exists before deleting it.
 -- I "sometimes" run into autocmd errors and this should prevent those.
 function M.nvim_buf_safe_del_keymap(bufnr, mode, lhs)
@@ -80,11 +60,6 @@ function M.nvim_buf_safe_del_keymap(bufnr, mode, lhs)
 
   -- No matching keymap = exit quietly
   return false
-end
-
-function M.app_name()
-  local project_root = vim.fn.getcwd()
-  return vim.fn.fnamemodify(project_root, ':t')
 end
 
 return M
