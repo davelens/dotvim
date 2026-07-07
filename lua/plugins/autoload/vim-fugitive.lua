@@ -1,7 +1,23 @@
 -- Git wrapper for (n)vim.
 return {
   'tpope/vim-fugitive',
-  cmd = { 'Git', 'GRemove' },
+  cmd = {
+    'G',
+    'Git',
+    'Gdiffsplit',
+    'Gvdiffsplit',
+    'Ghdiffsplit',
+    'Gread',
+    'Gwrite',
+    'Gedit',
+    'Gsplit',
+    'Gclog',
+    'GBrowse',
+    'GMove',
+    'GRename',
+    'GDelete',
+    'GRemove',
+  },
   keys = {
     { ';g', '<cmd>G<cr>', desc = 'Git (vim-fugitive)' },
     { '<leader>ga', '<cmd>G add %<cr>', desc = 'Stage current buffer' },
