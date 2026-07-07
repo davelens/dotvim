@@ -7,7 +7,9 @@ local function ensure_todo_file()
   local branch = nil
 
   if vim.fn.isdirectory(root .. '/.git') == 1 then
-    branch = vim.fn.system({ 'git', '-C', root, 'b' }):gsub('%s+$', '')
+    branch = vim.fn
+      .system({ 'git', '-C', root, 'branch', '--show-current' })
+      :gsub('%s+$', '')
     if branch == '' then
       branch = nil
     end
@@ -98,14 +100,13 @@ end
 -- Opens or closes the float with the project's todo file.
 function M.toggle_file()
   if M.float_id and vim.api.nvim_win_is_valid(M.float_id) then
-    -- Save the buffer before closing the floating window
-    if
-      vim.api.nvim_buf_get_option(
-        vim.api.nvim_win_get_buf(M.float_id),
-        'modified'
-      )
-    then
-      vim.api.nvim_command('write')
+    -- Save the float's buffer before closing it. nvim_buf_call ensures we write
+    -- that buffer specifically, even if focus has since moved elsewhere.
+    local float_buf = vim.api.nvim_win_get_buf(M.float_id)
+    if vim.bo[float_buf].modified then
+      vim.api.nvim_buf_call(float_buf, function()
+        vim.cmd.write()
+      end)
     end
 
     vim.api.nvim_win_close(M.float_id, true)
@@ -118,8 +119,8 @@ function M.toggle_file()
   vim.fn.bufload(buf)
 
   -- Set the buffer to be unlisted and wipe on hide so it doesn't persist
-  vim.api.nvim_buf_set_option(buf, 'buflisted', false)
-  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  vim.bo[buf].buflisted = false
+  vim.bo[buf].bufhidden = 'wipe'
 
   -- Show the path relative to the project root in the float title.
   local root = vim.fs.root(0, { '.git' }) or vim.fn.getcwd()
