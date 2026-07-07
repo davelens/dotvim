@@ -1,13 +1,25 @@
 return {
   'saghen/blink.cmp',
   dependencies = { 'saghen/blink.lib' },
-  event = 'InsertEnter',
+  -- Loaded at startup rather than on InsertEnter: its LSP capabilities must be
+  -- registered (see `config` below) before the first server attaches, otherwise
+  -- servers initialised for a file opened at startup miss them. A deferred
+  -- InsertEnter trigger cannot guarantee that ordering.
+  lazy = false,
   opts_extend = { 'sources.default' },
 
   build = function()
     -- build the fuzzy matcher, wait up to 60 seconds
     -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
     require('blink.cmp').build():pwait()
+  end,
+
+  config = function(_, opts)
+    require('blink.cmp').setup(opts)
+    -- Advertise blink's completion capabilities to every LSP server.
+    vim.lsp.config('*', {
+      capabilities = require('blink.cmp').get_lsp_capabilities(),
+    })
   end,
 
   ---@module 'blink.cmp'
@@ -118,7 +130,7 @@ return {
           if cmp.is_menu_visible() then
             if cmp.get_selected_item() then
               cmp.select_and_accept()
-            elseif luasnip.jumpable(1) then
+            elseif luasnip.locally_jumpable(1) then
               vim.schedule(function()
                 luasnip.jump(1)
               end)
@@ -129,7 +141,7 @@ return {
                 false
               )
             end
-          elseif luasnip.jumpable(1) then
+          elseif luasnip.locally_jumpable(1) then
             cmp.cancel()
             -- schedule() is needed to delay the jump until after blink closes.
             vim.schedule(function()
