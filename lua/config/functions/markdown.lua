@@ -32,6 +32,24 @@ local function link_target_at_cursor()
   return nil
 end
 
+local function jump_to_anchor(anchor)
+  for row, line in ipairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
+    local hashes, heading = line:match('^%s*(#+)%s+(.+)$')
+
+    if hashes and #hashes <= 6 then
+      heading = heading:gsub('%s+#+%s*$', '')
+      local slug = heading:lower():gsub('%s+', '-'):gsub('[^%w%-]', '')
+
+      if slug == anchor:lower() then
+        vim.api.nvim_win_set_cursor(0, { row, 0 })
+        return true
+      end
+    end
+  end
+
+  return false
+end
+
 -- Follow a markdown link target: open URLs in the browser, files in Neovim.
 local function follow(target)
   -- URLs open in the default browser
@@ -40,23 +58,35 @@ local function follow(target)
     return
   end
 
-  -- Resolve wiki-style links to .md files in the same directory
-  if not target:match('%.[%w]+$') then
-    target = target .. '.md'
+  local path, anchor = target:match('^(.-)#(.+)$')
+  if path then
+    target = path
   end
 
-  -- Resolve relative paths from the current file's directory
-  if not target:match('^/') then
-    local current_dir = vim.fn.expand('%:p:h')
-    target = current_dir .. '/' .. target
+  if target ~= '' then
+    -- Resolve wiki-style links to .md files in the same directory
+    if not target:match('%.[%w]+$') then
+      target = target .. '.md'
+    end
+
+    -- Resolve relative paths from the current file's directory
+    if not target:match('^/') then
+      local current_dir = vim.fn.expand('%:p:h')
+      target = current_dir .. '/' .. target
+    end
+
+    target = vim.fn.resolve(target)
+
+    if vim.fn.filereadable(target) == 1 then
+      vim.cmd.edit(target)
+    else
+      vim.notify('File not found: ' .. target, vim.log.levels.WARN)
+      return
+    end
   end
 
-  target = vim.fn.resolve(target)
-
-  if vim.fn.filereadable(target) == 1 then
-    vim.cmd.edit(target)
-  else
-    vim.notify('File not found: ' .. target, vim.log.levels.WARN)
+  if anchor and not jump_to_anchor(anchor) then
+    vim.notify('Heading not found: #' .. anchor, vim.log.levels.WARN)
   end
 end
 
