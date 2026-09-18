@@ -20,6 +20,8 @@ git clone git@github.com:davelens/dotvim.git ~/.dotvim
 ```
 Once that's done, you can start Neovim using `dvim`.
 
+Peek is skipped when `deno` is unavailable. LuaSnip still works without `make`, but its optional `jsregexp` build (snippet transformations) is skipped. After installing the missing tools, restart `dvim` and run `:Lazy sync` for Peek or `:Lazy build LuaSnip` for the native snippet support. Private plugins require GitHub repository access configured separately.
+
 ### Why "dvim"?
 I like having my `nvim` command to remain stock Neovim, so the install script will create a `dvim` executable in `~/.local/bin/`. 
 The script will complain if `~/.local/bin` is not in your path yet.

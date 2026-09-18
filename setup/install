@@ -7,7 +7,7 @@
 # Stops further execution after any error.
 set -e
 
-SETUP_DIR=$(dirname "$(realpath "$0")")
+SETUP_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 ROOT_DIR="$(dirname "$SETUP_DIR")"
 XDG_BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
@@ -54,6 +54,12 @@ function is_font_installed {
 }
 
 function install_fonts {
+  if [ "$(uname -s)" != 'Darwin' ] && ! command -v fc-list &>/dev/null; then
+    echo "$(warn) WARNING: fc-list not installed. Skipping font installation."
+    echo "    Install fontconfig and rerun setup/install to install Nerd fonts."
+    return
+  fi
+
   local fonts_to_install=()
 
   if ! is_font_installed "Hack"; then
@@ -166,4 +172,6 @@ EOF
   echo "$(check) dvim successfully installed"
 }
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  main "$@"
+fi

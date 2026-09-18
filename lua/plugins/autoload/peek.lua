@@ -1,6 +1,7 @@
 -- Markdown preview plugin for Neovim.
 return {
   'toppair/peek.nvim',
+  cond = vim.fn.executable('deno') == 1,
   build = 'deno task --quiet build:fast',
   opts = {},
   ft = 'markdown',
