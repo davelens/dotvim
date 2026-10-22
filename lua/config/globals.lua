@@ -9,8 +9,9 @@ vim.g.loaded_node_provider = 0 -- disable node provider
 vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 vim.g.loaded_python_provider = 0 -- disable python provider
 
--- Clipboard settings for WSL. I use `cb` on macos as well, so the conditional
--- might not be necessary. I'll find out later.
+-- WSL first: clip.exe/powershell talk to the Windows clipboard directly, even
+-- inside tmux. Elsewhere in tmux (e.g. over SSH), tmux forwards copies to the
+-- attached terminal via OSC 52.
 if vim.fn.has('wsl') == 1 then
   vim.g.clipboard = {
     name = 'WslClipboard',
@@ -21,6 +22,21 @@ if vim.fn.has('wsl') == 1 then
     paste = {
       ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
       ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
+elseif vim.env.TMUX then
+  -- Paste from tmux's buffer only; querying the outer terminal's clipboard
+  -- prompts (Ghostty) or stalls (WezTerm) on every `p` with unnamedplus.
+  vim.g.clipboard = {
+    name = 'tmux',
+    copy = {
+      ['+'] = { 'tmux', 'load-buffer', '-w', '-' },
+      ['*'] = { 'tmux', 'load-buffer', '-w', '-' },
+    },
+    paste = {
+      ['+'] = { 'tmux', 'save-buffer', '-' },
+      ['*'] = { 'tmux', 'save-buffer', '-' },
     },
     cache_enabled = 0,
   }

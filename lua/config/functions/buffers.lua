@@ -91,17 +91,7 @@ function buffers.copy_filepath(opts)
     filepath = vim.fn.expand('%:p')
   end
 
-  local copy_cmd = 'xclip -selection clipboard'
-
-  if vim.fn.has('mac') == 1 then
-    copy_cmd = 'pbcopy'
-  elseif vim.fn.has('wsl') == 1 then
-    copy_cmd = 'clip.exe'
-  elseif os.getenv('WAYLAND_DISPLAY') then
-    copy_cmd = 'wl-copy'
-  end
-
-  vim.fn.system('echo -n ' .. vim.fn.shellescape(filepath) .. ' | ' .. copy_cmd)
+  vim.fn.setreg('+', filepath)
 end
 
 -- Shifts the width of the buffer into a given direction.
